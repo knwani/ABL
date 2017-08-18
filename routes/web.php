@@ -34,7 +34,7 @@ Route::get('/feminique-woman', function () {
 });
 
 Route::get('/ask-kenny', function () {
-    return view('dev');
+    return view('askkenny');
 });
 
 Route::get('/blog', function () {

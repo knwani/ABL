@@ -48,6 +48,36 @@
   z-index: 3;
 }
 
+.banner.skew:before{
+
+	background-color: #d4d4d4;
+bottom: 0px;
+content: '';
+height: 70px;
+position: absolute;
+transform-origin: left bottom;
+transform: skewY(3deg);
+width: 100%;
+z-index: 4;
+    height: 150px;
+
+}
+
+.bio__portrait {
+	position: absolute;
+    background: #322F27;
+    background-size: cover;
+    z-index: 2;
+    top: 80px;
+    right: 70px;
+    height: 600px;
+    width: 62%;
+		background-image: url('../images/mrs-nwani.jpg');
+		background-position: right bottom;
+		border-radius:5px;
+
+}
+
 *{
   webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -72,7 +102,8 @@
 }
 
 html, body {
-    background-color: #2f2f2f;
+    /*background-color: #2f2f2f;*/
+		background-color: #d4d4d4;
     /*color: #636b6f;*/
     color: #fff;
     font-family: 'Avenir Next', 'Raleway', sans-serif;
@@ -88,6 +119,10 @@ html, body {
 
 .four-quarter-height{
     height: 75vh;
+}
+
+.five-quarter-height{
+    height: 85vh;
 }
 
 .flex-center {
@@ -380,12 +415,34 @@ display: block;
 }
 
 .links > a {
-    color: #fff;
-    padding: 0 15px 6px;
-    font-weight: 600;
-    letter-spacing: .1rem;
-    text-decoration: none;
-    text-transform: uppercase;
+	color: #fff;
+	padding: 0 15px 6px;
+	font-weight: 600;
+	letter-spacing: .1rem;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.middle_piece p.greeting{
+	color: #fff;
+	margin-bottom: 5px;
+	font-size: 14px;
+	font-weight: 600;
+	font-family: 'Raleway';
+	letter-spacing: .1rem;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.middle_piece p.name{
+	color: #fff;
+	margin-bottom: 5px;
+	margin-top: 0px;
+	font-size: 24px;
+	font-weight: bold;
+	letter-spacing: .1rem;
+	text-decoration: none;
+
 }
 
 .links a.on{
@@ -692,7 +749,7 @@ font-weight: bold;
   width: 100%;
   top: 0px;
   bottom: 0px;
-  background: #2f2f2f;
+  background: #d4d4d4;
   -ms-transform: skewY(-49.1deg);
   transform: skewY(-49.1deg);
   opacity: 1;
@@ -705,7 +762,7 @@ font-weight: bold;
   width: 100%;
   top: 0px;
   bottom: 0px;
-  background: #2f2f2f;
+  background: #d4d4d4;
   -ms-transform: skewY(-49.1deg);
   transform: skewY(-49.1deg);
   opacity: 1;
