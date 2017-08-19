@@ -50,7 +50,7 @@
 
 .banner.skew:before{
 
-	background-color: #d4d4d4;
+	background-color: #e8e8e8;
 bottom: 0px;
 content: '';
 height: 70px;
@@ -78,6 +78,34 @@ z-index: 4;
 
 }
 
+@-webkit-keyframes bounce {
+    from,to {
+        transform: translateY(0)
+    }
+
+    50% {
+        transform: translateY(10px)
+    }
+}
+
+@keyframes bounce {
+    from,to {
+        transform: translateY(0)
+    }
+
+    50% {
+        transform: translateY(10px)
+    }
+}
+
+.bio_bounce{
+	animation-duration: 3s;
+animation-fill-mode: both;
+animation-iteration-count: infinite;
+animation-name: bounce;
+transform-origin: center bottom
+}
+
 *{
 	-webkit-box-sizing: border-box;
 	    -moz-box-sizing: border-box;
@@ -94,7 +122,7 @@ z-index: 4;
   left: 0px;
   bottom: 0px;
   right: 0px;
-  z-index: 4;
+  z-index: 6;
 
 }
 
@@ -107,7 +135,8 @@ z-index: 4;
 
 html, body {
     /*background-color: #2f2f2f;*/
-		background-color: #d4d4d4;
+		/*background-color: #d4d4d4;*/
+		background-color: #e8e8e8;
     /*color: #636b6f;*/
     color: #fff;
     font-family: 'Avenir Next', 'Raleway', sans-serif;
@@ -154,8 +183,12 @@ html, body {
   text-align: center;
   position: fixed;
   width: 100%;
-  z-index: 4;
+  z-index: 6;
 
+}
+
+.middle_piece.no_padding{
+		padding-top: 0px;
 }
 
 .middle_piece{
@@ -452,12 +485,17 @@ color: #fff;
 }
 
 .middle_piece p.first{
-	color: #fff;
-	margin-bottom: 5px;
-	margin-top: 0px;
-	font-size: 16px;
-	line-height: 1.6;
-	width: 60%;
+	color: #000;
+	    margin-bottom: 5px;
+	    margin-top: 0px;
+	    font-size: 16px;
+	    line-height: 1.6;
+	    background-color: #f5b5c0;
+			    max-width: 600px;
+	    padding: 10px 15px;
+	    border-radius: 3px;
+	    width: 60%;
+	    /* text-shadow: 0px 0px 2px rgba(0, 0, 0, 1); */
 }
 
 .links a.on{
@@ -628,12 +666,82 @@ background-image: url('../unsplash/diana-simumpande-197805-min.jpg');
 }
 
 .read_block .about{
-  width: 80%;
+  /*width: 75%;
   max-width: 1200px;
   margin: auto;
   font-size: 15px;
   line-height: 1.8;
-  margin: 40px auto;
+  margin: 40px auto;*/
+	width: 100%;
+	margin-bottom: 30px;
+}
+
+.other_bg{
+	 background-color: #fafafa;
+	     border-top: 1px solid whitesmoke;
+			 border-bottom: 1px solid whitesmoke;
+}
+
+.beautiful_life{
+	display: flex;
+	width: 75%;
+	max-width: 1200px;
+	margin: auto;
+	font-size: 15px;
+	line-height: 1.8;
+	margin: auto;
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+
+.beautiful_life.nwani{
+    background-color: #fafafa;
+	}
+
+.beautiful_life.spacer{
+
+}
+
+.beautiful_life .title{
+	width: 30%;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.beautiful_life .content{
+	width: 70%;
+}
+
+.beautiful_life .content p{
+	margin: 0px;
+}
+
+.read_block .about.blocks{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	position: relative;
+	    z-index: 4;
+
+}
+
+.read_block .about .left, .read_block .about .right, .read_block .about .middle{
+	width: 33%;
+	padding: 15px 20px;
+}
+
+.read_block .about .left p, .read_block .about .right p{
+	margin: 0px;
+}
+
+.read_block .about .left{
+	background-color: #F6DE75;
+
+}
+
+.read_block .about .right{
+	background-color: #8CD5E9;
+
 }
 
 .tenets_new_block .big_block{

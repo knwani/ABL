@@ -15,7 +15,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/main.css') }}"  />
     </head>
     <body>
-        <div class="flex-center position-ref five-quarter-height">
+        <div class="flex-center position-ref full-height">
           <div class="banner skew">
             <div class="overlay"></div>
             <div class="content">
@@ -52,13 +52,16 @@
 
 
               </div>
-              <div class="middle_piece larger">
+              <div class="middle_piece larger no_padding">
                 <div>
                   <p class="greeting">Hi there</p>
                   <p class="name">Mrs Kehinde Nwani</p>
                   <p class="first">I am a social entrepreneur, founder of the "A
                   Beautiful Life By Kenny Initiative", and founder, GMD/CEO Meadow Hall
-                  Group.</a>
+                  Group.
+                  <br/>
+                  <br/>
+                  Do ask me anything</p>
                 </div>
 
                 <div>
@@ -66,7 +69,7 @@
                 </div>
               </div>
 
-              <div class="two--show bio__portrait"></div>
+              <div class="two--show bio__portrait bio_bounce"></div>
             </div>
           </div>
 
@@ -82,26 +85,7 @@
             @endif
 
             <div class="read_block">
-              <p class="first">
-Mrs Kehinde Nwani is a social entrepreneur who is the founder of the “A
-Beautiful Life By Kenny Initiative”. This Initiative was birthed from a
-burden she had to mentor/guide women – aged 21+ - in order for them to
-(through the leading of the Holy Spirit), truly live a Beautiful Life. She
-is an Educationist who believes that education can be used as a viable tool
-for societal development and through her role as the GMD/CEO Meadow Hall
-Group, she is achieving this commendable feat. She has successfully grown
-Meadow Hall Group, which started as a summer school in 2002 to an education
-group with 6 sub-brands: Meadow Hall Education, Meadow Hall Consult, Meadow
-Hall Foundation, Spring Meadow Edutainment, Meadow Hall Branchise and
-Meadow Hall Resources. She obtained her Bachelor of Law degree from the
-University of Ife (now Obafemi Awolowo University) 30 years ago and was
-called to the Nigerian bar thereafter. She began her career as a Lawyer and
-practiced law for about 14years before finally deciding to pursue her
-lifelong passion - Education. She went further to study Education,
-obtaining various diplomas, a Masters degree and is currently studying for
-a PhD at the University of Leicester. She is someone who can truly be
-referred to as a Life-long learner.
-</p>
+
             </div>
         </div>
 
