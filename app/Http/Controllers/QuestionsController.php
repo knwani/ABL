@@ -56,7 +56,7 @@ class QuestionsController extends Controller
             ->where('id', $question_id)
             ->update(['Who' => $user->getName(), 'Email' => $user->getEmail()]);
 
-       } catch (Exception $e) {
+       } catch (\Exception $e) {
 
        }
 
