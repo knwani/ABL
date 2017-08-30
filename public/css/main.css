@@ -268,7 +268,7 @@ html, body {
 .header{
   text-align: center;
   position: fixed;
-  width: 100%;
+  /*width: 100%;*/
   z-index: 6;
 	left: 0px;
 	right: 0px;
@@ -1408,7 +1408,7 @@ font-weight: bold;
   width: 100%;
   top: 0px;
   bottom: 0px;
-  background: #d4d4d4;
+  background: #e8e8e8;
   -ms-transform: skewY(-49.1deg);
   transform: skewY(-49.1deg);
   opacity: 1;
