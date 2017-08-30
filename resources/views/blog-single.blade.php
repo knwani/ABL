@@ -56,21 +56,50 @@
           </div>
 
             <div class="blog_block">
-              @foreach ($data['blog'] as $indexKey => $blog)
-                <a href="{{ url('/blog/' . $blog->id . '/' . $blog->titleFriendly())}}" class="blog_item" >
+
+                <div class="blog_item read" >
 
                     <div class="author">
-                      <div class="image" style="background-image:url('/authors/{{$blog->authorData()['avatar']}}')"></div>
-                      <span class="name">{{$blog->authorData()['name']}}</span>
+                      <div class="image" style="background-image:url('/authors/{{$data['blog']->authorData()['avatar']}}')"></div>
+                      <span class="name">{{$data['blog']->authorData()['name']}}</span>
                     </div>
                     <div class="content">
 
-                      <div class="title">{{$blog->title}}</div>
-                      <div class="body">{{$blog->getBodyPreview()}}</div>
-                      <span class="date">{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $blog->created_at)->format('d M Y')}}</span>
+                      <div class="title">{{$data['blog']->title}}</div>
+                      <span class="date">{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $data['blog']->created_at)->format('d M Y')}}</span>
+                      <div class="body">{{$data['blog']->body}}</div>
+
                     </div>
-                </a>
-              @endforeach
+
+
+                </div>
+
+
+
+            </div>
+
+            <div class="recommended">
+
+              <div class="recommended_read">
+                <span class="sug">Read Next</span>
+                @foreach ($data['recommended'] as $indexKey => $blog)
+                  <a href="{{ url('/blog/' . $blog->id . '/' . $blog->titleFriendly())}}" class="blog_item" >
+
+                      <div class="author">
+                        <div class="image" style="background-image:url('/authors/{{$blog->authorData()['avatar']}}')"></div>
+                        <span class="name">{{$blog->authorData()['name']}}</span>
+                      </div>
+                      <div class="content">
+
+                        <div class="title">{{$blog->title}}</div>
+                        <div class="body">{{$blog->getBodyPreview()}}</div>
+                        <span class="date">{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $blog->created_at)->format('d M Y')}}</span>
+                      </div>
+                  </a>
+                @endforeach
+
+              </div>
+
             </div>
 
             <div class="footerholder">

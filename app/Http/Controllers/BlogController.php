@@ -9,20 +9,19 @@ use App;
 class BlogController extends Controller
 {
     //
-    public function getSingleBlog($id){
+    public function getSingleBlog($id, $title){
       //$events = DB::table('events')->get();
       //$result = DB::table('tenets')->take(6)->get();
       //$tenets = \App\Tenet::hydrate($result);
-
-      $tenet = \App\Tenet::where('id', $id)->first();
-      $author = \App\Author::where('id', $tenet->author)->first();
-      DB::table('tenets')->where('ID', $id)->increment('views');
-      $recommended = \App\Tenet::where('id', '!=', $id)->orderBy('views', 'DESC')->take(8)->get();
+      $blog = \App\Blog::where('id', $id)->first();
+      //$author = \App\Author::where('id', $blog->author)->first();
+      DB::table('blogs')->where('ID', $id)->increment('views');
+      $recommended = \App\Blog::where('id', '!=', $id)->orderBy('views', 'DESC')->take(1)->get();
       //$recommended = \App\Tenet::where('id', '!=', $id)->where('category', $tenet->category)->orderBy('views', 'DESC')->take(8)->get();
       //print_r($tenet->id);
       //print_r($author);
       //print_r($tenet);
-      return view('tenet')->with('data', ['recommended' => $recommended, 'tenet' => $tenet, 'author' => $author]);
+      return view('blog-single')->with('data', ['recommended' => $recommended, 'blog' => $blog]);
     }
 
     public function getBlogs(){

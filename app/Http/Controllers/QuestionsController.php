@@ -16,7 +16,7 @@ class QuestionsController extends Controller
       $questions = \App\Question::all();
       //$result = DB::table('tenets')->take(6)->get();
       //$tenets = \App\Tenet::hydrate($result);
-      $tenets = \App\Tenet::take(6)->get();
+      //$tenets = \App\Tenet::take(6)->get();
       //print_r($tenets);
 
       return view('askkenny')->with('data', ['questions' => $questions]);

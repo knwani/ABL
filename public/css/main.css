@@ -147,16 +147,17 @@ z-index: 4;
 
 .bio__portrait {
 	position: absolute;
-    background: #322F27;
+    background: #fff;
     background-size: cover;
     z-index: 2;
     top: 80px;
     right: 70px;
     height: 600px;
     width: 62%;
-		background-image: url('../images/mrs-nwani.jpg');
-		background-position: right bottom;
+		background-image: url('../images/mrs-nwani.png');
+		background-position: top;
 		border-radius:5px;
+		border: 2px solid #f5b5c0;
 
 }
 
@@ -572,26 +573,52 @@ color: #fff;
 	color: #fff;
 }
 
+
+
 .blog_block{
 	width: 62%;
 	max-width: 700px;
 	margin: auto;
-	padding-top: 100px;
+	padding-top: 130px;
+	padding-bottom: 60px;
 	color: #000;
+	min-height: 700px;
 }
+
+.recommended{
+
+	background-color: #f5f5f5;
+}
+
+.recommended_read{
+	width: 62%;
+	max-width: 700px;
+	margin: auto;
+	color: #000;
+	padding: 20px 0px;
+
+}
+
+
+
+.recommended_read .content{
+	padding-bottom: 0px !important;
+	margin-bottom: 0px !important;
+	border-bottom: none !important;
+}
+
 
 .blog_item{
 	text-decoration: none;
 	color: #000;
 	margin-bottom: 40px;
 	display: block;
-
 }
+
 
 .blog_item .content{
 	margin-left: 50px;
 	padding-bottom: 40px;
-
 	border-bottom: #adadad 1px solid;
 }
 
@@ -599,6 +626,20 @@ color: #fff;
 	font-size: 10px;
 	margin-top: 10px;
 	display: block;
+}
+
+.blog_item.read .content{
+	border: none;
+	margin-bottom: 0px;
+}
+
+.blog_item.read .content .title{
+	font-size: 22px;
+}
+
+.blog_item.read .content .body{
+	font-size: 14px;
+	line-height: 1.6;
 }
 
 .blog_item .content .title{
@@ -1002,12 +1043,20 @@ ul.events li .content{
 	padding: 30px 0px;
 }
 
+.footer.blog{
+  color: #fff;
+	margin: 0px auto;
+}
+
+
 .footer.x-footer-fashion{
 	width: 95%;
 	margin:  auto;
 
 	color: #fff;
 }
+
+
 
 .footer{
   width: 80%;

@@ -57,12 +57,8 @@
                 <div>
                   <p class="greeting">Hi there</p>
                   <p class="name">Mrs Kehinde Nwani</p>
-                  <p class="first">I am a social entrepreneur, founder of the "A
-                  Beautiful Life By Kenny Initiative", and founder, GMD/CEO Meadow Hall
-                  Group.
-                  <br/>
-                  <br/>
-                  Do ask me anything</p>
+                  <p class="first">My name is Kenny Nwani, i am the founder of the A Beautiful Life By Kenny initiative as well as the GMD/CEO of Meadow Hall Group and together with a few good woman,
+                    i'm on hand to answer any pressing questions you may have. Bless you!</p>
                 </div>
 
                 <div>
@@ -73,17 +69,6 @@
               <div class="two--show bio__portrait bio_bounce"></div>
             </div>
           </div>
-
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
 
             <div class="read_block">
               <div class="about">
@@ -103,6 +88,16 @@
 
                     @else
 
+
+                    @foreach ($data['questions'] as $indexKey => $question)
+                      <a href="{{ url('/ask-kenny/' . $question->ID)}}" class="question_item" >
+                          <div class="content">
+
+                            <div class="title">{{$question->Question}}</div>
+                            <span class="date">{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $question->created_at)->format('d M Y')}}</span>
+                          </div>
+                      </a>
+                    @endforeach
 
 
                     @endif
