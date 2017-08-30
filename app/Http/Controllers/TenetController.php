@@ -16,7 +16,9 @@ class TenetController extends Controller
 
       $tenet = \App\Tenet::where('id', $id)->first();
       $author = \App\Author::where('id', $tenet->author)->first();
-      $recommended = \App\Tenet::where('id', '!=', $id)->where('category', $tenet->category)->orderBy('views', 'DESC')->take(8)->get();
+      DB::table('tenets')->where('ID', $id)->increment('views');
+      $recommended = \App\Tenet::where('id', '!=', $id)->orderBy('views', 'DESC')->take(8)->get();
+      //$recommended = \App\Tenet::where('id', '!=', $id)->where('category', $tenet->category)->orderBy('views', 'DESC')->take(8)->get();
       //print_r($tenet->id);
       //print_r($author);
       //print_r($tenet);

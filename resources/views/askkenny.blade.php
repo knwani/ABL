@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>Ask Kenny</title>
 
@@ -85,12 +86,66 @@
             @endif
 
             <div class="read_block">
+              <div class="about">
+              <div class="questions_bg">
+                <div class="questions">
+                  <div class="top_header">
+                    <span class="title">Questions</span>
+                    <a class="ask button" onclick="showModal()">Ask a question</a>
+                  </div>
 
+                  <div class="content">
+                    @if($data['questions']->isEmpty())
+
+                    <div class="empty">
+                      No questions have been asked yet. You could be the first. Go ahead, ask a question
+                    </div>
+
+                    @else
+
+
+
+                    @endif
+                  </div>
+
+
+                </div>
+              </div>
+
+              <div class="footer">
+                <div>All Rights Reserved. A Beautiful Life &copy; 2017</div>
+                <div>Designed with <i class="fa fa-heart"></i> in Lagos, Nigeria by <a href="http://ephodng.com" target="_blank">Ephod&trade;</a></div>
+                <div class="icons"><i class="fa fa-instagram"></i><i class="fa fa-facebook-square"></i><i class="fa fa-twitter-square"></i></div>
+              </div>
             </div>
+
+          </div>
+        </div>
+
+        <div class="parentModal ng-scope" style="">
+
+        <div class="close" onclick="closeModal()"><i class="fa fa-close fa-fw"></i></div>
+
+        <div class="parentModal_child">
+
+          <div class="section_header">Ask a question</div>
+
+          <form method="post">
+            <textarea id="rum" class="more_bottom_margin" placeholder="Keep your question straight to the point, on one topic and under 140 characters" maxlength="140"></textarea>
+          </form>
+
+          <div class="buttons social">
+            <a class="button facebook" onclick="askQuestion('Facebook')"><i class="fa fa-facebook-official"></i>Ask with Facebook</a>
+            <a href="" class="button twitter"><i class="fa fa-twitter-square"></i>Ask with Twitter</a>
+            <a href="" class="button google"><i class="fa fa-google-plus-square"></i>Ask with Google</a>
+          </div>
+        </div>
+
         </div>
 
         <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
         <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script type="text/javascript" src="{{ asset('/js/ninja.js') }}"></script>
 
         <script>
         $(document).ready(function(){

@@ -29,14 +29,17 @@ Route::get('/about-us', function () {
     return view('about');
 });
 
-Route::get('/feminique-woman', function () {
-    return view('dev');
-});
 
-Route::get('/ask-kenny', function () {
-    return view('askkenny');
-});
 
-Route::get('/blog', function () {
-    return view('dev');
-});
+Route::get('/feminique-woman', 'FemController@getAllData');
+Route::get('/feminique-woman/{category}', 'FemController@getCategoryData');
+
+Route::get('/feminique-woman/{category}/{id}/{title}', 'FemController@getSingleData');
+
+Route::get('/ask-kenny', 'QuestionsController@getQuestions');
+Route::post('/save-question', 'QuestionsController@saveQuestion');
+
+Route::get('/blog', 'BlogController@getBlogs');
+
+Route::get('/redirect-facebook', 'QuestionsController@redirect');
+Route::get('/callback-facebook', 'QuestionsController@callback');
