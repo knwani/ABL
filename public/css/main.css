@@ -441,6 +441,13 @@ display: flex;
   width: 64%;
 }
 
+.read_block .content.question{
+  font-size: 16px;
+  width: auto !important;
+	margin-top: 15px;
+
+}
+
 .read_block .content .text{
   width: 84%;
   margin: 40px 30px 0px auto;
@@ -1167,6 +1174,7 @@ background-image: url('../unsplash/diana-simumpande-197805-min.jpg');
 
 .questions_bg{
 	background-color: whitesmoke;
+	padding-bottom: 15px;
 }
 
 .read_block .questions{
@@ -1184,10 +1192,46 @@ background-image: url('../unsplash/diana-simumpande-197805-min.jpg');
 	min-height: 300px;
 }
 
+.question_item{
+	background-color: #fff;
+	padding: 10px 15px;
+	display: block;
+	text-decoration: none;
+	color: #000;
+	border-bottom: 1px solid #f5b5c0;
+}
+
+.question_item:last-of-type{
+	border-bottom: none;
+	border-radius: 0px 0px 4px 4px;
+	margin-bottom: 15px;
+}
+
+.question_item:first-of-type{
+	border-radius: 4px 4px 0px 0px;
+}
+
 .read_block .questions .title{
 	font-size: 20px;
 	font-weight: bold;
 	flex-grow: 1;
+}
+
+.read_block .questions .question_title{
+	font-weight: 400;
+}
+
+.read_block .questions .date{
+	font-size: 12px;
+	margin-top: 2px;
+	display: block;
+    color: #868686;
+}
+
+.read_block .questions .question_status{
+	color: #868686;
+	font-weight: 600;
+	font-size: 14px;
 }
 
 .read_block .questions .top_header{
@@ -1413,6 +1457,8 @@ font-weight: bold;
   transform: skewY(-49.1deg);
   opacity: 1;
 }
+
+
 
 .slick-next{
   right: 15px !important;

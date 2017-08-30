@@ -79,7 +79,7 @@
                     <a class="ask button" onclick="showModal()">Ask a question</a>
                   </div>
 
-                  <div class="content">
+                  <div class="content question">
                     @if($data['questions']->isEmpty())
 
                     <div class="empty">
@@ -90,11 +90,11 @@
 
 
                     @foreach ($data['questions'] as $indexKey => $question)
-                      <a href="{{ url('/ask-kenny/' . $question->ID)}}" class="question_item" >
-                          <div class="content">
-
-                            <div class="title">{{$question->Question}}</div>
-                            <span class="date">{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $question->created_at)->format('d M Y')}}</span>
+                      <a href="{{ url('/ask-kenny/' . $question->ID . '/' . $question->titleFriendly())}}" class="question_item" >
+                          <div class="question_content">
+                            <div class="question_title">{{$question->Question}}</div>
+                              <div class="question_status">{{$question->checkAnswer()}}</div>
+                            <span class="date">{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $question->created_at)->format('d M Y h:i a')}}</span>
                           </div>
                       </a>
                     @endforeach

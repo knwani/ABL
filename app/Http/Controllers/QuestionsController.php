@@ -7,6 +7,8 @@ use DB;
 use App;
 use Socialite;
 use Request;
+use Response;
+use Session;
 
 class QuestionsController extends Controller
 {
@@ -27,10 +29,13 @@ class QuestionsController extends Controller
 
       $new_question = new \App\Question;
       $new_question['Question'] = $question;
-      $new_question['Date Asked'] = 'CURRENT_TIMESTAMP';
+      //$new_question['Date Asked'] = 'CURRENT_TIMESTAMP';
       $new_question->save();
 
-      print_r($question);
+      Session::put('question.id', $new_question->id);
+
+      //print_r($question->ID);
+      return Response::json(array('success' => true, 'last_insert_id' => $new_question->id), 200);
     }
 
    public function redirectFacebook()
@@ -41,6 +46,22 @@ class QuestionsController extends Controller
    public function callbackFacebook()
    {
        // when facebook call us a with token
+       try {
+         $user = Socialite::driver('facebook')->user();
+         //$user->getName();
+         //$user->getEmail();
+         $question_id = Session::get('question.id');
+
+         DB::table('questions')
+            ->where('id', $question_id)
+            ->update(['Who' => $user->getName(), 'Email' => $user->getEmail()]);
+
+       } catch (Exception $e) {
+
+       }
+
+       return redirect('/ask-kenny');
+
    }
 
 

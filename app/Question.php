@@ -13,4 +13,12 @@ class Question extends Model
       return str_slug($this->Question);
     }
 
+    public function checkAnswer(){
+      if ($this->Answer == ""){
+        return "Unanswered";
+      } else {
+        return "Answered";
+      }
+    }
+
 }

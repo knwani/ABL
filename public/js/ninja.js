@@ -6,9 +6,6 @@ $.ajaxSetup({
 
 $(document).ready(function(){
   //if the events are enough, create this fucking slider
-
-
-
   $(".shower").click(function(){
     if($(".categories_list").css("display") == "none"){
       $(".categories_list").css("display", "block");
@@ -42,7 +39,12 @@ function askQuestion(value){
         type: 'POST',
         url: "/save-question",
         data: {the_question: question}
-      }).done(function() {
+      }).done(function(response) {
+        //alert(response.last_insert_id);
+        var id = response.last_insert_id;
+        if (response.success == true){
+          window.location.href = '/redirect-facebook';
+        }
         //$( this ).addClass( "done" );
       });
     } else if (value == "Twitter"){

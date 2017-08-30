@@ -43,5 +43,5 @@ Route::get('/blog', 'BlogController@getBlogs');
 
 Route::get('/blog/{id}/{title}', 'BlogController@getSingleBlog');
 
-Route::get('/redirect-facebook', 'QuestionsController@redirect');
-Route::get('/callback-facebook', 'QuestionsController@callback');
+Route::get('/redirect-facebook', 'QuestionsController@redirectFacebook');
+Route::get('/callback-facebook', 'QuestionsController@callbackFacebook');
