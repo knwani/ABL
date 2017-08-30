@@ -53,8 +53,8 @@
 
 
               </div>
-              <div class="middle_piece">
-                <img src="{{ asset('/images/logo.png') }}"/>
+              <div class="middle_piece home">
+                <img src="{{ asset('/images/header_twp.png') }}"/>
               </div>
             </div>
           </div>
