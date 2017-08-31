@@ -18,6 +18,8 @@ $(document).ready(function(){
   $("body").click(function(){
     $(".categories_list").css("display", "none");
   });
+
+  
 });
 
 function showModal(){

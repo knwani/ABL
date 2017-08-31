@@ -185,6 +185,7 @@
         <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
         <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         <script type="text/javascript" src="slick/slick.min.js"></script>
+        <script type="text/javascript" src="{{ asset('/js/ninja.js') }}"></script>
 
         <script>
         $(document).ready(function(){
@@ -208,6 +209,23 @@
 
           $("body").click(function(){
             $(".menu").css("display", "none");
+          });
+
+          var s = $(".header");
+          var pos = s.position();
+          //alert(pos.top);
+
+          $(window).scroll(function () {
+              var windowpos = $(window).scrollTop();
+              //s.html("Distance from top: " + pos.top + "<br/>Scroll position: " + windowpos);
+              if (windowpos > pos.top) {
+                  s.addClass("header_bg");
+                  //s.addClass("stick");
+              } else if (windowpos <= pos.top) {
+                  //s.removeClass("stick");
+                  s.removeClass("header_bg");
+              }
+
           });
         });
         </script>

@@ -76,8 +76,8 @@
             @endif
 
             <div class="read_block">
-              <div class="content">
-                <div class="text">
+              <div class="content flex">
+                <div class="text flex">
                   {{$data['tenet']->content}}
                   <div class="spacer"></div>
                   <div class="footer">
@@ -133,6 +133,23 @@
 
           $("body").click(function(){
             $(".menu").css("display", "none");
+          });
+
+          var s = $(".header");
+          var pos = s.position();
+          //alert(pos.top);
+
+          $(window).scroll(function () {
+              var windowpos = $(window).scrollTop();
+              //s.html("Distance from top: " + pos.top + "<br/>Scroll position: " + windowpos);
+              if (windowpos > pos.top) {
+                  s.addClass("header_bg");
+                  //s.addClass("stick");
+              } else if (windowpos <= pos.top) {
+                  //s.removeClass("stick");
+                  s.removeClass("header_bg");
+              }
+
           });
         });
         </script>

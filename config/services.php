@@ -41,4 +41,10 @@ return [
         'redirect' => 'http://localhost:8000/callback-facebook',
     ],
 
+    'twitter' => [
+        'client_id' => 'vitbQPp9ywpktvYJoDoJmJe6F',
+        'client_secret' => 'ZrFAmhAbog1gLVJ9dQERlnn6loTf7byBVkLsAhnwHfC2ltGgXg',
+        'redirect' => 'http://localhost:8000/callback-twitter',
+    ],
+
 ];

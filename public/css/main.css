@@ -43,8 +43,9 @@
   bottom: 0px;
   right: 0px;
   content: '';
-  background-color: #270000;
-  opacity: 0.46;
+  /*background-color: #270000;#720606;#6f0606*/
+	background-color: #6f2306;
+  opacity: 0.22;
   z-index: 3;
 }
 
@@ -272,6 +273,16 @@ html, body {
   z-index: 6;
 	left: 0px;
 	right: 0px;
+	transition: all .5s ease;
+}
+
+.header.header_bg{
+	background: #F4B6C1;
+}
+
+.header.header_bg .links > a{
+	color: #000 !important;
+	text-shadow: none !important;
 }
 
 .middle_piece.no_padding{
@@ -336,14 +347,13 @@ html, body {
 	padding: 0px 10px 30px;*/
 
 
-	width: 72px;
-background-color: #fff;
-padding: 4px 6px 14px;
-border-radius: 0px 0px 3px 3px;
+	width: 70px;
+padding: 4px 6px 10px;
+/*border-radius: 0px 0px 3px 3px;
 box-shadow: 0 0 0 4px #ffffff, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
 text-shadow: -1px -1px #ffffff;
 border: 2px dashed #717171;
-margin-top: -2px;
+margin-top: -2px;*/
 }
 
 .shell_logo img{
@@ -458,6 +468,10 @@ display: flex;
   width: 64%;
 }
 
+.read_block .content.flex{
+	 display: flex;
+}
+
 .read_block .content.question{
   font-size: 16px;
   width: auto !important;
@@ -470,6 +484,11 @@ display: flex;
   margin: 40px 30px 0px auto;
   line-height: 1.6;
   max-width: 900px;
+}
+
+.read_block .content .text.flex{
+	display: flex;
+  flex-direction: column;
 }
 
 .read_block .content .footer{
@@ -502,11 +521,12 @@ display: flex;
 }
 
 .read_block .content .text .spacer{
-  height: 400px;
+  min-height: 400px;
+	flex-grow: 1;
 }
 
 .read_block .sidebar{
-  background-color: #161f26;
+  background-color: #676767;
   width:36%;
   flex-grow: 1;
 }
@@ -579,6 +599,7 @@ color: #fff;
 	text-decoration: none;
 	text-transform: uppercase;
 	position: relative;
+	text-shadow: 1px 1px #000000;
 }
 
 
@@ -590,6 +611,7 @@ color: #fff;
 
 	text-transform: uppercase;
 	position: relative;
+	text-shadow: 1px 1px #000000;
 }
 
 .links span.link a{
@@ -881,6 +903,7 @@ ul.events li .content .title{
 	display: flex;
 	overflow: hidden;
 	text-decoration: none;
+	text-shadow: 1px 1px #000000;
 }
 
 .fashion_item .bg{
@@ -957,7 +980,7 @@ ul.events li .content .title{
 }
 
 .fashion_item .overlay{
-	opacity: 0.4;
+	opacity: 0.23;
     background: #3C0303;
     position: absolute;
     top: 0px;
@@ -1362,7 +1385,7 @@ color: #fff;
 
 .tenets_new_block .big_block .bg .overlay{
 /* Mask Copy 4: */
-opacity: 0.35;
+opacity: 0.22;
 background: #020202;
 position: absolute;
 top: 0px;
@@ -1399,6 +1422,7 @@ font-weight: bold;
   font-weight: bold;
     font-size: 18px;
     padding: 15px 20px;
+		    text-shadow: 1px 1px #000000;
 }
 
 .xavier{
@@ -1428,8 +1452,9 @@ font-weight: bold;
 }
 
 .tenets_new_block_parent .overlay_x:before{
-  opacity: 0.68;
-  background: #3C0303;
+	opacity: 0.22;
+	/*background: #3C0303;*/
+	background: #6f0606;
   position: absolute;
   top: 0px;
   left: 0px;
@@ -1439,8 +1464,9 @@ font-weight: bold;
 }
 
 .tenets_new_block_parent .overlay_x::before{
-  opacity: 0.68;
-  background: #3C0303;
+  opacity: 0.22;
+  /*background: #3C0303;*/
+	background: #6f0606;
   position: absolute;
   top: 0px;
   left: 0px;
