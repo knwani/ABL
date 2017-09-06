@@ -56,9 +56,7 @@
               <div class="middle_piece larger no_padding">
                 <div>
                   <p class="greeting">Hi there</p>
-                  <p class="name">Mrs Kehinde Nwani</p>
-                  <p class="first">My name is Kenny Nwani, i am the founder of the A Beautiful Life By Kenny initiative as well as the GMD/CEO of Meadow Hall Group and together with a few good woman,
-                    i'm on hand to answer any pressing questions you may have. Bless you!</p>
+                  <p class="first">My name is Kenny Nwani, i am the founder of the A Beautiful Life By Kenny initiative as well as the GMD/CEO of Meadow Hall Group and together with my mentoring partners, we'll be on hand to answer any pressing questions you may have. Bless you!</p>
                 </div>
 
                 <div>
