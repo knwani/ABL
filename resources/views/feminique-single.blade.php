@@ -50,7 +50,7 @@
                                 <li><a href="{{ url('/feminique-woman/her-health')}}">Her Health</a></li>
                                 <li><a href="{{ url('/feminique-woman/her-nutrition')}}">Her Nutrition</a></li>
                                 <li><a href="{{ url('/feminique-woman/her-home')}}">Her Home</a></li>
-                                <li><a href="{{ url('/feminique-woman/her-holidays')}}">Her Holidays</a></li>
+                                <li><a href="{{ url('/feminique-woman/her-travels')}}">Her Travels</a></li>
                                 <li><a href="{{ url('/feminique-woman/gallery')}}">Gallery</a></li>
                                 <li><a href="{{ url('/feminique-woman')}}">All Categories</a></li>
                               </ul>

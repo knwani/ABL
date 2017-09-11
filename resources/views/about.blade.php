@@ -75,7 +75,7 @@
 
               </div>-->
               <div class="middle_piece">
-                <div class="about_header">About A Beautiful Life</div>
+                <!--<div class="about_header">About A Beautiful Life</div>-->
               </div>
             </div>
           </div>
@@ -108,8 +108,7 @@
                     women to love their husbands, to love their children,    <strong><sup>5 </sup></strong><em>to be</em> discreet, chaste, homemakers,
                         good, obedient to their own husbands, that the word of God may not be
                         blasphemed.”
-                        <br/><br/>
-                        <strong>A Beautiful Life by Kenny</strong>
+                        A Beautiful Life by Kenny
                         caters to the needs of women through her online platform as well as hosts
                         physical meetings.<br/><br/>
                     </p>
@@ -175,7 +174,7 @@
                 <div class="beautiful_life spacer nwani">
                   <div class="title">
                     <div class="about_picture"></div>
-                    About<br/>Mrs Nwani
+                    Founder
                   </div>
                   <div class="content">
                     <div class="author_avatar" style="background-image:url('/images/mrs-nwani-about.jpg')"></div>
@@ -201,12 +200,6 @@
                     </p>
 
                     <p>
-                        She is happily married to Mr Andrew Nwani, the Founder and CEO of one of
-                        the foremost IT and Digital solutions companies in Nigeria. The couple is
-                        blessed with 3 wonderful Children.<br/><br/>
-                    </p>
-
-                    <p>
                       Mrs Kehinde Nwani is very passionate about National development and has
                       been widely recognized for her various pursuits, endeavours, achievements
                       and notable contribution to the growth of her country, Nigeria. Amongst
@@ -217,6 +210,13 @@
                       National Association of Nigerian Students. She is a fellow of the    <strong>Institute of management consultants</strong>, and also a member of
                       different organizations such as <strong>WIMBIZ, LCCI</strong> etc.
                   </p>
+
+                  <p>
+                      She is happily married to Mr Andrew Nwani, the Founder and CEO of one of
+                      the foremost IT and Digital solutions companies in Nigeria. The couple is
+                      blessed with 3 wonderful Children.<br/><br/>
+                  </p>
+
                   </div>
                 </div>
                 <div class="beautiful_life spacer contributors">
