@@ -29,7 +29,7 @@
                     </div>
                     <div class="morty">
                       <div class="tenets">
-                        <div class="tenets_front_man read"><i class="fa fa-align-left" ></i>&nbsp;&nbsp;Purposes</div>
+                        <div class="tenets_front_man black"><i class="fa fa-align-left" ></i>&nbsp;&nbsp;Purposes</div>
                         <ul class="menu">
                           <li><a href="{{ url('/tenets/gods-daughter')}}">God's Daughter</a></li>
                           <li><a href="{{ url('/tenets/wife')}}">Wife</a></li>

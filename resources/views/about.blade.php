@@ -16,7 +16,7 @@
     </head>
     <body>
         <div class="flex-center position-ref four-quarter-height">
-          <div class="banner">
+          <div class="banner fixed-height">
             <div class="overlay"></div>
             <div class="content">
               <div class="header">
@@ -49,14 +49,9 @@
                   </div>
 
                 </div>
-
-
-              </div>
-              <div class="middle_piece larger">
-                <div class="tenet">About Us</div>
               </div>
 
-              <div class="grid">
+            <!--  <div class="grid">
                 <div class="row">
 
                   <div class="item five"></div>
@@ -78,6 +73,9 @@
                   <div class="item eight"></div>
                 </div>
 
+              </div>-->
+              <div class="middle_piece">
+                <div class="about_header">About A Beautiful Life</div>
               </div>
             </div>
           </div>
@@ -96,9 +94,7 @@
             <div class="read_block">
               <div class="about">
                 <div class="beautiful_life">
-                  <div class="title">
-                    About<br/>A Beautiful Life
-                  </div>
+
                   <div class="content">
                     <p>
                         <strong>A Beautiful Life By Kenny </strong>
@@ -117,6 +113,7 @@
                         caters to the needs of women through her online platform as well as hosts
                         physical meetings.<br/><br/>
                     </p>
+                    <div>
                     <p>
                         <strong>Vision</strong>
                     </p>
@@ -126,6 +123,8 @@
                         the initiative is to raise women who are God chasers, wives, mothers,
                         workers/business owners, and nation builders after God’s heart.<br/><br/>
                     </p>
+                    </div>
+                    <div>
                     <p>
                         <strong>Mission Statement </strong>
                     </p>
@@ -142,6 +141,8 @@
                     Mentoring sessions and much more,    <strong>A Beautiful Life By Kenny</strong> equips women to thrive
                         and excel in this Modern 21<sup>st</sup> century world.<br/><br/>
                     </p>
+                    </div>
+                    <div>
                     <p>
                         <strong>Declaration</strong>
                     </p>
@@ -166,15 +167,18 @@
                     <p>
                         <em>I am God’s child.</em>
                     </p>
+                  </div>
 
                   </div>
                 </div>
                 <div class="other_bg">
                 <div class="beautiful_life spacer nwani">
                   <div class="title">
+                    <div class="about_picture"></div>
                     About<br/>Mrs Nwani
                   </div>
                   <div class="content">
+                    <div class="author_avatar" style="background-image:url('/images/mrs-nwani-about.jpg')"></div>
                     <p>
                     Mrs Kehinde Nwani is a social entrepreneur who is the founder of the “A
                     Beautiful Life By Kenny Initiative”. This Initiative was birthed from a
@@ -215,8 +219,19 @@
                   </p>
                   </div>
                 </div>
-                <div>
-              </div>
+                <div class="beautiful_life spacer contributors">
+                  <div class="title">Contributors</div>
+                  <div class="content">
+                    @foreach ($data['authors'] as $indexKey => $author)
+                    <div class="author_contributor">
+                      <div class="author_avatar" style="background-image:url('/authors/{{$author->avatar}}')"></div>
+                      <div class="author_details">
+                        {!!html_entity_decode($author->description)!!}
+                      </div>
+                    </div>
+                    @endforeach
+                  </div>
+                </div>
             </div>
             <div class="footer">
             <div>All Rights Reserved. A Beautiful Life © 2017</div>

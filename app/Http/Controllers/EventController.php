@@ -8,8 +8,11 @@ use DB;
 class EventController extends Controller
 {
     //
-    public function getEventData(){
-      $events = DB::table('events')->get();
-      return view('home')->with('data', $events);
+    public function getEventData($id){
+      //$event = DB::table('events')->where('id', $id)->get();
+      $event = \App\Event::where('ID', $id)->first();
+
+      //print_r($event);
+      return view('event')->with('data', ['event' => $event]);
     }
 }

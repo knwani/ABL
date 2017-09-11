@@ -13,12 +13,10 @@
 
         <!-- Styles -->
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/main.css') }}"  />
-        <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
-        <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-          <div class="banner">
+        <div class="flex-center position-ref sixty-quarter-height">
+          <div class="banner" style="background-image:url('/events/{{$data['event']->header}}')">
             <div class="overlay"></div>
             <div class="content">
               <div class="header">
@@ -31,14 +29,21 @@
                     </div>
                     <div class="morty">
                       <div class="tenets">
-                        <i class="fa fa-align-left" ></i>&nbsp;&nbsp;Tenets
+                        <div class="tenets_front_man"><i class="fa fa-align-left" ></i>&nbsp;&nbsp;Purposes</div>
+                        <ul class="menu">
+                          <li><a href="{{ url('/tenets/gods-daughter')}}">God's Daughter</a></li>
+                          <li><a href="{{ url('/tenets/wife')}}">Wife</a></li>
+                          <li><a href="{{ url('/tenets/mother')}}">Mother</a></li>
+                          <li><a href="{{ url('/tenets/career-woman')}}">Career Woman</a></li>
+                          <li><a href="{{ url('/tenets/nation-builder')}}">Nation Builder</a></li>
+                        </ul>
                       </div>
                       <div class="links">
-                          <a href="https://laravel.com/docs">Home</a>
-                          <a href="https://laracasts.com">About Us</a>
-                          <a href="https://laravel-news.com">Feminique Woman</a>
-                          <a href="https://forge.laravel.com">Ask Kenny</a>
-                          <a href="https://github.com/laravel/laravel">Blog</a>
+                          <a href="/">Home</a>
+                          <a href="{{ url('/about-us')}}">About Us</a>
+                          <a href="{{ url('/feminique-woman')}}">Feminique Woman</a>
+                          <a href="{{ url('/ask-kenny')}}">Ask Kenny</a>
+                          <a href="{{ url('/blog')}}">Blog</a>
                       </div>
                     </div>
                   </div>
@@ -47,63 +52,39 @@
 
 
               </div>
-              <div class="middle_piece">
-                <img src="{{ asset('/images/logo.png') }}"/>
+              <div class="middle_piece larger">
+                <div class="tenet">{{$data['event']->event_name}}</div>
+                <div class="seperator"></div>
+                <div class="title">{{$data['event']->organizer}}</div>
+                <span class="date">{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $data['event']->event_date)->format('d M Y - h:i a')}}</span>
               </div>
             </div>
           </div>
 
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-
-            </div>
         </div>
-        <div class="scroller">
-          <ul class="events">
-          @foreach ($data as $event)
 
-            <li style="background-image:url('/events/{{$event->header}}')">
-              <div class="overlay"></div>
+        <div class="read_block">
+          <div class="about">
+            <div class="beautiful_life">
               <div class="content">
-                <span class="title">{{$event->event_name}}</span>
-                <span class="desc">{{$event->description}}</span>
-                <span class="date">{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $event->created_at)->format('d M Y')}}</span>
-                <a class="button" href="{{ url('/event/$event->id') }}">View Event</a>
+                {!!html_entity_decode($data['event']->full_description)!!}
               </div>
-            </li>
-          @endforeach
-          </ul>
-        </div>
-
-        <div class="tenets_new_block">
+            </div>
+            <div class="footer">
+              <div>All Rights Reserved. A Beautiful Life © 2017</div>
+              <div>Designed with <i class="fa fa-heart"></i> in Lagos, Nigeria by <a href="http://ephodng.com" target="_blank">Ephod™</a></div>
+              <div class="icons"><i class="fa fa-instagram"></i><i class="fa fa-facebook-square"></i><i class="fa fa-twitter-square"></i></div>
+            </div>
+          </div>
 
         </div>
 
         <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
         <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-        <script type="text/javascript" src="slick/slick.min.js"></script>
 
         <script>
         $(document).ready(function(){
           //if the events are enough, create this fucking slider
-          if($('.events').length > 4){
-            $('.events').slick({
-                 infinite: true,
-                 slidesToShow: 3,
-                 slidesToScroll: 3
-              });
-          }
-
           var s = $(".header");
           var pos = s.position();
           //alert(pos.top);

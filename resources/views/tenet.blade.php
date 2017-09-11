@@ -89,7 +89,9 @@
               </div>
               <div class="sidebar">
                 <div class="text">
-                <span class="title"><i class="fa fa-align-left"></i>&nbsp;&nbsp;More from {{$data['tenet']->category}}</span>
+                <!--<span class="title"><i class="fa fa-align-left"></i>&nbsp;&nbsp;More from {{$data['tenet']->category}}</span>-->
+                <span class="title"><i class="fa fa-align-left"></i>&nbsp;&nbsp;Recommended Reading</span>
+
 
                   @foreach ($data['recommended'] as $this_article)
 

@@ -56,6 +56,7 @@
               <div class="middle_piece home">
                 <img src="{{ asset('/images/header_twp.png') }}"/>
               </div>
+              <div class='icon-scroll'></div>
             </div>
           </div>
 
@@ -73,6 +74,9 @@
             <div class="content">
 
             </div>
+        </div>
+        <div class="alert">
+          <a href="{{ url('/welcome-address') }}">Read Founder's welcome address</a>
         </div>
         <div class="scroller">
           <ul class="events">

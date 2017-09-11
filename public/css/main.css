@@ -35,6 +35,80 @@
 	font-style: normal;
 }
 
+@font-face {
+	font-family: 'Avenir Next';
+	src: url('../hinted-AvenirNext-Medium.eot');
+	src: local('Avenir Next Medium'), local('AvenirNext-Medium'),
+		url('../hinted-AvenirNext-Medium.eot?#iefix') format('embedded-opentype'),
+		url('../hinted-AvenirNext-Medium.woff2') format('woff2'),
+		url('../hinted-AvenirNext-Medium.woff') format('woff'),
+		url('../hinted-AvenirNext-Medium.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Avenir Next';
+	src: url('../hinted-AvenirNext-DemiBold.eot');
+	src: local('Avenir Next Demi Bold'), local('AvenirNext-DemiBold'),
+		url('../hinted-AvenirNext-DemiBold.eot?#iefix') format('embedded-opentype'),
+		url('../hinted-AvenirNext-DemiBold.woff2') format('woff2'),
+		url('../hinted-AvenirNext-DemiBold.woff') format('woff'),
+		url('../hinted-AvenirNext-DemiBold.ttf') format('truetype');
+	font-weight: 600;
+	font-style: normal;
+}
+
+.icon-scroll,
+.icon-scroll:before {
+  position: absolute;
+  left: 50%;
+}
+.icon-scroll {
+  width: 30px;
+  height: 50px;
+  margin-left: -20px;
+  bottom: 15px;
+  margin-top: -35px;
+  box-shadow: inset 0 0 0 1px #fff;
+  border-radius: 25px;
+}
+.icon-scroll:before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  margin-left: -4px;
+  top: 8px;
+  border-radius: 4px;
+  -webkit-animation-duration: 1.5s;
+          animation-duration: 1.5s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-name: scroll;
+          animation-name: scroll;
+}
+@-webkit-keyframes scroll {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(46px);
+            transform: translateY(46px);
+  }
+}
+@keyframes scroll {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(46px);
+            transform: translateY(46px);
+  }
+}
+
 
 .banner .overlay{
   position: absolute;
@@ -194,11 +268,23 @@ transform-origin: center bottom
 	-webkit-box-sizing: border-box;
 	    -moz-box-sizing: border-box;
 	    box-sizing: border-box;
-	    /*-webkit-font-smoothing: antialiased;*/
-	    -moz-osx-font-smoothing: grayscale;
-	    -webkit-text-size-adjust: 100%;
-	    text-rendering: optimizeLegibility;
+
 }
+
+.about_header{
+	text-align: center;
+	font-weight: bold;
+	font-size: 28px;
+	text-shadow: 1px 1px #000000;
+}
+
+/*.templar{
+	display: flex;
+}
+
+.vision, .mission, .declaration{
+	width: 33.33%;
+}*/
 
 .banner .content{
   position: absolute;
@@ -212,6 +298,10 @@ transform-origin: center bottom
 
 .banner.no-height{
 	height:auto !important;
+}
+
+.banner.fixed-height{
+	height:300px;
 }
 
 .banner{
@@ -228,14 +318,33 @@ html, body {
     /*color: #636b6f;*/
     color: #fff;
     font-family: 'Avenir Next', 'Raleway', sans-serif;
-    font-weight: 100;
+    /*font-weight: 100;*/
     font-size: 12px;
     min-height: 100vh;
     margin: 0;
 }
 
+body{
+	-webkit-font-smoothing: subpixel-antialiased;
+	/*-webkit-font-smoothing: antialiased;*/
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+	-webkit-text-stroke:1px transparent;
+	text-rendering: optimizeLegibility;
+}
+
+html .safari{
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+}
+
 .full-height {
     height: 100vh;
+}
+
+.sixty-quarter-height{
+    height: 60vh;
 }
 
 .four-quarter-height{
@@ -341,6 +450,21 @@ html, body {
   margin: 52px 0px 55px;
 }
 
+.alert{
+	padding-top: 30px;
+	text-align: center;
+	background-color: #f9f9f9;
+	padding-bottom: 30px;
+	color: #000;
+	font-size: 25px;
+	font-weight: 600;
+}
+
+.alert a{
+	color: #000;
+	text-decoration: none;
+}
+
 .shell_logo{
   /*width: 70px;
 	background-color: #fff;
@@ -429,31 +553,49 @@ display: flex;
 	font-size: 14px;
 }
 
+.header.header_bg .tenets_front_man{
+	color: #000;
+	text-shadow: none !important;
+}
+
+.tenets_front_man.black{
+color: #000;
+text-shadow: none;
+}
 
 .tenets_front_man{
   padding:8px 10px;
-  background-color: #5B9D07;
+  /*background-color: #5B9D07;
+	margin-right: 18px;*/
   display: inline-block;
   border-radius: 3px;
   font-weight: 600;
-  margin-right: 18px;
+  margin-right: 12px;
   color: #fff;
   cursor: pointer;
   letter-spacing: .1rem;
   text-transform: uppercase;
+	text-shadow: 1px 1px #000000;
+}
+
+.header.header_bg .tenets_front_man.read{
+	color: #000;
+	text-shadow: none !important;
 }
 
 .tenets_front_man.read{
-  background-color: #055788;
+  /*background-color: #055788;
+	margin-right: 18px;*/
   padding:8px 10px;
   display: inline-block;
   border-radius: 3px;
   font-weight: 600;
-  margin-right: 18px;
+  margin-right: 12px;
   color: #fff;
   cursor: pointer;
   letter-spacing: .1rem;
   text-transform: uppercase;
+	text-shadow: 1px 1px #000000;
 }
 
 .read_block{
@@ -589,6 +731,7 @@ color: #fff;
 
 .links.black > a{
 	color: #000;
+	text-shadow: none;
 }
 
 .links > a {
@@ -839,7 +982,7 @@ ul.events li .content .title{
 
 .parentModal_child {
     width: 90%;
-    max-width: 500px;
+    max-width: 700px;
 
     margin: 60px auto;
 		color: #000;
@@ -1221,7 +1364,7 @@ background-image: url('../unsplash/diana-simumpande-197805-min.jpg');
 	width: 75%;
   max-width: 1200px;
   font-size: 15px;
-  line-height: 1.8;
+  /*line-height: 1.8;*/
   margin: 0px auto 40px;
 	padding-top: 10px;
 	position: relative;
@@ -1232,19 +1375,85 @@ background-image: url('../unsplash/diana-simumpande-197805-min.jpg');
 	min-height: 300px;
 }
 
+.asking-questions{
+	max-width: 600px;
+	margin: auto;
+}
+
+.viewing-questions .answer{
+	display: block;
+
+	flex-direction: row;
+	margin-top: 10px;
+	padding: 12px 10px;
+	background: #e4e4e4;
+}
+
+.questions .answer{
+	display: none;
+	margin-top: 8px;
+	padding: 10px;
+	background: #e4e4e4;
+}
+
+.question_content .answer .answer_content{
+
+	overflow: hidden;
+}
+
+.question_content .answer .answer_content .name{
+	font-weight: 600;
+	margin-bottom: 5px;
+}
+
+.question_content .answer img{
+	border-radius: 50%;
+	width:50px;
+	height: 50px;
+	float: left;
+	margin-right: 15px;
+
+}
+
+.question_content .asker img{
+	border-radius: 50%;
+	width:50px;
+	height: 50px;
+}
+
+.question_content .asker .details{
+	margin-left: 15px;
+}
+
+.question_content .asker .details .name{
+	font-weight: 600;
+}
+
+.question_content .asker{
+	display: flex;
+	margin-bottom: 2px;
+	align-items: center;
+}
+
 .question_item{
 	background-color: #fff;
-	padding: 10px 15px;
+	padding: 10px 15px 11px;
 	display: block;
 	text-decoration: none;
 	color: #000;
 	border-bottom: 1px solid #f5b5c0;
+	cursor: pointer;
+}
+
+.questions .question_item:hover{
+	background-color: #e4e4e4;
 }
 
 .question_item:last-of-type{
 	border-bottom: none;
 	border-radius: 0px 0px 4px 4px;
 	margin-bottom: 15px;
+	padding-bottom: 12px;
 }
 
 .question_item:first-of-type{
@@ -1257,21 +1466,29 @@ background-image: url('../unsplash/diana-simumpande-197805-min.jpg');
 	flex-grow: 1;
 }
 
-.read_block .questions .question_title{
-	font-weight: 400;
+.question_content .question_title{
+	font-weight: 600;
+	margin-bottom: 5px;
 }
 
-.read_block .questions .date{
+.question_content .sparrow{
+	margin-left: 65px;
+}
+
+.question_content .date{
 	font-size: 12px;
-	margin-top: 2px;
 	display: block;
-    color: #868686;
+  color: #868686;
 }
 
-.read_block .questions .question_status{
+.question_content .question_status{
 	color: #868686;
 	font-weight: 600;
 	font-size: 14px;
+}
+
+.viewing-questions{
+	font-size: 16px;
 }
 
 .read_block .questions .top_header{
@@ -1316,7 +1533,29 @@ background-image: url('../unsplash/diana-simumpande-197805-min.jpg');
 }
 
 .beautiful_life .content{
-	width: 70%;
+	width: 82%;
+	/*text-align: center;*/
+	margin: auto;
+}
+
+.author_contributor{
+	margin-bottom: 40px;
+
+}
+
+.author_contributor .author_avatar, .content .author_avatar{
+	width: 120px;
+	height: 120px;
+	border-radius: 3px;
+	float: left;
+    margin-right: 15px;
+	background-position: center;
+	background-size: cover;
+	border: 2px solid #F4B6C1;
+}
+
+.author_contributor .author_details{
+
 }
 
 .beautiful_life .content p{

@@ -46,11 +46,13 @@
                             <div class="categories">
                               <span class="shower">{{$data['category']}}&nbsp;&nbsp;<i class="fa fa-angle-down"></i></span>
                               <ul class="categories_list">
-                                <li><a href="{{ url('/feminique-woman/dresses')}}">Her Fashion</a></li>
-                                <li><a href="{{ url('/feminique-woman/kids')}}">Her 'Unique' man</a></li>
-                                <li><a href="{{ url('/feminique-woman/events')}}">Her Health</a></li>
-                                <li><a href="{{ url('/feminique-woman/jewellery')}}">Her Nutrition</a></li>
-                                <li><a href="{{ url('/feminique-woman/jewellery')}}">Gallery</a></li>
+                                <li><a href="{{ url('/feminique-woman/her-fashion')}}">Her Fashion</a></li>
+                                <li><a href="{{ url('/feminique-woman/her-unique-man')}}">Her 'Unique' man</a></li>
+                                <li><a href="{{ url('/feminique-woman/her-health')}}">Her Health</a></li>
+                                <li><a href="{{ url('/feminique-woman/her-nutrition')}}">Her Nutrition</a></li>
+                                <li><a href="{{ url('/feminique-woman/her-home')}}">Her Home</a></li>
+                                <li><a href="{{ url('/feminique-woman/her-holidays')}}">Her Holidays</a></li>
+                                <li><a href="{{ url('/feminique-woman/gallery')}}">Gallery</a></li>
                                 <li><a href="{{ url('/feminique-woman')}}">All Categories</a></li>
                               </ul>
                             </div>
