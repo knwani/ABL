@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>A Beautiful Life By Kenny</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css" />
@@ -13,10 +13,11 @@
 
         <!-- Styles -->
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/main.css') }}"  />
+        <link rel="stylesheet" type="text/css" href="{{ asset('/css/big.css') }}"  />
     </head>
     <body>
         <div class="flex-center position-ref four-quarter-height">
-          <div class="banner" style="background-image:url('/tenets/{{$data['tenet']->cover}}')">
+          <div class="banner" style="background-image:url('/tenets/{{$data['tenet']->cover}}');background-position: center;">
             <div class="overlay"></div>
             <div class="content">
               <div class="header">
@@ -24,8 +25,13 @@
 
                   <div class="shell_inner">
 
-                    <div class="shell_logo">
-                      <img src="{{ asset('/images/small_logo.png') }}"/>
+                    <div class="extreme">
+                      <div class="mobile_menu">
+                        <i class="fa fa-2x fa-bars"></i>
+                      </div>
+                      <div class="shell_logo">
+                        <img src="{{ asset('/images/small_logo.png') }}"/>
+                      </div>
                     </div>
                     <div class="morty">
                       <div class="tenets">
@@ -78,12 +84,12 @@
             <div class="read_block">
               <div class="content flex">
                 <div class="text flex">
-                  {{$data['tenet']->content}}
+                  {!!html_entity_decode($data['tenet']->getContent())!!}
                   <div class="spacer"></div>
-                  <div class="footer">
+                  <div class="footer desktop">
                     <div>All Rights Reserved. A Beautiful Life &copy; 2017</div>
                     <div>Designed with <i class="fa fa-heart"></i> in Lagos, Nigeria by <a href="http://ephodng.com" target="_blank">Ephod&trade;</a></div>
-                    <div class="icons"><i class="fa fa-instagram"></i><i class="fa fa-facebook-square"></i><i class="fa fa-twitter-square"></i></div>
+                    <div class="icons"><a href="https://www.instagram.com/abeautifullifebykenny" target="_blank"><i class="fa fa-instagram"></i></a><a href="https://www.facebook.com/ablbykenny" target="_blank"><i class="fa fa-facebook-square"></i></a><a href="https://twitter.com/ablbykenny" target="_blank"><i class="fa fa-twitter-square"></i></a><a href="https://www.youtube.com/channel/UCgYF0G6EPQAfVIvaRa-oB2A" target="_blank"><i class="fa fa-youtube-square"></i></a></div>
                   </div>
                 </div>
               </div>
@@ -103,6 +109,12 @@
                   </a>
 
                   @endforeach
+
+                  <div class="footer mobile">
+                    <div>All Rights Reserved. A Beautiful Life &copy; 2017</div>
+                    <div>Designed with <i class="fa fa-heart"></i> in Lagos, Nigeria by <a href="http://ephodng.com" target="_blank">Ephod&trade;</a></div>
+                    <div class="icons"><a href="https://www.instagram.com/abeautifullifebykenny" target="_blank"><i class="fa fa-instagram"></i></a><a href="https://www.facebook.com/ablbykenny" target="_blank"><i class="fa fa-facebook-square"></i></a><a href="https://twitter.com/ablbykenny" target="_blank"><i class="fa fa-twitter-square"></i></a><a href="https://www.youtube.com/channel/UCgYF0G6EPQAfVIvaRa-oB2A" target="_blank"><i class="fa fa-youtube-square"></i></a></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -112,6 +124,7 @@
 
         <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
         <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script type="text/javascript" src="{{ asset('/js/ninja.js') }}"></script>
 
         <script>
         $(document).ready(function(){

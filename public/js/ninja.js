@@ -7,6 +7,10 @@ $.ajaxSetup({
 })
 
 $(document).ready(function(){
+  $( ".mobile_menu i" ).click(function() {
+       $( ".morty" ).slideToggle();
+       //$(".morty" ).attr('display', 'flex');
+   });
   //if the events are enough, create this fucking slider
   $(".shower").click(function(){
     if($(".categories_list").css("display") == "none"){

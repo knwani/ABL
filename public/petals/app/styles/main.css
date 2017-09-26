@@ -1,7 +1,7 @@
 /* Space out content a bit */
 body {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  background-color: #eeeeee;
+  font-family: 'Raleway';
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -18,10 +18,11 @@ body {
 }
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
-  margin-top: 0;
-  margin-bottom: 0;
-  line-height: 40px;
-  padding-bottom: 19px;
+  color: #fff;
+  font-weight: 600;
+  display: flex;
+  margin: 0px;
+  margin-top: 20px;
 }
 
 /* Custom page footer */
@@ -34,7 +35,111 @@ body {
 /* Customize container */
 @media (min-width: 768px) {
   .container {
-    max-width: 730px;
+    width: 100%;
+    padding: 0px;
+  }
+
+  .header{
+    height: 250px;
+    background-image: url('http://stormy-wave-99850.herokuapp.com/images/beautiful_bg.png');
+    background-size: cover;
+    position: relative;
+    text-shadow: 1px 1px #000000;
+
+  }
+
+  .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus{
+    color: #fff;
+    border-bottom: #d3363c 4px solid;
+    background-color: transparent;
+  }
+
+.nav > li > a {
+  padding-bottom: 5px;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 0px;
+  text-transform: uppercase;
+      letter-spacing: 0.2px;
+}
+
+.nav > li > a:hover, .nav > li > a:focus{
+  border-bottom: #d3363c 4px solid;
+  background-color: transparent;
+}
+
+.user{
+  width: 30px;
+  height: 30px;
+  background-image: url('../images/user.jpg');
+  background-size: cover;
+  border-radius: 50%;
+  margin-top: 15px;
+}
+
+.top{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+    align-items: center;
+}
+
+.salute{
+  color: #fff;
+  font-size: 26px;
+}
+
+.salute .tiny{
+  font-size: 12px;
+}
+
+  .header .content{
+    width: 80%;
+    margin: auto;
+    max-width: 1200px;
+    z-index: 2;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+  }
+
+  .bracket{
+    width: 80%;
+    margin: auto;
+    max-width: 1200px;
+  }
+
+  .writer{
+    background-color: #fff;
+    min-height: 500px;
+    font-weight: normal;
+  }
+
+  .title{
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    font-weight: normal;
+    margin-top: 20px;
+  }
+
+  .header .overlay{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    content: '';
+    /*background-color: #270000;#720606;#6f0606;6f2334*/
+    background-color: #000;
+    opacity: 0.5;
+    z-index: 1;
+  }
+
+  .header .content{
+
   }
 }
 .container-narrow > hr {
@@ -67,10 +172,6 @@ body {
   .footer {
     padding-left: 0;
     padding-right: 0;
-  }
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
   }
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {

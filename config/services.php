@@ -38,19 +38,19 @@ return [
     'facebook' => [
         'client_id' => '126582094645959',
         'client_secret' => '7054b83d58d0a5c50d9ce67955cf8425',
-        'redirect' => 'http://localhost:8000/callback/facebook',
+        'redirect' => 'http://abeautifullifebykenny.com/callback/facebook',
     ],
 
     'twitter' => [
         'client_id' => 'vitbQPp9ywpktvYJoDoJmJe6F',
         'client_secret' => 'ZrFAmhAbog1gLVJ9dQERlnn6loTf7byBVkLsAhnwHfC2ltGgXg',
-        'redirect' => 'http://localhost:8000/callback/twitter',
+        'redirect' => 'http://abeautifullifebykenny.com/callback/twitter',
     ],
 
     'google' => [
         'client_id' => '1033057424522-0ogp1fbr61tf8kok9goumml3ro41g1s6.apps.googleusercontent.com',
         'client_secret' => 'zJg-9hJfXZXZ7GD4zo9HMjFM',
-        'redirect' => 'http://localhost:8000/callback/google',
+        'redirect' => 'http://abeautifullifebykenny.com/callback/google',
     ],
 
 ];

@@ -11,7 +11,7 @@ class AboutController extends Controller
 
     public function getAuthors(){
 
-      $authors = \App\Author::all();
+      $authors = \App\Author::where('description','!=','')->get();
 
       return view('about')->with('data', ['authors' => $authors]);
     }

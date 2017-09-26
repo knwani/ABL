@@ -15,4 +15,11 @@ class Fashion extends Model
     public function categoryFriendly(){
       return str_slug($this->category);
     }
+
+    public function getBody(){
+      $src = $this->body;
+      $src = str_replace("http://localhost:8080/", "http://abeautifullifebykenny.com/", $src);
+
+      return $src;
+    }
 }

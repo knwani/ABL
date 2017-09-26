@@ -31,4 +31,11 @@ class Blog extends Model
       return str_slug($this->title);
     }
 
+    public function getBody(){
+      $src = $this->body;
+      $src = str_replace("http://localhost:8080/", "http://abeautifullifebykenny.com/", $src);
+
+      return $src;
+    }
+
 }

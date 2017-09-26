@@ -14,7 +14,7 @@ class HomeController extends Controller
       $events = \App\Event::all();
       //$result = DB::table('tenets')->take(6)->get();
       //$tenets = \App\Tenet::hydrate($result);
-      $tenets = \App\Tenet::take(6)->get();
+      $tenets = \App\Tenet::take(6)->orderBy('id', 'desc')->get();
 
       //print_r($tenets);
 

@@ -14,4 +14,11 @@ class Tenet extends Model
     public function tenetFriendly(){
       return str_slug($this->category);
     }
+
+    public function getContent(){
+      $src = $this->content;
+      $src = str_replace("http://localhost:8080/", "http://abeautifullifebykenny.com/", $src);
+
+      return $src;
+    }
 }

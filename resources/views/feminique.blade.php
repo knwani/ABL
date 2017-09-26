@@ -10,9 +10,9 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,400,600" rel="stylesheet" type="text/css" />
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-
         <!-- Styles -->
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/main.css') }}"  />
+        <link rel="stylesheet" type="text/css" href="{{ asset('/css/big.css') }}"  />
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -24,10 +24,15 @@
 
                   <div class="shell_inner">
 
-                    <div class="shell_logo">
-                      <img src="{{ asset('/images/small_logo.png') }}"/>
+                    <div class="extreme">
+                      <div class="mobile_menu">
+                        <i class="fa fa-2x fa-bars"></i>
+                      </div>
+                      <div class="shell_logo">
+                        <img src="{{ asset('/images/small_logo.png') }}"/>
+                      </div>
                     </div>
-                    <div class="morty">
+                    <div class="morty black">
                       <div class="tenets">
                         <div class="tenets_front_man read"><i class="fa fa-align-left" ></i>&nbsp;&nbsp;Purposes</div>
                         <ul class="menu">
@@ -97,7 +102,7 @@
                 <div class="footer footer-fashion">
                   <div>All Rights Reserved. A Beautiful Life &copy; 2017</div>
                   <div>Designed with <i class="fa fa-heart"></i> in Lagos, Nigeria by <a href="http://ephodng.com" target="_blank">Ephod&trade;</a></div>
-                  <div class="icons"><i class="fa fa-instagram"></i><i class="fa fa-facebook-square"></i><i class="fa fa-twitter-square"></i></div>
+                  <div class="icons"><a href="https://www.instagram.com/abeautifullifebykenny" target="_blank"><i class="fa fa-instagram"></i></a><a href="https://www.facebook.com/ablbykenny" target="_blank"><i class="fa fa-facebook-square"></i></a><a href="https://twitter.com/ablbykenny" target="_blank"><i class="fa fa-twitter-square"></i></a><a href="https://www.youtube.com/channel/UCgYF0G6EPQAfVIvaRa-oB2A" target="_blank"><i class="fa fa-youtube-square"></i></a></div>
                 </div>
               </div>
 

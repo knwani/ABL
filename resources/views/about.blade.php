@@ -13,6 +13,7 @@
 
         <!-- Styles -->
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/main.css') }}"  />
+        <link rel="stylesheet" type="text/css" href="{{ asset('/css/big.css') }}"  />
     </head>
     <body>
         <div class="flex-center position-ref four-quarter-height">
@@ -24,8 +25,13 @@
 
                   <div class="shell_inner">
 
-                    <div class="shell_logo">
-                      <img src="{{ asset('/images/small_logo.png') }}"/>
+                    <div class="extreme">
+                      <div class="mobile_menu">
+                        <i class="fa fa-2x fa-bars"></i>
+                      </div>
+                      <div class="shell_logo">
+                        <img src="{{ asset('/images/small_logo.png') }}"/>
+                      </div>
                     </div>
                     <div class="morty">
                       <div class="tenets">
@@ -232,11 +238,19 @@
                     @endforeach
                   </div>
                 </div>
+                <div class="beautiful_life spacer contact">
+                  <div class="title">Contact Us</div>
+                  <div class="content">
+                    stacy@abeautifullifebykenny.com<br/>abeautifullifebykenny@gmail.com 
+                    <br/><br/>
+                    08080888116
+                  </div>
+                </div>
             </div>
             <div class="footer">
             <div>All Rights Reserved. A Beautiful Life © 2017</div>
             <div>Designed with <i class="fa fa-heart"></i> in Lagos, Nigeria by <a href="http://ephodng.com" target="_blank">Ephod™</a></div>
-            <div class="icons"><i class="fa fa-instagram"></i><i class="fa fa-facebook-square"></i><i class="fa fa-twitter-square"></i></div>
+            <div class="icons"><a href="https://www.instagram.com/abeautifullifebykenny" target="_blank"><i class="fa fa-instagram"></i></a><a href="https://www.facebook.com/ablbykenny" target="_blank"><i class="fa fa-facebook-square"></i></a><a href="https://twitter.com/ablbykenny" target="_blank"><i class="fa fa-twitter-square"></i></a><a href="https://www.youtube.com/channel/UCgYF0G6EPQAfVIvaRa-oB2A" target="_blank"><i class="fa fa-youtube-square"></i></a></div>
           </div>
         </div>
 
@@ -244,6 +258,7 @@
 
         <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
         <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script type="text/javascript" src="{{ asset('/js/ninja.js') }}"></script>
 
         <script>
         $(document).ready(function(){

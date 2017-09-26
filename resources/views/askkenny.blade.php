@@ -14,6 +14,7 @@
 
         <!-- Styles -->
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/main.css') }}"  />
+        <link rel="stylesheet" type="text/css" href="{{ asset('/css/big.css') }}"  />
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/nprogress.css') }}"  />
     </head>
     <body>
@@ -26,8 +27,13 @@
 
                   <div class="shell_inner">
 
-                    <div class="shell_logo">
-                      <img src="{{ asset('/images/small_logo.png') }}"/>
+                    <div class="extreme">
+                      <div class="mobile_menu">
+                        <i class="fa fa-2x fa-bars"></i>
+                      </div>
+                      <div class="shell_logo">
+                        <img src="{{ asset('/images/small_logo.png') }}"/>
+                      </div>
                     </div>
                     <div class="morty">
                       <div class="tenets">
@@ -110,6 +116,20 @@
                                   <div class="brex">{{$question->checkAnswerValue()}}</div>
                                 </div>
                               </div>
+                              <div class="answer" id="answer">
+                                <img src="{{asset('/authors/anon.jpg')}}" />
+                                <div class="answer_content">
+                                  <div class="name">Aderenle Lokulo-Sodipe</div>
+                                  <div class="brex">{{$question->ade}}</div>
+                                </div>
+                              </div>
+                              <div class="answer" id="answer">
+                                <img src="{{asset('/authors/sade.jpg')}}" />
+                                <div class="answer_content">
+                                  <div class="name">Sade Bamgboye</div>
+                                  <div class="brex">{{$question->sade}}</div>
+                                </div>
+                              </div>
                             </div>
                           </div>
                       </a>
@@ -126,7 +146,7 @@
               <div class="footer">
                 <div>All Rights Reserved. A Beautiful Life &copy; 2017</div>
                 <div>Designed with <i class="fa fa-heart"></i> in Lagos, Nigeria by <a href="http://ephodng.com" target="_blank">Ephod&trade;</a></div>
-                <div class="icons"><i class="fa fa-instagram"></i><i class="fa fa-facebook-square"></i><i class="fa fa-twitter-square"></i></div>
+                <div class="icons"><a href="https://www.instagram.com/abeautifullifebykenny" target="_blank"><i class="fa fa-instagram"></i></a><a href="https://www.facebook.com/ablbykenny" target="_blank"><i class="fa fa-facebook-square"></i></a><a href="https://twitter.com/ablbykenny" target="_blank"><i class="fa fa-twitter-square"></i></a><a href="https://www.youtube.com/channel/UCgYF0G6EPQAfVIvaRa-oB2A" target="_blank"><i class="fa fa-youtube-square"></i></a></div>
               </div>
             </div>
 

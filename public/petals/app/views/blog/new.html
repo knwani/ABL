@@ -1,0 +1,59 @@
+<div class="bracket">
+
+<input type="text" placeholder="Article Title" class="title" id="title"/>
+
+<div class="writer" id="writer"></div>
+
+<input type="button" value="Submit" ng-click="addBlog()"/>
+
+</div>
+
+<script>
+  function viewDang(){
+    alert($('#writer').trumbowyg('html'));
+  }
+
+  $('#writer').trumbowyg({
+    //autogrow: true,
+    btnsDef: {
+        // Customizables dropdowns
+        image: {
+            dropdown: ['insertImage', 'upload', 'base64', 'noEmbed'],
+            ico: 'insertImage'
+        }
+    },
+    btns: [
+        ['viewHTML'],
+        ['undo', 'redo'],
+        ['formatting'],
+        'btnGrp-design',
+        ['link'],
+        ['image'],
+        'btnGrp-justify',
+        'btnGrp-lists',
+        ['foreColor', 'backColor'],
+        ['preformatted'],
+        ['horizontalRule'],
+        ['fullscreen']
+    ],
+    plugins: {
+        // Add imagur parameters to upload plugin
+        upload: {
+            serverPath: 'api/upload_image_blog',
+            fileFieldName: 'image',
+            /*headers: {
+                'Authorization': 'Client-ID 9e57cb1c4791cea'
+            },*/
+            urlPropertyName: 'link',
+            statusPropertyName: 'status',
+            /*success: function (data){
+              //this.execCmd('insertImage', data.link);
+              //this.trumbowyg.closeModal();
+              //alert(data.link);
+              //console.log(data);
+              //console.log(data.link);
+            }*/
+        }
+    }
+  });
+</script>

@@ -33,6 +33,7 @@ Route::get('/welcome-address', function () {
 
 Route::get('/feminique-woman', 'FemController@getAllData');
 Route::get('/feminique-woman/{category}', 'FemController@getCategoryData');
+//Route::get('/feminique-woman/gallery', 'FemController@getGallery');
 
 Route::get('/feminique-woman/{category}/{id}/{title}', 'FemController@getSingleData');
 

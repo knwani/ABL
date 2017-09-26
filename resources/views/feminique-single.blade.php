@@ -13,20 +13,26 @@
 
         <!-- Styles -->
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/main.css') }}"  />
+        <link rel="stylesheet" type="text/css" href="{{ asset('/css/big.css') }}"  />
     </head>
     <body>
         <div class="flex-center position-ref four-quarter-height">
-          <div class="banner xfashion" style="background-image:url('/fem/{{$data['fashion']->cover}}')">
+          <div class="banner xfashion" style="background-image:url('/fem/{{$data['fashion']->cover}}');background-position:center">
             <div class="overlay"></div>
             <div class="content">
               <div class="header">
                 <div class="shell">
 
                   <div class="shell_inner">
-                    <div class="shell_logo">
-                      <img src="{{ asset('/images/small_logo.png') }}"/>
+                    <div class="extreme">
+                      <div class="mobile_menu">
+                        <i class="fa fa-2x fa-bars"></i>
+                      </div>
+                      <div class="shell_logo">
+                        <img src="{{ asset('/images/small_logo.png') }}"/>
+                      </div>
                     </div>
-                    <div class="morty">
+                    <div class="morty black">
                       <div class="tenets">
                         <div class="tenets_front_man read"><i class="fa fa-align-left" ></i>&nbsp;&nbsp;Purposes</div>
                         <ul class="menu">
@@ -80,7 +86,7 @@
 
                 <section class="content">
                   <div class="body">
-                    {{$data['fashion']->body}}
+                    {!!html_entity_decode($data['fashion']->getBody())!!}
                   </div>
                   <div class="more">
 
@@ -107,7 +113,7 @@
                   <div class="footer x-footer-fashion">
                     <div>All Rights Reserved. A Beautiful Life &copy; 2017</div>
                     <div>Designed with <i class="fa fa-heart"></i> in Lagos, Nigeria by <a href="http://ephodng.com" target="_blank">Ephod&trade;</a></div>
-                    <div class="icons"><i class="fa fa-instagram"></i><i class="fa fa-facebook-square"></i><i class="fa fa-twitter-square"></i></div>
+                    <div class="icons"><a href="https://www.instagram.com/abeautifullifebykenny" target="_blank"><i class="fa fa-instagram"></i></a><a href="https://www.facebook.com/ablbykenny" target="_blank"><i class="fa fa-facebook-square"></i></a><a href="https://twitter.com/ablbykenny" target="_blank"><i class="fa fa-twitter-square"></i></a><a href="https://www.youtube.com/channel/UCgYF0G6EPQAfVIvaRa-oB2A" target="_blank"><i class="fa fa-youtube-square"></i></a></div>
                   </div>
                 </div>
               </div>

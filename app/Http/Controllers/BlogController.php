@@ -27,7 +27,7 @@ class BlogController extends Controller
     public function getBlogs(){
 
       $blog = \App\Blog::all();
-
+      
       return view('blog')->with('data', ['blog' => $blog]);
     }
 

@@ -25,5 +25,7 @@ class TenetController extends Controller
       return view('tenet')->with('data', ['recommended' => $recommended, 'tenet' => $tenet, 'author' => $author]);
     }
 
+    
+
 
 }
