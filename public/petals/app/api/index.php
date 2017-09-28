@@ -25,6 +25,7 @@ try {
     $app->post('/upload_image_fem','uploadImageFem');
     $app->post('/upload_image_blog','uploadImageBlog');
     $app->post('/add_purpose','addPurpose');
+    $app->get('/get_purpose','getPurpose');
     $app->post('/add_feminique','addFeminique');
     $app->post('/add_blog','addBlog');
     $app->run();
@@ -65,6 +66,17 @@ function getConnection()
     $dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $dbh;
+}
+
+function getPurpose(){
+
+  $sql = "SELECT * FROM `tenets` ORDER BY `ID` DESC";
+  $db = getConnection();
+  $stmt = $db->query($sql);
+  $purposes = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+  $resp = array('status' => "success", 'purposes' => $purposes);
+  echo json_encode($resp);
 }
 
 

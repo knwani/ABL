@@ -19,11 +19,17 @@ angular
   ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
+      .when('/new-purpose', {
         //templateUrl: 'views/main.html',
         //controller: 'MainCtrl'
         templateUrl: 'views/purposes/new.html',
         controller: 'NewPurposeCtrl'
+      })
+      .when('/purposes', {
+        //templateUrl: 'views/main.html',
+        //controller: 'MainCtrl'
+        templateUrl: 'views/purposes/main.html',
+        controller: 'PurposesCtrl'
       })
       .when('/new-feminique', {
         templateUrl: 'views/feminique/new.html',
@@ -38,6 +44,6 @@ angular
         controller: 'AboutCtrl'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/purposes'
       });
   });
