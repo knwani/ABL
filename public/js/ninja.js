@@ -98,6 +98,51 @@ function showQuestion(link){
 
 }
 
+var validateEmail = function(elementValue) {
+    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    return emailPattern.test(elementValue);
+}
+
+$('#e-mail').keyup(function() {
+
+    var value = $(this).val();
+    var valid = validateEmail(value);
+
+    if (!valid) {
+        $(this).css('color', 'red');
+    } else {
+        $(this).css('color', '#000');
+    }
+
+});
+
+function signUpNewsletter(){
+  var name = $("#name").val();
+  var number = $("#number").val();
+  var email = $("#e-mail").val();
+  var valid = validateEmail(email);
+
+  if (name == ""){
+    alert("You haven't added your name");
+  } else if (number == ""){
+    alert("You haven't added your number");
+  } else if (email == ""){
+    alert("You haven't added your email");
+  } else if (!valid) {
+    alert("Please enter a valid email");
+  } else {
+    NProgress.start();
+    $.ajax({
+      type: 'POST',
+      url: "/save-newsletter-signup",
+      data: {the_name: name, the_number: number, the_email: email}
+    }).done(function(response) {
+      alert("You have successfully signed up");
+      NProgress.done();
+    });
+  }
+}
+
 function askQuestion(value){
   var question = $('textarea#rum').val();
   if (question != ""){

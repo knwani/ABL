@@ -199,6 +199,42 @@
 			box-shadow: 0 0.5px 5px 0 rgba(0,0,0,.5);
 }
 
+.call_to_action.hit_me_up{
+  margin-top: 0px;
+}
+
+.call_to_action{
+  padding: 50px 30px;
+  text-align: center;
+}
+
+.call_to_action input[type=text], #dialogbody input[type=text] {
+    display: block;
+    margin: auto;
+    width: 400px;
+    max-width: 80%;
+    font-size: 14px;
+    border: 1px solid #000;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.call_to_action .button{
+	display: inline-block;
+	margin-top: 15px;
+}
+
+.call_to_action span, #dialogbody span {
+		font-size: 25px;
+		font-weight: 600;
+		color: #000;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
 .fashion-read .content .more .ryuk{
 	position: relative;
 	transition: all .5s ease;
@@ -466,13 +502,14 @@ text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
 }
 
 .scroller{
-  margin: 35px 0px 25px;
+  padding: 35px 0px 25px;
+	background-color: #f9f9f9;
 }
 
 .alert{
 	padding-top: 30px;
 	text-align: center;
-	background-color: #f9f9f9;
+
 	padding-bottom: 30px;
 	color: #000;
 	font-size: 25px;

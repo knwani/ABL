@@ -1,5 +1,5 @@
 
-@media (min-width: 768px) {
+@media (min-width: 800px) { /*768*/
 
 .mobile_menu{
   display: none;
@@ -418,13 +418,12 @@ text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
 }
 
 .scroller{
-  margin: 52px 0px 55px;
+  padding: 52px 0px 55px;
 }
 
 .alert{
 	padding-top: 30px;
 	text-align: center;
-	background-color: #f9f9f9;
 	padding-bottom: 30px;
 	color: #000;
 	font-size: 25px;
@@ -1002,6 +1001,7 @@ ul.events li{
   background-position: center;
   position: relative;
   border-radius: 5px;
+  margin-bottom: 0px;
 }
 
 ul.events li .overlay{
@@ -1429,6 +1429,7 @@ background-image: url('../unsplash/diana-simumpande-197805-min.jpg');
 .questions_bg{
 	background-color: whitesmoke;
 	padding-bottom: 15px;
+  padding-top: 60px;
 }
 
 .read_block .questions{

@@ -42,6 +42,8 @@ Route::get('/ask-kenny/{id}/{title}', 'QuestionsController@getQuestionsWithOne')
 Route::post('/save-question', 'QuestionsController@saveQuestion');
 Route::post('/view-question', 'QuestionsController@viewQuestion');
 
+Route::post('/save-newsletter-signup', 'HomeController@saveSignUp');
+
 Route::get('/blog', 'BlogController@getBlogs');
 
 Route::get('/blog/{id}/{title}', 'BlogController@getSingleBlog');

@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>A Beautiful Life By Kenny</title>
 
@@ -17,7 +18,9 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/big.css') }}"  />
         <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
         <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('/css/nprogress.css') }}"  />
     </head>
+
     <body>
         <div class="flex-center position-ref full-height">
           <div class="banner">
@@ -99,6 +102,21 @@
             </li>
           @endforeach
           </ul>
+        </div>
+
+        <div class="call_to_action">
+          <span>Want to sign up for our newsletters?<br/>No spam, we promise!</span>
+
+          <input type="text" placeholder="Name" id="name"/>
+          <input type="text" placeholder="Phone Number" id="number"/>
+          <input type="text" placeholder="E-mail" id="e-mail"/>
+
+          <a href="javascript:void(0)" onclick="signUpNewsletter()" class="button" id="call_to_action_send">Sign Up</a>
+
+          <div class="spinner">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+          </div>
         </div>
 
         <div class="tenets_new_block_parent">
@@ -196,6 +214,7 @@
         <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         <script type="text/javascript" src="slick/slick.min.js"></script>
         <script type="text/javascript" src="{{ asset('/js/ninja.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('/js/nprogress.js') }}"></script>
 
         <script>
         $(document).ready(function(){
