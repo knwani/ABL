@@ -15,19 +15,29 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'angularFileUpload'
   ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/new-purpose', {
+      .when('/purposes/new', {
         //templateUrl: 'views/main.html',
         //controller: 'MainCtrl'
+        title: 'New Article',
         templateUrl: 'views/purposes/new.html',
         controller: 'NewPurposeCtrl'
+      })
+      .when('/purposes/edit/:purposeid', {
+        //templateUrl: 'views/main.html',
+        //controller: 'MainCtrl'
+        title: 'Edit Article',
+        templateUrl: 'views/purposes/edit.html',
+        controller: 'EditPurposeCtrl'
       })
       .when('/purposes', {
         //templateUrl: 'views/main.html',
         //controller: 'MainCtrl'
+        title: 'Purposes',
         templateUrl: 'views/purposes/main.html',
         controller: 'PurposesCtrl'
       })

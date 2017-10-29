@@ -1,0 +1,27 @@
+<div class="posts-holder">
+
+  <div class="button_case">
+    <span class="nav_header">Purposes</span>
+    <a href="#/purposes/new" class="button"><i class="fa fa-plus"></i>&nbsp;&nbsp;New Article</a>
+  </div>
+
+  <a ng-repeat="purpose in purposes" class="single_field" href="#/purposes/edit/{{purpose.id}}">
+    <div class="first">
+      <span class="name">{{purpose.article_name}}</span>
+      <span class="date">{{getDateOnly(purpose.new_created_at)}}</span>
+      <span class="views">{{purpose.views}} views</span>
+    </div>
+    <div class="second">
+      <span class="category">{{purpose.category}}</span>
+      <span class="author">{{purpose.author_name}}</span>
+    </div>
+    <div class="third">
+      <i class="fa fa-trash" onclick="deletePurpose(25, event)"></i>
+    </div>
+  </a>
+
+  <div class="loadmore">
+    <a href="#/purposes/new" class="button"><i class="fa fa-plus"></i>&nbsp;&nbsp;Load More</a>
+  </div>
+
+</div>

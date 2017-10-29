@@ -119,7 +119,7 @@
                               <div class="answer" id="answer">
                                 <img src="{{asset('/authors/anon.jpg')}}" />
                                 <div class="answer_content">
-                                  <div class="name">Aderenle Lokulo-Sodipe</div>
+                                  <div class="name">Adenrele Lokulo-Sodipe</div>
                                   <div class="brex">{{$question->ade}}</div>
                                 </div>
                               </div>

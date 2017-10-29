@@ -105,7 +105,7 @@
         </div>
 
         <div class="call_to_action">
-          <span>Want to sign up for our newsletters?<br/>No spam, we promise!</span>
+          <span>Sign up to be a part of the ABL family!</span>
 
           <input type="text" placeholder="Name" id="name"/>
           <input type="text" placeholder="Phone Number" id="number"/>

@@ -13,9 +13,13 @@
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/nprogress.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,600" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="bower_components/trumbowyg/dist/ui/trumbowyg.min.css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="styles/notification-styles/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="styles/notification-styles/ns-default.css" />
+    <link rel="stylesheet" type="text/css" href="styles/notification-styles/ns-style-growl.css" />
     <!-- endbuild -->
   </head>
   <body ng-app="petalsApp">
@@ -40,7 +44,9 @@
           <ul class="nav nav-pills pull-right">
             <li class="active"><a ng-href="#">Purposes</a></li>
             <li><a ng-href="#/new-feminique">Femique Woman</a></li>
+            <li><a ng-href="#/new-feminique">Unique Man</a></li>
             <li><a ng-href="#">Ask Kenny</a></li>
+            <li><a ng-href="#">Events</a></li>
             <li><a ng-href="#/new-blog">Blog</a></li>
           </ul>
         </div>
@@ -84,6 +90,7 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/trumbowyg/dist/trumbowyg.js"></script>
+    <script src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -91,11 +98,16 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
+        <!--<script src="scripts/controllers/uploadservice.js"></script>-->
         <script src="scripts/controllers/purposes/new.js"></script>
         <script src="scripts/controllers/purposes/main.js"></script>
         <script src="scripts/controllers/feminique/new.js"></script>
         <script src="scripts/controllers/blog/new.js"></script>
         <script src="scripts/helper.js"></script>
+        <script src="scripts/classie.js"></script>
+        <script src="scripts/modernizr.custom.js"></script>
+        <script src="scripts/notificationFx.js"></script>
+        <script src="scripts/nprogress.js"></script>
         <script src="bower_components/trumbowyg/dist/plugins/upload/trumbowyg.upload.js"></script>
 
         <script>
