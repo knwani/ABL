@@ -16,7 +16,7 @@ class QuestionsController extends Controller
     public function getQuestions(){
       //$events = DB::table('events')->get();
       //$questions = \App\Question::all();
-      $questions = \App\Question::where('Who', '!=', '')->whereNotNull('Who')->get();
+      $questions = \App\Question::where('Who', '!=', '')->whereNotNull('Who')->orderBy('id', 'DESC')->get();
       //$result = DB::table('tenets')->take(6)->get();
       //$tenets = \App\Tenet::hydrate($result);
       //$tenets = \App\Tenet::take(6)->get();
@@ -57,7 +57,17 @@ class QuestionsController extends Controller
 
    public function redirect($provider)
    {
-       return Socialite::driver($provider)->redirect();
+       if ($provider != "anon"){
+         return Socialite::driver($provider)->redirect();
+       } else {
+         $question_id = Session::get('question.id');
+
+         DB::table('questions')
+            ->where('id', $question_id)
+            ->update(['Who' => 'Anonymous', 'Avatar' => 'authors/anon.jpg']);
+
+        return redirect('/ask-kenny#question');
+       }
    }
 
    public function callback($provider)

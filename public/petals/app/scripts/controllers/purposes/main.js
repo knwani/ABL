@@ -7,13 +7,19 @@
  * # MainCtrl
  * Controller of the petalsApp
  */
-angular.module('petalsApp').controller('PurposesCtrl', function ($scope, $http, myDateService) {
+angular.module('petalsApp').controller('MainCtrl', function ($scope, $http, myDateService, $rootScope) {
+
+  alert(url_id);
+
+});
+
+angular.module('petalsApp').controller('PurposesCtrl', function ($scope, $http, myDateService, $rootScope) {
 
   $scope.purposes = [];
 
+  $rootScope.url_id = '1';
+
   $scope.loadPurpose = function (){
-
-
 
     $scope.promise = $http.get('api/get_purposes').then(function(response){
       //callNotification('Your project has been successfully created. Hang on, taking you to your project now','notice');
@@ -33,10 +39,52 @@ angular.module('petalsApp').controller('PurposesCtrl', function ($scope, $http, 
 
   $scope.getDateOnly = myDateService.getDateOnly;
 
+  $scope.deletePurpose = function (id, $event){
+    //$event.stopPropagation();
+    $event.preventDefault();
+    $.confirm({
+        title: 'Confirm!',
+        content: 'Are you sure you want to delete this article?',
+        buttons: {
+              somethingElse: {
+                text: 'Yes',
+                btnClass: 'btn-blue',
+                keys: ['enter', 'shift'],
+                action: function(){
+                  NProgress.start();
+                  $scope.post_data = [];
+
+                  $scope.post_data.push({
+                    tenet_id: id
+                  });
+
+                  $scope.promise = $http.post('api/delete_purpose', {payload: $scope.post_data}).then(function(response){
+                    callNotification('Article has been deleted','notice');
+                    NProgress.done();
+                    $scope.purposes = response.data.purposes;
+                    //console.log(response);
+                  }, function(response){
+                    //console.log(response);
+                    callNotification('Something went wrong. Please try again. But we have noted the error','error');
+                    NProgress.done();
+                  })
+                  //window.location.href = "/email-lists/delete/" + id;
+                }
+            },
+            cancel: function () {
+                //$.alert('Canceled!');
+            }
+        }
+    });
+  }
+
+  $rootScope.hide_it = false;
+  $(".container").css("display", "block");
+
 });
 
 
-angular.module('petalsApp').controller('EditPurposeCtrl', function ($scope, $http, myDateService, $routeParams, FileUploader) {
+angular.module('petalsApp').controller('EditPurposeCtrl', function ($scope, $http, myDateService, $routeParams, FileUploader, $rootScope) {
 
   $scope.purpose = [];
 
@@ -57,7 +105,7 @@ angular.module('petalsApp').controller('EditPurposeCtrl', function ($scope, $htt
       //NProgress.done();
       $scope.purpose = response.data.purpose;
       $scope.authors = response.data.authors;
-      $scope.purpose_cover = "http://localhost:8080/tenets/" + $scope.purpose[0].cover;
+      $scope.purpose_cover = "http://abeautifullifebykenny.com/tenets/" + $scope.purpose[0].cover;
 
       $("#writer").trumbowyg('html', $scope.purpose[0].content);
       $('#author option:eq(' + $scope.purpose[0].author + ')').prop('selected', true);
@@ -193,6 +241,9 @@ angular.module('petalsApp').controller('EditPurposeCtrl', function ($scope, $htt
         };
 
         console.info('uploader', uploader);
+
+        $rootScope.hide_it = false;
+        $(".container").css("display", "block");
 
 });
 

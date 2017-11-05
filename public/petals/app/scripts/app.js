@@ -15,6 +15,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
+    'angular-jwt',
+    'ngStorage',
     'ngTouch',
     'angularFileUpload'
   ])
@@ -41,19 +43,131 @@ angular
         templateUrl: 'views/purposes/main.html',
         controller: 'PurposesCtrl'
       })
-      .when('/new-feminique', {
+      .when('/feminique-woman', {
+        //templateUrl: 'views/main.html',
+        //controller: 'MainCtrl'
+        title: 'Femique Woman',
+        templateUrl: 'views/feminique/main.html',
+        controller: 'FeminiqueCtrl'
+      })
+      .when('/feminique-woman/edit/:purposeid', {
+        //templateUrl: 'views/main.html',
+        //controller: 'MainCtrl'
+        title: 'Edit Article',
+        templateUrl: 'views/feminique/edit.html',
+        controller: 'EditFeminiqueCtrl'
+      })
+      .when('/feminique-woman/new', {
         templateUrl: 'views/feminique/new.html',
         controller: 'NewFeminiqueCtrl'
       })
-      .when('/new-blog', {
+      .when('/unique-man', {
+        //templateUrl: 'views/main.html',
+        //controller: 'MainCtrl'
+        title: 'Unique Man',
+        templateUrl: 'views/unique/main.html',
+        controller: 'UniqueCtrl'
+      })
+      .when('/unique-man/edit/:purposeid', {
+        //templateUrl: 'views/main.html',
+        //controller: 'MainCtrl'
+        title: 'Edit Article',
+        templateUrl: 'views/unique/edit.html',
+        controller: 'EditUniqueCtrl'
+      })
+      .when('/unique-man/new', {
+        templateUrl: 'views/unique/new.html',
+        controller: 'NewUniqueCtrl'
+      })
+      .when('/ask-kenny', {
+        //templateUrl: 'views/main.html',
+        //controller: 'MainCtrl'
+        title: 'Ask Kenny',
+        templateUrl: 'views/ask-kenny/main.html',
+        controller: 'AskKennyCtrl'
+      })
+      .when('/ask-kenny/edit/:purposeid', {
+        //templateUrl: 'views/main.html',
+        //controller: 'MainCtrl'
+        title: 'Edit Question',
+        templateUrl: 'views/ask-kenny/edit.html',
+        controller: 'EditAskKennyCtrl'
+      })
+      .when('/events', {
+        //templateUrl: 'views/main.html',
+        //controller: 'MainCtrl'
+        title: 'Events',
+        templateUrl: 'views/events/main.html',
+        controller: 'EventsCtrl'
+      })
+      .when('/events/edit/:purposeid', {
+        //templateUrl: 'views/main.html',
+        //controller: 'MainCtrl'
+        title: 'Events',
+        templateUrl: 'views/events/edit.html',
+        controller: 'EditEventsCtrl'
+      })
+      .when('/events/new', {
+        //templateUrl: 'views/main.html',
+        //controller: 'MainCtrl'
+        title: 'New Event',
+        templateUrl: 'views/events/new.html',
+        controller: 'NewEventCtrl'
+      })
+      .when('/blog', {
+        templateUrl: 'views/blog/main.html',
+        controller: 'BlogCtrl'
+      })
+      .when('/blog/new', {
         templateUrl: 'views/blog/new.html',
         controller: 'NewBlogCtrl'
+      })
+      .when('/blog/edit/:purposeid', {
+        //templateUrl: 'views/main.html',
+        //controller: 'MainCtrl'
+        title: 'Edit Blog',
+        templateUrl: 'views/blog/edit.html',
+        controller: 'EditBlogCtrl'
+      })
+      .when('/covers', {
+        templateUrl: 'views/covers/main.html',
+        controller: 'CoversCtrl'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl'
+      })
       .otherwise({
         redirectTo: '/purposes'
       });
-  });
+  }).run(function ($rootScope, $location, $localStorage, $http, jwtHelper) {
+        $rootScope.$on("$routeChangeStart", function (event, next, current) {
+            $rootScope.authenticated = false;
+            //Data.get('session').then(function (results) {
+                if ($localStorage.token != null) {
+                  var bool = jwtHelper.isTokenExpired($localStorage.token);
+                  if(bool == true){ //token has expired
+                    $location.path("/login");
+                  } else {
+                    var tokenPayload = jwtHelper.decodeToken($localStorage.token);
+                    $rootScope.uid = tokenPayload.data.userId;
+                    $rootScope.email = tokenPayload.data.email;
+                    $rootScope.authenticated = true;
+                  }
+                  //we have token, send to server for authentication
+                } else {
+                  $location.path("/login");
+                    /*var nextUrl = next.$route.originalPath;
+                    if (nextUrl == '/signup' || nextUrl == '/login') {
+
+                    } else {
+                        $location.path("/login");
+                    }*/
+                }
+            //});
+        });
+    });

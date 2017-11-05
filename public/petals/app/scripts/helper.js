@@ -17,11 +17,33 @@ function getTime(){
   $(".salute").html("Good " + timeOfDay + "<div class='tiny'>Looks like a busy week, lots of traffic!</div>");
 }
 
+function select(div){
+  $(".nav li").removeClass("active");
+  $(div).addClass("active");
+}
+
+
+function readURL(input) {
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('.cover-picture').attr('style', 'background-image:url(' + e.target.result + ')');
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
 
 
 
 function callUpload(){
   $("#image").trigger("click");
+}
+
+function callUploadTwo(){
+  $("#image_two").trigger("click");
 }
 
 function uploadPicture(){

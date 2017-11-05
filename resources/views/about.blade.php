@@ -48,6 +48,7 @@
                           <a href="/">Home</a>
                           <a class="on" href="{{ url('/about-us')}}">About Us</a>
                           <a href="{{ url('/feminique-woman')}}">Feminique Woman</a>
+                          <a href="{{ url('/unique-man')}}">Unique Man</a>
                           <a href="{{ url('/ask-kenny')}}">Ask Kenny</a>
                           <a href="{{ url('/blog')}}">Blog</a>
                       </div>
@@ -241,7 +242,7 @@
                 <div class="beautiful_life spacer contact">
                   <div class="title">Contact Us</div>
                   <div class="content">
-                    stacy@abeautifullifebykenny.com<br/>abeautifullifebykenny@gmail.com 
+                    stacy@abeautifullifebykenny.com<br/>abeautifullifebykenny@gmail.com
                     <br/><br/>
                     08080888116
                   </div>

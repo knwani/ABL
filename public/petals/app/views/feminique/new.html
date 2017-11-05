@@ -1,10 +1,44 @@
-<div class="bracket">
+<div class="posts-holder">
+
+  <div class="button_case">
+    <span class="nav_header">Feminique Woman -> New Article</span>
+    <div>
+      <a href="#/purposes" class="button bad"><i class="fa fa-chevron-left"></i>&nbsp;&nbsp;Back to Feminique Woman</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button ng-click="addFeminique()" class="button"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add</button>
+    </div>
+  </div>
+
+  <div class="cover-picture new">
+    <a class="overlay"  onclick="callUpload()"><i class="fa fa-upload"></i>&nbsp;&nbsp;&nbsp;Add Cover Picture</a>
+  </div>
+
+  <input type="file" onchange="readURL(this)" nv-file-select="" uploader="uploader" id="image"/>
 
 <input type="text" placeholder="Article Title" class="title" id="title"/>
 
+<div class="x_select">
+  <div class="d_header">Author</div>
+  <select id="author">
+    <option ng-repeat="author in authors" value="{{author['id']}}">{{author['name']}}</option>
+  </select>
+</div>
+
+<div class="x_select">
+  <div class="d_header">Category</div>
+  <select id="category">
+    <option >Her Travels</option>
+    <option >Her Nutrition</option>
+    <option >Her Home</option>
+    <option >Her Fashion</option>
+    <option >Her 'Unique' Man</option>
+    <option >Her Health</option>
+  </select>
+</div>
+
 <div class="writer" id="writer"></div>
 
-<input type="button" value="Submit" ng-click="addFeminique()"/>
+<!--<input type="button" value="Submit" ng-click="addFeminique()"/>-->
+
 
 </div>
 
@@ -23,18 +57,21 @@
         }
     },
     btns: [
-        ['viewHTML'],
-        ['undo', 'redo'],
-        ['formatting'],
-        'btnGrp-design',
-        ['link'],
-        ['image'],
-        'btnGrp-justify',
-        'btnGrp-lists',
-        ['foreColor', 'backColor'],
-        ['preformatted'],
-        ['horizontalRule'],
-        ['fullscreen']
+      ['viewHTML'],
+      ['undo', 'redo'],
+      ['formatting'],
+      'btnGrp-design',
+      ['link'],
+      ['image'],
+      ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+     ['unorderedList', 'orderedList'],
+     ['removeformat'],
+      'btnGrp-justify',
+      'btnGrp-lists',
+      ['foreColor', 'backColor'],
+      ['preformatted'],
+      ['horizontalRule'],
+      ['fullscreen']
     ],
     plugins: {
         // Add imagur parameters to upload plugin

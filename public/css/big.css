@@ -994,26 +994,31 @@ ul.events{
 ul.events li{
   display: inline-block;
   width: 340px;
-  height: 180px;
+
   background-color: #fff;
   margin-right: 3px;
-  background-size: cover;
-  background-position: center;
+
   position: relative;
   border-radius: 5px;
   margin-bottom: 0px;
 }
 
 ul.events li .overlay{
-  position: absolute;
+  /*position: absolute;*/
   top:0px;
   bottom: 0px;
   right: 0px;
   left: 0px;
+  height: 180px;
+  background-color: #e8e8e8;
+  background-size: cover;
+  background-position: center;
   /* Mask Copy 2: */
-opacity: 0.38;
-background: #3C0303;
+/*opacity: 0.38;*/
+/*background: #3C0303;*/
 border-radius: 5px;
+border-bottom-right-radius: 0px;
+border-bottom-left-radius: 0px;
 }
 
 ul.events li .content .title{
@@ -1282,7 +1287,11 @@ ul.events li .content{
   padding: 15px 10px;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  background-color: #e8e8e8;
+  color: #000;
+  min-height: 150px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 .footerholder{

@@ -138,6 +138,11 @@
 	width: 100%;
 }
 
+.fashion-read .author{
+	margin-top: 20px;
+	font-size: 14px;
+}
+
 .title-section{
 	width: 88%;
 	max-width: 1200px;
@@ -1085,31 +1090,39 @@ ul.events{
   margin: 0px;
   padding: 0px;
   text-align: center;
+	display: flex;
+justify-content: center;
 }
 
 ul.events li{
-  display: inline-block;
+  display: flex;
+	    flex-direction: column;
   width: 340px;
-  height: 180px;
+
   background-color: #fff;
   margin-right: 3px;
-  background-size: cover;
-  background-position: center;
+
   position: relative;
   border-radius: 5px;
 	margin-bottom: 15px;
 }
 
 ul.events li .overlay{
-  position: absolute;
+  /*position: absolute;*/
   top:0px;
   bottom: 0px;
   right: 0px;
   left: 0px;
+	background-color: #e8e8e8;
+	background-size: cover;
+	background-position: center;
   /* Mask Copy 2: */
-opacity: 0.38;
-background: #3C0303;
+/*opacity: 0.38;*/
+height: 180px;
+
 border-radius: 5px;
+border-bottom-right-radius: 0px;
+border-bottom-left-radius: 0px;
 }
 
 ul.events li .content .title{
@@ -1286,7 +1299,10 @@ ul.events li .content .title{
     content: '';
 }
 
-
+.buttons.anonymous{
+	margin-top: 20px;
+	text-align: center;
+}
 
 .buttons.social{
 	display: flex;
@@ -1300,13 +1316,21 @@ ul.events li .content .title{
 	 text-align: center;
 }
 
-.buttons.social a i{
+.buttons.social a i, .buttons.anonymous a i{
 	margin-right: 5px;
 }
 
 .button.twitter{
 	background: #00b4f5;
 border-color: #00b4f5
+}
+
+.button.anonymous{
+	background: #000;
+border-color: #000;
+width: 100%;
+display: block;
+text-align: center;
 }
 
 .button.facebook{
@@ -1380,7 +1404,10 @@ ul.events li .content{
   padding: 15px 10px;
   display: flex;
   flex-direction: column;
-  height: 100%;
+	background-color: #e8e8e8;
+  min-height: 150px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
 }
 
 .gallery{

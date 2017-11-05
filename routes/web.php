@@ -31,6 +31,12 @@ Route::get('/welcome-address', function () {
     return view('welcome');
 });
 
+Route::get('/unique-man', 'UniqueController@getAllData');
+Route::get('/unique-man/{category}', 'UniqueController@getCategoryData');
+//Route::get('/unique-man/gallery', 'FemController@getGallery');
+
+Route::get('/unique-man/{category}/{id}/{title}', 'UniqueController@getSingleData');
+
 Route::get('/feminique-woman', 'FemController@getAllData');
 Route::get('/feminique-woman/{category}', 'FemController@getCategoryData');
 //Route::get('/feminique-woman/gallery', 'FemController@getGallery');

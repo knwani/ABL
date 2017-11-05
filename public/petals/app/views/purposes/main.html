@@ -16,7 +16,7 @@
       <span class="author">{{purpose.author_name}}</span>
     </div>
     <div class="third">
-      <i class="fa fa-trash" onclick="deletePurpose(25, event)"></i>
+      <i class="fa fa-trash" ng-click="deletePurpose({{purpose.id}}, $event);$event.preventDefault();"></i>
     </div>
   </a>
 

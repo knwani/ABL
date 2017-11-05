@@ -50,6 +50,7 @@
                           <a href="/">Home</a>
                           <a href="{{ url('/about-us')}}">About Us</a>
                           <a href="{{ url('/feminique-woman')}}">Feminique Woman</a>
+                          <a href="{{ url('/unique-man')}}">Unique Man</a>
                           <a class="on" href="{{ url('/ask-kenny')}}">Ask Kenny</a>
                           <a href="{{ url('/blog')}}">Blog</a>
                       </div>
@@ -113,21 +114,21 @@
                                 <img src="{{asset('/images/kenny-headshot.png')}}" />
                                 <div class="answer_content">
                                   <div class="name">Kenny Nwani</div>
-                                  <div class="brex">{{$question->checkAnswerValue()}}</div>
+                                  <div class="brex">{{$question->checkAnswerValue('kenny')}}</div>
                                 </div>
                               </div>
                               <div class="answer" id="answer">
                                 <img src="{{asset('/authors/anon.jpg')}}" />
                                 <div class="answer_content">
                                   <div class="name">Adenrele Lokulo-Sodipe</div>
-                                  <div class="brex">{{$question->ade}}</div>
+                                  <div class="brex">{{$question->checkAnswerValue('ade')}}</div>
                                 </div>
                               </div>
                               <div class="answer" id="answer">
                                 <img src="{{asset('/authors/sade.jpg')}}" />
                                 <div class="answer_content">
                                   <div class="name">Sade Bamgboye</div>
-                                  <div class="brex">{{$question->sade}}</div>
+                                  <div class="brex">{{$question->checkAnswerValue('sade')}}</div>
                                 </div>
                               </div>
                             </div>
@@ -163,7 +164,7 @@
             <div class="section_header">Ask a question</div>
 
             <form method="post">
-              <textarea id="rum" class="more_bottom_margin" placeholder="Keep your question straight to the point, on one topic and under 140 characters" maxlength="140"></textarea>
+              <textarea id="rum" class="more_bottom_margin" placeholder="Keep your question straight to the point, on one topic and under 300 characters" maxlength="300"></textarea>
             </form>
 
             <div class="buttons social">
@@ -171,6 +172,10 @@
               <a class="button twitter" onclick="askQuestion('Twitter')"><i class="fa fa-twitter-square"></i>Ask with Twitter</a>
               <a class="button google" onclick="askQuestion('Google')"><i class="fa fa-google-plus-square"></i>Ask with Google</a>
             </div>
+            <div class="buttons anonymous">
+              <a class="button anonymous" onclick="askQuestion('Anon')"><i class="fa fa-user-secret"></i>Ask Anonymously</a>
+            </div>
+
           </div>
 
           @if(isset($data['question']))

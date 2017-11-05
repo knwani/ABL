@@ -172,6 +172,12 @@ function askQuestion(value){
           window.location.href = '/redirect/google';
           NProgress.done();
         }
+      } else if (value == "Anon"){
+        var id = response.last_insert_id;
+        if (response.success == true){
+          window.location.href = '/redirect/anon';
+          NProgress.done();
+        }
       }
       //$( this ).addClass( "done" );
     });

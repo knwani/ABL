@@ -62,6 +62,7 @@
                               </ul>
                             </div>
                           </span>
+                          <a href="{{ url('/unique-man')}}">Unique Man</a>
                           <a href="{{ url('/ask-kenny')}}">Ask Kenny</a>
                           <a href="{{ url('/blog')}}">Blog</a>
                       </div>
@@ -81,7 +82,10 @@
                 <div class="title-section">
                   <div class="titlex">{{$data['fashion']->title}}</div>
                   <div class="category"><span>{{$data['fashion']->category}}</span></div>
-                  <div class="author"></div>
+                  <div class="author">
+                    <div class="image" style="background-image:url('/authors/{{$data['author']->avatar}}')"></div>
+                    <span class="name">{{$data['author']->name}}</span>
+                  </div>
                 </div>
 
                 <section class="content">

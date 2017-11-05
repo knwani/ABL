@@ -1,7 +1,177 @@
+.login_parent{
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  /* IE10+ */
+  background-image: url('http://abeautifullifebykenny.com/images/beautiful_bg.png');
+  background-size: cover;
+
+display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+sup{
+  font-size: 10px !important;
+}
+
+.footer.login{
+  border: none;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+  z-index: 9;
+  background-color: transparent;
+  color: #fff;
+}
+
+
+.login_parent .overlay {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: #7d666a;
+	opacity: .15;
+  z-index: 8;
+  }
+
+
+.login_box{
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: #fff;
+  -webkit-box-shadow: 0px 0px 11px -1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 11px -1px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 11px -1px rgba(0,0,0,0.75);
+  display: inline-block;
+  background-color: #F4B6C1;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  margin-top: -20px;
+}
+
+
+
+.login_parent .contents{
+width: 90%;
+max-width: 700px;
+z-index: 9;
+  }
+
+.login_box .details{
+    width: 35%;
+    padding: 30px 0px 20px;
+    float: left;
+    position: relative;
+}
+
+.login_box .overlay {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: #241551;
+	opacity: .8;
+  z-index: 8;
+  }
+
+.details{
+  text-align: center;
+}
+
+.details img{
+  width: 60%;
+  max-width: 40px;
+}
+
+.details .title{
+  color: #000;
+  font-size: 20px;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 15px;
+}
+
+.details .message{
+  text-align: left;
+  margin-top: 170px;
+  display: block;
+  color: #000;
+  padding: 0px 20px;
+  line-height: 1.5;
+}
+
+.login_box .swerve{
+  float: right;
+  width: 65%;
+  padding: 30px;
+  position: absolute;
+  right: 0px;
+  background-color: #fff;
+  height: 100%;
+  top: 0px;
+  }
+
+
+  .swerve .child{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-60%);
+    width: 85%;
+  }
+
+  .swerve .forgot{
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .login_box .swerve .button_holder{
+    position: absolute;
+    bottom: 40px;
+    left: 30px;
+  }
+
+
+.swerve .title{
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 30px;
+  display: block;
+}
+
+.login_box input[type=text], .login_box input[type=password]{
+
+display: block;
+
+border: none;
+border-bottom: 2px solid #241551;
+width: 100%;
+color: #000;
+padding: 8px 0px;
+margin-bottom: 25px;
+outline: none;
+}
+
+
+
 /* Space out content a bit */
 body {
   background-color: #eeeeee;
   font-family: 'Raleway';
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -25,12 +195,23 @@ body {
   margin-top: 20px;
 }
 
-#image{
+
+
+#image, #image_two{
   display: none;
+}
+
+.jconfirm .jconfirm-box .jconfirm-buttons button.btn-blue{
+  background: #d3363c !important;
 }
 
 .ns-effect-jelly{
   background: #d3363c !important;
+}
+
+a:visited{
+  outline: none;
+  text-decoration: none;
 }
 
 .x_select{
@@ -73,6 +254,118 @@ background-color: #d8d8d8;
   color: red;
 }
 
+.answerbox{
+  border: 1px solid #DDD;
+  margin-top: 30px;
+  background-color: #fff;
+}
+
+.answerbox .c_header{
+  padding: 8px 10px;
+  background-color: #d8d8d8;
+}
+
+
+
+.answerbox textarea{
+  resize: none;
+  outline: none;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  min-height: 180px;
+}
+
+.single_event{
+  width: 48%;
+}
+
+.events_holder{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.event_cover{
+  height: 240px !important;
+  background-size: cover;
+  background-position: center;
+}
+
+
+.question{
+  background: #fff;
+  padding: 16px 18px;
+}
+
+.question .name, .single_event .name{
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 15px;
+  display: block;
+}
+
+.single_event .first{
+  margin: 15px;
+  text-decoration: none;
+}
+
+.single_event .third{
+  margin: 0px 15px 15px;
+}
+
+.single_event .date{
+  display: block;
+  margin-top: 8px;
+}
+
+.single_event:hover{
+  text-decoration: none;
+  background-color: #DDD;
+}
+
+.single_event{
+  background-color: #fff;
+  color: #000;
+  text-decoration: none;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  margin-bottom: 40px;
+}
+
+.single_event .views{
+
+}
+
+.edit_event_holder{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.edit_event_holder .event_cover, .edit_event_holder .first{
+  width: 48%;
+}
+
+.edit_event_holder textarea{
+  border: 1px solid #DDD;
+  resize: none;
+  outline: none;
+  min-height: 200px;
+}
+
+.question .views{
+  display: block;
+
+  margin-bottom: 8px;
+}
+
+.question .date{
+  font-weight: 600;
+  font-size: 14px;
+  color: #868686;
+}
 
 .single_field{
   padding: 14px 16px;
@@ -203,6 +496,7 @@ text-align: right;
   -webkit-border-radius: 3px;
   transition: all .5s ease;
   text-align: center;
+  cursor: pointer;
 }
 
 .loadmore{
@@ -284,9 +578,12 @@ text-align: right;
 
   }
 
+  .cover-picture.new .overlay{
+    color: rgba(0, 0, 0, 1);
+  }
+
   .cover-picture:hover .overlay{
     background-color: rgba(0, 0, 0, 0.6);
-
   }
 
   .cover-picture .overlay:hover{
@@ -319,6 +616,11 @@ font-weight: bold;
     /*margin-top: 20px;*/
   }
 
+  input[type=datetime-local]{
+    width: 100%;
+    padding: 5px 8px;
+  }
+
   .header .overlay{
     position: absolute;
     top: 0px;
@@ -328,7 +630,7 @@ font-weight: bold;
     content: '';
     /*background-color: #270000;#720606;#6f0606;6f2334*/
     background-color: #000;
-    opacity: 0.5;
+    opacity: 0.4;
     z-index: 1;
   }
 

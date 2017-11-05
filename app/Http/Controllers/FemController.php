@@ -22,13 +22,14 @@ class FemController extends Controller
 
     public function getSingleData($category, $id){
       $fashion = \App\Fashion::where('ID', $id)->first();
+      $author = \App\Author::where('id', $fashion->author)->first();
       DB::table('fashions')->where('ID', $id)->increment('views');
       $recommended = \App\Fashion::where('id', '!=', $id)->orderBy('views', 'DESC')->take(4)->get();
       //$author = \App\Author::where('id', $fashion->author)->first();
       //print_r($fashion);
       //print_r($id);
 
-      return view('feminique-single')->with('data', ['fashion' => $fashion, 'recommended' => $recommended]);
+      return view('feminique-single')->with('data', ['fashion' => $fashion, 'author' => $author, 'recommended' => $recommended]);
     }
 
     public function getCategoryData($category){

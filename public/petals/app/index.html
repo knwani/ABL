@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" ng-controller="MainCtrl">
   <head>
     <meta charset="utf-8">
     <title></title>
@@ -14,6 +14,7 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/nprogress.css">
+    <link rel="stylesheet" href="styles/jquery-confirm.min.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,600" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="bower_components/trumbowyg/dist/ui/trumbowyg.min.css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
@@ -28,8 +29,8 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container">
-      <div class="header">
+    <div class="container" style="display:none">
+      <div class="header" ng-hide="hide_it">
         <div class="overlay"></div>
         <div class="content">
           <div>
@@ -42,19 +43,20 @@
           </div>
 
           <ul class="nav nav-pills pull-right">
-            <li class="active"><a ng-href="#">Purposes</a></li>
-            <li><a ng-href="#/new-feminique">Femique Woman</a></li>
-            <li><a ng-href="#/new-feminique">Unique Man</a></li>
-            <li><a ng-href="#">Ask Kenny</a></li>
-            <li><a ng-href="#">Events</a></li>
-            <li><a ng-href="#/new-blog">Blog</a></li>
+            <li ng-class="{'active' :url_id == '1'}"><a ng-href="#">Purposes</a></li>
+            <li ng-class="{'active' :url_id == '2'}"><a ng-href="#/feminique-woman">Femique Woman</a></li>
+            <li ng-class="{'active' :url_id == '3'}"> <a ng-href="#/unique-man">Unique Man</a></li>
+            <li ng-class="{'active' :url_id == '4'}"><a ng-href="#/ask-kenny">Ask Kenny</a></li>
+            <li ng-class="{'active' :url_id == '5'}"><a ng-href="#/events">Events</a></li>
+            <li ng-class="{'active' :url_id == '6'}"><a ng-href="#/blog">Blog</a></li>
+            <li ng-class="{'active' :url_id == '7'}"><a ng-href="#/covers">Covers</a></li>
           </ul>
         </div>
       </div>
 
       <div ng-view=""></div>
 
-      <div class="footer">
+      <div class="footer" ng-hide="hide_it">
         <div>All Rights Reserved. A Beautiful Life &copy; 2017</div>
         <div>Designed with <i class="fa fa-heart"></i> in Lagos, Nigeria by <a href="http://ephodng.com" target="_blank">Ephod&trade;</a></div>
       </div>
@@ -91,6 +93,8 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/trumbowyg/dist/trumbowyg.js"></script>
     <script src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
+    <script src="bower_components/ngstorage/ngStorage.js"></script>
+    <script src="bower_components/angular-jwt/dist/angular-jwt.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -102,12 +106,22 @@
         <script src="scripts/controllers/purposes/new.js"></script>
         <script src="scripts/controllers/purposes/main.js"></script>
         <script src="scripts/controllers/feminique/new.js"></script>
+        <script src="scripts/controllers/feminique/main.js"></script>
+        <script src="scripts/controllers/unique/main.js"></script>
+        <script src="scripts/controllers/unique/new.js"></script>
+        <script src="scripts/controllers/ask-kenny/main.js"></script>
+        <script src="scripts/controllers/events/main.js"></script>
+        <script src="scripts/controllers/events/new.js"></script>
         <script src="scripts/controllers/blog/new.js"></script>
+        <script src="scripts/controllers/blog/main.js"></script>
+        <script src="scripts/controllers/covers/main.js"></script>
+        <script src="scripts/controllers/login.js"></script>
         <script src="scripts/helper.js"></script>
         <script src="scripts/classie.js"></script>
         <script src="scripts/modernizr.custom.js"></script>
         <script src="scripts/notificationFx.js"></script>
         <script src="scripts/nprogress.js"></script>
+        <script src="scripts/jquery-confirm.min.js"></script>
         <script src="bower_components/trumbowyg/dist/plugins/upload/trumbowyg.upload.js"></script>
 
         <script>

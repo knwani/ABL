@@ -52,6 +52,7 @@
                       <div class="links">
                           <a href="{{ url('/about-us')}}">About Us</a>
                           <a href="{{ url('/feminique-woman')}}">Feminique Woman</a>
+                          <a href="{{ url('/unique-man')}}">Unique Man</a>
                           <a href="{{ url('/ask-kenny')}}">Ask Kenny</a>
                           <a href="{{ url('/blog')}}">Blog</a>
                       </div>
@@ -91,8 +92,8 @@
           <ul class="events">
           @foreach ($data['events'] as $event)
 
-            <li style="background-image:url('/events/{{$event->header}}')">
-              <div class="overlay"></div>
+            <li >
+              <div class="overlay" style="background-image:url('/events/{{$event->header}}')"></div>
               <div class="content">
                 <span class="title">{{$event->event_name}}</span>
                 <span class="desc">{{$event->description}}</span>

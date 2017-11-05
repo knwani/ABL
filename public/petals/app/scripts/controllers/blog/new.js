@@ -7,7 +7,9 @@
  * # MainCtrl
  * Controller of the petalsApp
  */
-angular.module('petalsApp').controller('NewBlogCtrl', function ($scope, $http) {
+angular.module('petalsApp').controller('NewBlogCtrl', function ($scope, $http, $rootScope, $location) {
+
+  $rootScope.url_id = '6';
 
   $scope.addBlog = function (){
 
@@ -23,14 +25,18 @@ angular.module('petalsApp').controller('NewBlogCtrl', function ($scope, $http) {
     $scope.promise = $http.post('api/add_blog', {payload: $scope.post_data}).then(function(response){
       //callNotification('Your project has been successfully created. Hang on, taking you to your project now','notice');
       //NProgress.done();
-      console.log(response);
+      //console.log(response);
+      $location.path("/blog/");
       //$location.path("/projects/" + response);
     }, function(response){
-      console.log(response);
-      //callNotification('Something went wrong. Please try again. But we have noted the error','error');
+      //console.log(response);
+      callNotification('Something went wrong. Please try again. But we have noted the error','error');
       //NProgress.done();
     })
 
   }
+
+  $rootScope.hide_it = false;
+  $(".container").css("display", "block");
 
 });

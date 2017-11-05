@@ -48,6 +48,7 @@
                           <a href="/">Home</a>
                           <a href="{{ url('/about-us')}}">About Us</a>
                           <a href="{{ url('/feminique-woman')}}">Feminique Woman</a>
+                          <a href="{{ url('/unique-man')}}">Unique Man</a>
                           <a href="{{ url('/ask-kenny')}}">Ask Kenny</a>
                           <a class="on" href="{{ url('/blog')}}">Blog</a>
                       </div>

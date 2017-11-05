@@ -1,0 +1,26 @@
+<div class="posts-holder">
+
+  <div class="button_case">
+    <span class="nav_header">Ask Kenny</span>
+    <!--<a href="#/unique-man/new" class="button"><i class="fa fa-plus"></i>&nbsp;&nbsp;New Article</a>-->
+  </div>
+
+  <a ng-repeat="single_feminique in articles" class="single_field" href="#/ask-kenny/edit/{{single_feminique.ID}}">
+    <div class="first">
+
+
+      <span class="name">{{single_feminique.Question}}</span>
+      <span class="views">{{single_feminique.Who}} </span>
+      <span class="date">{{getDateOnly(single_feminique.new_created_at)}}</span>
+
+    </div>
+    <div class="third">
+      <i class="fa fa-trash" ng-click="deleteArticle({{single_feminique.ID}}, $event);$event.preventDefault();"></i>
+    </div>
+  </a>
+
+  <!--<div class="loadmore">
+    <a href="#/purposes/new" class="button"><i class="fa fa-plus"></i>&nbsp;&nbsp;Load More</a>
+  </div>-->
+
+</div>

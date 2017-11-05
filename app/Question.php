@@ -23,12 +23,27 @@ class Question extends Model
       }
     }
 
-    public function checkAnswerValue(){
-      if ($this->Answer == ""){
-        return "Kenny hasn't answered this question yet. Do check back";
-      } else {
-        return $this->Answer;
+    public function checkAnswerValue($value){
+      if ($value == 'kenny'){
+        if ($this->Answer == ""){
+          return "Kenny hasn't answered this question yet. Do check back";
+        } else {
+          return $this->Answer;
+        }
+      } else if ($value == 'ade'){
+        if ($this->ade == ""){
+          return "Ade hasn't answered this question yet. Do check back";
+        } else {
+          return $this->ade;
+        }
+      } else if ($value == 'sade'){
+        if ($this->sade == ""){
+          return "Sade hasn't answered this question yet. Do check back";
+        } else {
+          return $this->sade;
+        }
       }
+
     }
 
     public function getAvatar(){

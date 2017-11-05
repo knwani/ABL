@@ -63,6 +63,7 @@
                             </div>
                           </span>
                           <a href="{{ url('/ask-kenny')}}">Ask Kenny</a>
+                          <a href="{{ url('/unique-man')}}">Unique Man</a>
                           <a href="{{ url('/blog')}}">Blog</a>
                       </div>
                     </div>

@@ -1,0 +1,25 @@
+<div class="posts-holder">
+
+  <div class="button_case">
+    <span class="nav_header">Covers</span>
+    <!--<a href="#/unique-man/new" class="button"><i class="fa fa-plus"></i>&nbsp;&nbsp;New Article</a>-->
+  </div>
+
+<div class="cover-picture new" style="background-image:url('{{main_cover}}')">
+  <a class="overlay"  onclick="callUpload()"><i class="fa fa-upload"></i>&nbsp;&nbsp;&nbsp;Change Main Cover Picture</a>
+</div>
+
+<div class="cover-picture new" style="background-image:url('{{second_cover}}')">
+  <a class="overlay"  onclick="callUploadTwo()"><i class="fa fa-upload"></i>&nbsp;&nbsp;&nbsp;Change Second Cover Picture</a>
+</div>
+
+
+<input type="file" nv-file-select="" uploader="uploader" id="image"/>
+
+<input type="file" nv-file-select="" uploader="second_uploader" id="image_two"/>
+
+  <!--<div class="loadmore">
+    <a href="#/purposes/new" class="button"><i class="fa fa-plus"></i>&nbsp;&nbsp;Load More</a>
+  </div>-->
+
+</div>
