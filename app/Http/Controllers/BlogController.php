@@ -26,8 +26,8 @@ class BlogController extends Controller
 
     public function getBlogs(){
 
-      $blog = \App\Blog::all();
-      
+      $blog = \App\Blog::orderBy('ID', 'DESC')->get();
+
       return view('blog')->with('data', ['blog' => $blog]);
     }
 

@@ -612,7 +612,8 @@ function editImage(){
 
   $tenet_id = $_GET["id"];
 
-  $file_path = dirname(dirname(dirname(dirname(__FILE__)))); //"../../../tenets/";
+  //$file_path = dirname(dirname(dirname(dirname(__FILE__)))); //"../../../tenets/";
+  $file_path = dirname(dirname(dirname(__FILE__))); //"../../../tenets/";
 
   $file_path = $file_path . "/tenets" . "/";
 
@@ -623,7 +624,7 @@ function editImage(){
 
   $file_path = $file_path . $name;
 
-  $sent_name = "http://localhost:8080/tenets/" . $name;
+  $sent_name = "http://abeautifullifebykenny.com/tenets/" . $name;
 
   if(move_uploaded_file($_FILES['file']['tmp_name'], $file_path)) {
 
@@ -648,7 +649,7 @@ function editFemImage(){
 
   $tenet_id = $_GET["id"];
 
-  $file_path = dirname(dirname(dirname(dirname(__FILE__)))); //"../../../tenets/";
+  $file_path = dirname(dirname(dirname(__FILE__))); //"../../../tenets/";
 
   $file_path = $file_path . "/fem" . "/";
 
@@ -659,7 +660,7 @@ function editFemImage(){
 
   $file_path = $file_path . $name;
 
-  $sent_name = "http://localhost:8080/fem/" . $name;
+  $sent_name = "http://abeautifullifebykenny.com/fem/" . $name;
 
   if(move_uploaded_file($_FILES['file']['tmp_name'], $file_path)) {
 
@@ -684,7 +685,7 @@ function editEventImage(){
 
   $tenet_id = $_GET["id"];
 
-  $file_path = dirname(dirname(dirname(dirname(__FILE__)))); //"../../../tenets/";
+  $file_path = dirname(dirname(dirname(__FILE__))); //"../../../tenets/";
 
   $file_path = $file_path . "/events" . "/";
 
@@ -695,7 +696,7 @@ function editEventImage(){
 
   $file_path = $file_path . $name;
 
-  $sent_name = "http://localhost:8080/events/" . $name;
+  $sent_name = "http://abeautifullifebykenny.com/events/" . $name;
 
   if(move_uploaded_file($_FILES['file']['tmp_name'], $file_path)) {
 
@@ -721,7 +722,7 @@ function editFirstCover(){
 
   //$tenet_id = $_GET["id"];
 
-  $file_path = dirname(dirname(dirname(dirname(__FILE__)))); //"../../../tenets/";
+  $file_path = dirname(dirname(dirname(__FILE__))); //"../../../tenets/";
 
   $file_path = $file_path . "/images" . "/";
 
@@ -732,7 +733,7 @@ function editFirstCover(){
 
   $file_path = $file_path . $name;
 
-  $sent_name = "http://localhost:8080/images/" . $name  . "?" . $timestamp;
+  $sent_name = "http://abeautifullifebykenny.com/images/" . $name  . "?" . $timestamp;
 
   if(move_uploaded_file($_FILES['file']['tmp_name'], $file_path)) {
 
@@ -750,7 +751,7 @@ function editSecondCover(){
 
   //$tenet_id = $_GET["id"];
 
-  $file_path = dirname(dirname(dirname(dirname(__FILE__)))); //"../../../tenets/";
+  $file_path = dirname(dirname(dirname(__FILE__))); //"../../../tenets/";
 
   $file_path = $file_path . "/images" . "/";
 
@@ -761,7 +762,7 @@ function editSecondCover(){
 
   $file_path = $file_path . $name;
 
-  $sent_name = "http://localhost:8080/images/" . $name . "?" . $timestamp;
+  $sent_name = "http://abeautifullifebykenny.com/images/" . $name . "?" . $timestamp;
 
   if(move_uploaded_file($_FILES['file']['tmp_name'], $file_path)) {
 
@@ -780,7 +781,7 @@ function editUniqueImage(){
 
   $tenet_id = $_GET["id"];
 
-  $file_path = dirname(dirname(dirname(dirname(__FILE__)))); //"../../../tenets/";
+  $file_path = dirname(dirname(dirname(__FILE__))); //"../../../tenets/";
 
   $file_path = $file_path . "/unique" . "/";
 
@@ -791,7 +792,7 @@ function editUniqueImage(){
 
   $file_path = $file_path . $name;
 
-  $sent_name = "http://localhost:8080/unique/" . $name;
+  $sent_name = "http://abeautifullifebykenny.com/unique/" . $name;
 
   if(move_uploaded_file($_FILES['file']['tmp_name'], $file_path)) {
 
@@ -814,7 +815,8 @@ function editUniqueImage(){
 
 function uploadImage(){
 
-  $file_path = dirname(dirname(dirname(dirname(__FILE__)))); //"../../../tenets/";
+  //$file_path = dirname(dirname(dirname(dirname(__FILE__)))); //"../../../tenets/";
+  $file_path = dirname(dirname(dirname(__FILE__))); //"../../../tenets/";
 
   $file_path = $file_path . "/tenets" . "/";
 
@@ -825,7 +827,9 @@ function uploadImage(){
 
   $file_path = $file_path . $name;
 
-  $sent_name = "http://localhost:8080/tenets/" . $name;
+  //$sent_name = "http://localhost:8080/tenets/" . $name;
+
+  $sent_name = "http://abeautifullifebykenny.com/tenets/" . $name;
 
   if(move_uploaded_file($_FILES['image']['tmp_name'], $file_path)) {
 
@@ -841,7 +845,7 @@ function uploadImage(){
 
 function uploadImageUnique(){
 
-  $file_path = dirname(dirname(dirname(dirname(__FILE__)))); //"../../../tenets/";
+  $file_path = dirname(dirname(dirname(__FILE__))); //"../../../tenets/";
 
   $file_path = $file_path . "/unique" . "/";
 
@@ -852,7 +856,7 @@ function uploadImageUnique(){
 
   $file_path = $file_path . $name;
 
-  $sent_name = "http://localhost:8080/unique/" . $name;
+  $sent_name = "http://abeautifullifebykenny.com/unique/" . $name;
 
   if(move_uploaded_file($_FILES['image']['tmp_name'], $file_path)) {
 
@@ -868,7 +872,7 @@ function uploadImageUnique(){
 
 function uploadImageFem(){
 
-  $file_path = dirname(dirname(dirname(dirname(__FILE__)))); //"../../../tenets/";
+  $file_path = dirname(dirname(dirname(__FILE__))); //"../../../tenets/";
 
   $file_path = $file_path . "/fem" . "/";
 
@@ -879,7 +883,7 @@ function uploadImageFem(){
 
   $file_path = $file_path . $name;
 
-  $sent_name = "http://localhost:8080/fem/" . $name;
+  $sent_name = "http://abeautifullifebykenny.com/fem/" . $name;
 
   if(move_uploaded_file($_FILES['image']['tmp_name'], $file_path)) {
 
@@ -897,7 +901,7 @@ function uploadImageFem(){
 function uploadImageBlog(){
 
 
-  $file_path = dirname(dirname(dirname(dirname(__FILE__)))); //"../../../tenets/";
+  $file_path = dirname(dirname(dirname(__FILE__))); //"../../../tenets/";
 
   $file_path = $file_path . "/blogs" . "/";
 
@@ -908,7 +912,7 @@ function uploadImageBlog(){
 
   $file_path = $file_path . $name;
 
-  $sent_name = "http://localhost:8080/blogs/" . $name;
+  $sent_name = "http://abeautifullifebykenny.com/blogs/" . $name;
 
   if(move_uploaded_file($_FILES['image']['tmp_name'], $file_path)) {
 
@@ -1325,7 +1329,7 @@ function editFeminique(){
 
 function addPurposeCover(){
     //$tenet_id = $_GET["id"];
-    $file_path = dirname(dirname(dirname(dirname(__FILE__)))); //"../../../tenets/";
+    $file_path = dirname(dirname(dirname(__FILE__))); //"../../../tenets/";
 
     $file_path = $file_path . "/tenets" . "/";
 
@@ -1336,7 +1340,7 @@ function addPurposeCover(){
 
     $file_path = $file_path . $name;
 
-    //$sent_name = "http://localhost:8080/tenets/" . $name;
+    //$sent_name = "http://abeautifullifebykenny.com/tenets/" . $name;
 
     if(move_uploaded_file($_FILES['file']['tmp_name'], $file_path)) {
 
@@ -1351,7 +1355,7 @@ function addPurposeCover(){
 
 function addFemCover(){
     //$tenet_id = $_GET["id"];
-    $file_path = dirname(dirname(dirname(dirname(__FILE__)))); //"../../../tenets/";
+    $file_path = dirname(dirname(dirname(__FILE__))); //"../../../tenets/";
 
     $file_path = $file_path . "/fem" . "/";
 
@@ -1362,7 +1366,7 @@ function addFemCover(){
 
     $file_path = $file_path . $name;
 
-    //$sent_name = "http://localhost:8080/tenets/" . $name;
+    //$sent_name = "http://abeautifullifebykenny.com/tenets/" . $name;
 
     if(move_uploaded_file($_FILES['file']['tmp_name'], $file_path)) {
 
@@ -1377,7 +1381,7 @@ function addFemCover(){
 
 function addEventCover(){
     //$tenet_id = $_GET["id"];
-    $file_path = dirname(dirname(dirname(dirname(__FILE__)))); //"../../../tenets/";
+    $file_path = dirname(dirname(dirname(__FILE__))); //"../../../tenets/";
 
     $file_path = $file_path . "/events" . "/";
 
@@ -1388,7 +1392,7 @@ function addEventCover(){
 
     $file_path = $file_path . $name;
 
-    //$sent_name = "http://localhost:8080/tenets/" . $name;
+    //$sent_name = "http://abeautifullifebykenny.com/tenets/" . $name;
 
     if(move_uploaded_file($_FILES['file']['tmp_name'], $file_path)) {
 
@@ -1403,7 +1407,7 @@ function addEventCover(){
 
 function addUniqueCover(){
     //$tenet_id = $_GET["id"];
-    $file_path = dirname(dirname(dirname(dirname(__FILE__)))); //"../../../tenets/";
+    $file_path = dirname(dirname(dirname(__FILE__))); //"../../../tenets/";
 
     $file_path = $file_path . "/unique" . "/";
 
@@ -1414,7 +1418,7 @@ function addUniqueCover(){
 
     $file_path = $file_path . $name;
 
-    //$sent_name = "http://localhost:8080/tenets/" . $name;
+    //$sent_name = "http://abeautifullifebykenny.com/tenets/" . $name;
 
     if(move_uploaded_file($_FILES['file']['tmp_name'], $file_path)) {
 
