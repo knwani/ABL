@@ -10,6 +10,7 @@ angular.module('petalsApp').controller('LoginCtrl', function ($scope, $http, $ro
     $rootScope.hide_it = true;
 
     $scope.login = function(type, $event){
+      //alert("balls");
       if($scope.email == ""){
         callNotification("Enter your email", 'warning');
       } else if ($scope.password == ""){

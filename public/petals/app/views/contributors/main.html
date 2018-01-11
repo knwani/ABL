@@ -1,0 +1,34 @@
+<div class="posts-holder">
+
+  <div class="button_case">
+    <span class="nav_header">Contributors</span>
+    <a href="#/contributors/new" class="button"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add Contributor</a>
+  </div>
+
+  <div class="author_contribution">
+
+    <a ng-repeat="single_feminique in articles" class="single_author">
+      <div class="first">
+
+        <div class="avatar" style="background-image:url('{{avatar_cover}}{{single_feminique.avatar}}')"></div>
+        <div class="author_details">
+          <input type="text" class="name" value="{{single_feminique.name}}"></input>
+          <div class="views" contenteditable="true" ng-bind-html="single_feminique.description"></div>
+          <div class="third">
+            <button class="button" ng-click="deleteArticle({{single_feminique.id}}, $event);$event.preventDefault();">Save</button>
+            &nbsp;&nbsp;
+            <button class="button bad" ng-click="deleteArticle({{single_feminique.id}}, $event);$event.preventDefault();">Delete</button>
+          </div>
+        </div>
+
+      </div>
+
+    </a>
+
+  </div>
+
+  <!--<div class="loadmore">
+    <a href="#/purposes/new" class="button"><i class="fa fa-plus"></i>&nbsp;&nbsp;Load More</a>
+  </div>-->
+
+</div>

@@ -86,6 +86,13 @@ angular
         templateUrl: 'views/ask-kenny/main.html',
         controller: 'AskKennyCtrl'
       })
+      .when('/contributors', {
+        //templateUrl: 'views/main.html',
+        //controller: 'MainCtrl'
+        title: 'Contributors',
+        templateUrl: 'views/contributors/main.html',
+        controller: 'ContributorsCtrl'
+      })
       .when('/ask-kenny/edit/:purposeid', {
         //templateUrl: 'views/main.html',
         //controller: 'MainCtrl'

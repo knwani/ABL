@@ -164,7 +164,7 @@
             <div class="section_header">Ask a question</div>
 
             <form method="post">
-              <textarea id="rum" class="more_bottom_margin" placeholder="Keep your question straight to the point, on one topic and under 300 characters" maxlength="300"></textarea>
+              <textarea id="rum" class="more_bottom_margin" placeholder="Keep your question straight to the point, on one topic and under 140 words"></textarea>
             </form>
 
             <div class="buttons social">
@@ -233,6 +233,29 @@
 
         <script>
         $(document).ready(function(){
+          var maxWords = 150;
+
+          $('textarea#rum').keypress(function() {
+              var $this, wordcount;
+              $this = $(this);
+              wordcount = $this.val().split(/\b[\s,\.-:;]*/).length;
+              if (wordcount > maxWords) {
+                  jQuery(".word_count span").text("" + maxWords);
+                  alert("You've reached the maximum allowed words.");
+                  return false;
+              } else {
+                  return jQuery(".word_count span").text(wordcount);
+              }
+          });
+
+          $('textarea#rum').change(function() {
+              var words = $(this).val().split(/\b[\s,\.-:;]*/);
+              if (words.length > maxWords) {
+                  words.splice(maxWords);
+                  $(this).val(words.join(""));
+                  alert("You've reached the maximum allowed words. Extra words removed.");
+              }
+          });
           //if the events are enough, create this fucking slider
 
           $(".tenets").click(function(){

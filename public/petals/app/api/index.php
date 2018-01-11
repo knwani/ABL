@@ -52,6 +52,7 @@ try {
     $app->get('/get_questions','getQuestions');
     $app->get('/get_blog','getBlog');
     $app->get('/get_events','getEvents');
+    $app->get('/get_contributors','getContributors');
     $app->post('/get_single_feminique','getSingleFeminique');
     $app->post('/get_single_unique','getSingleUnique');
     $app->post('/get_single_question','getSingleQuestion');
@@ -95,7 +96,7 @@ function echoResponse($status_code, $response) {
     echo json_encode($response);
 }
 
-function getConnection()
+/*function getConnection()
 {
     $dbhost="127.0.0.1";
     //$dbport="8889";
@@ -105,9 +106,9 @@ function getConnection()
     $dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $dbh;
-}
+}*/
 
-/*function getConnection()
+function getConnection()
 {
     $dbhost="127.0.0.1";
     //$dbport="8889";
@@ -117,7 +118,7 @@ function getConnection()
     $dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $dbh;
-}*/
+}
 
 function getAuthorById($id){
 
@@ -474,6 +475,38 @@ function getFeminique(){
   }
 
   $resp = array('status' => "success", 'fashions' => $result);
+  echo json_encode($resp);
+}
+
+
+function getContributors(){
+  $char = "SET CHARACTER SET utf8";
+  $sql = "SELECT * FROM `authors` ORDER BY `ID` DESC";
+
+  //print_r($sql);
+  $db = getConnection();
+  $db->query($char);
+  $stmt = $db->query($sql);
+  $fashions = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+  $json_fashions= json_encode($fashions);
+  $result = json_decode($json_fashions, true);
+  $result_count = count($fashions);
+
+  /*for ($x = 0; $x < $result_count; $x++){
+    $author_id = $result[$x]["author"];
+
+    //print_r($author_id . " - ");
+    $author_object = getAuthorById($author_id);
+
+    $array_author_object = (array) $author_object;
+
+    //$author_name = $author_object[0]["name"];
+    //print_r($array_author_object[0]->name);
+    $result[$x]["author_name"] = $array_author_object[0]->name;
+  }*/
+
+  $resp = array('status' => "success", 'authors' => $result);
   echo json_encode($resp);
 }
 

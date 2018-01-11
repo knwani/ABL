@@ -7,24 +7,19 @@
  * # MainCtrl
  * Controller of the petalsApp
  */
-angular.module('petalsApp').controller('MainCtrl', function ($scope, $http, myDateService, $rootScope) {
+angular.module('petalsApp').controller('ContributorsCtrl', function ($scope, $http, myDateService, $rootScope) {
 
-  //alert(url_id);
+  $scope.articles = [];
 
-});
+  $rootScope.url_id = '8';
 
-angular.module('petalsApp').controller('PurposesCtrl', function ($scope, $http, myDateService, $rootScope) {
+  $scope.loadArticles = function (){
 
-  $scope.purposes = [];
-
-  $rootScope.url_id = '1';
-
-  $scope.loadPurpose = function (){
-
-    $scope.promise = $http.get('api/get_purposes').then(function(response){
+    $scope.promise = $http.get('api/get_contributors').then(function(response){
       //callNotification('Your project has been successfully created. Hang on, taking you to your project now','notice');
       //NProgress.done();
-      $scope.purposes = response.data.purposes;
+      $scope.articles = response.data.authors;
+      $scope.avatar_cover = "http://abeautifullifebykenny.com/authors/";
       console.log(response);
       //$location.path("/projects/" + response);
     }, function(response){
@@ -35,16 +30,16 @@ angular.module('petalsApp').controller('PurposesCtrl', function ($scope, $http, 
 
   }
 
-  $scope.loadPurpose();
+  $scope.loadArticles();
 
   $scope.getDateOnly = myDateService.getDateOnly;
 
-  $scope.deletePurpose = function (id, $event){
+  $scope.deleteArticle = function (id, $event){
     //$event.stopPropagation();
     $event.preventDefault();
     $.confirm({
         title: 'Confirm!',
-        content: 'Are you sure you want to delete this article?',
+        content: 'Are you sure you want to delete this contributor?',
         buttons: {
               somethingElse: {
                 text: 'Yes',
@@ -55,13 +50,13 @@ angular.module('petalsApp').controller('PurposesCtrl', function ($scope, $http, 
                   $scope.post_data = [];
 
                   $scope.post_data.push({
-                    tenet_id: id
+                    article_id: id
                   });
 
-                  $scope.promise = $http.post('api/delete_purpose', {payload: $scope.post_data}).then(function(response){
-                    callNotification('Article has been deleted','notice');
+                  $scope.promise = $http.post('api/delete_contributor', {payload: $scope.post_data}).then(function(response){
+                    callNotification('Contributor has been deleted','notice');
                     NProgress.done();
-                    $scope.purposes = response.data.purposes;
+                    $scope.articles = response.data.authors;
                     //console.log(response);
                   }, function(response){
                     //console.log(response);
@@ -84,15 +79,17 @@ angular.module('petalsApp').controller('PurposesCtrl', function ($scope, $http, 
 });
 
 
-angular.module('petalsApp').controller('EditPurposeCtrl', function ($scope, $http, myDateService, $routeParams, FileUploader, $rootScope) {
+angular.module('petalsApp').controller('EditContributorsCtrl', function ($scope, $http, myDateService, $routeParams, FileUploader, $rootScope) {
 
-  $scope.purpose = [];
+  $scope.article = [];
 
   $scope.authors = [];
 
-  $scope.purpose_cover = "";
+  $rootScope.url_id = '8';
 
-  $scope.loadPurpose = function (){
+  $scope.article_cover = "";
+
+  $scope.loadArticle = function (){
 
     $scope.post_data = [];
 
@@ -100,15 +97,15 @@ angular.module('petalsApp').controller('EditPurposeCtrl', function ($scope, $htt
       article_id: $routeParams.purposeid
     });
 
-    $scope.promise = $http.post('api/get_purpose', {payload: $scope.post_data}).then(function(response){
+    $scope.promise = $http.post('api/get_single_question', {payload: $scope.post_data}).then(function(response){
       //callNotification('Your project has been successfully created. Hang on, taking you to your project now','notice');
       //NProgress.done();
-      $scope.purpose = response.data.purpose;
+      $scope.article = response.data.article;
       $scope.authors = response.data.authors;
-      $scope.purpose_cover = "http://abeautifullifebykenny.com/tenets/" + $scope.purpose[0].cover;
+      $scope.article_cover = "http://localhost:8080/fem/" + $scope.article[0].cover;
 
-      $("#writer").trumbowyg('html', $scope.purpose[0].content);
-      $('#author option:eq(' + $scope.purpose[0].author + ')').prop('selected', true);
+      $("#writer").trumbowyg('html', $scope.article[0].body);
+      $('#author option:eq(' + $scope.article[0].author + ')').prop('selected', true);
       //alert($("#author option:selected").val());
       console.log(response);
       //$location.path("/projects/" + response);
@@ -120,16 +117,16 @@ angular.module('petalsApp').controller('EditPurposeCtrl', function ($scope, $htt
 
   }
 
-  $scope.loadPurpose();
+  $scope.loadArticle();
 
   $scope.selectedAuthor = function (id){
-    if (id == $scope.purpose[0].author){
+    if (id == $scope.article[0].author){
       return "selected";
     }
   }
 
   $scope.selectedCategory = function (text){
-    if (text == $scope.purpose[0].category){
+    if (text == $scope.article[0].category){
       return "selected";
     }
   }
@@ -141,30 +138,26 @@ angular.module('petalsApp').controller('EditPurposeCtrl', function ($scope, $htt
 
   $scope.getDateOnly = myDateService.getDateOnly;
 
-  $scope.editPurpose = function (){
+  $scope.editArticle = function (){
 
     NProgress.start();
 
     //var someText = "Hello, World!";
     //$("#writer").append("<span class='bez'>Balls</span>");
     //$('#writer span.bez').last().remove();
-    $scope.body = $("#writer").trumbowyg('html');
-
-    //alert($scope.body);
-    //alert($("#writer").trumbowyg('html'));
-    $scope.title = $("#title").val();
-    $scope.category = $("#category option:selected").text();
-    $scope.author = $("#author option:selected").val();;
+    $scope.kenny = $("textarea#kenny").val();
+    $scope.ade = $("textarea#ade").val();
+    $scope.sade = $("textarea#sade").val();
 
     $scope.post_data = [];
 
     $scope.post_data.push({
-      article_name: $scope.title, content: $scope.body, author: $scope.author, tenet_id: $routeParams.purposeid, category: $scope.category
+      kenny: $scope.kenny, ade: $scope.ade, sade: $scope.sade, article_id: $routeParams.purposeid
     });
 
-    $scope.promise = $http.post('api/edit_purpose', {payload: $scope.post_data}).then(function(response){
+    $scope.promise = $http.post('api/edit_question', {payload: $scope.post_data}).then(function(response){
       NProgress.done();
-      callNotification('This article has been edited. :)','notice');
+      callNotification('Responses have been edited. :)','notice');
       //NProgress.done();
       console.log(response);
       //$location.path("/projects/" + response);
@@ -177,7 +170,7 @@ angular.module('petalsApp').controller('EditPurposeCtrl', function ($scope, $htt
   }
 
   var uploader = $scope.uploader = new FileUploader({
-            url: 'api/edit_picture?id=' + $routeParams.purposeid,
+            url: 'api/edit_unique_picture?id=' + $routeParams.purposeid,
             autoUpload: true
         });
 
@@ -206,7 +199,7 @@ angular.module('petalsApp').controller('EditPurposeCtrl', function ($scope, $htt
             console.info('onWhenAddingFileFailed', item, filter, options);
         };
         uploader.onAfterAddingFile = function(fileItem) {
-          NProgress.start();
+            NProgress.start();
             console.info('onAfterAddingFile', fileItem);
         };
         uploader.onAfterAddingAll = function(addedFileItems) {
@@ -225,7 +218,7 @@ angular.module('petalsApp').controller('EditPurposeCtrl', function ($scope, $htt
             console.info('onSuccessItem', fileItem, response, status, headers);
             //console.log(response.link);
             NProgress.done();
-            $scope.purpose_cover = response.link;
+            $scope.article_cover = response.link;
         };
         uploader.onErrorItem = function(fileItem, response, status, headers) {
             console.info('onErrorItem', fileItem, response, status, headers);
