@@ -7,15 +7,19 @@
 
   <div class="author_contribution">
 
-    <a ng-repeat="single_feminique in articles" class="single_author">
+    <input type="file" nv-file-select="" uploader="uploader" id="image"/>
+
+    <div ng-repeat="single_feminique in articles" class="single_author">
       <div class="first">
 
-        <div class="avatar" style="background-image:url('{{avatar_cover}}{{single_feminique.avatar}}')"></div>
+        <div class="avatar" style="background-image:url('{{avatar_cover}}{{single_feminique.avatar}}')">
+          <a class="overlay" ng-click="showUploader({{single_feminique.id}})"><i class="fa fa-upload"></i></a>
+        </div>
         <div class="author_details">
           <input type="text" class="name" value="{{single_feminique.name}}"></input>
           <div class="views" contenteditable="true" ng-bind-html="single_feminique.description"></div>
           <div class="third">
-            <button class="button" ng-click="deleteArticle({{single_feminique.id}}, $event);$event.preventDefault();">Save</button>
+            <button class="button" ng-click="editArticle({{single_feminique.id}}, $event);">Save</button>
             &nbsp;&nbsp;
             <button class="button bad" ng-click="deleteArticle({{single_feminique.id}}, $event);$event.preventDefault();">Delete</button>
           </div>
@@ -23,7 +27,7 @@
 
       </div>
 
-    </a>
+    </div>
 
   </div>
 

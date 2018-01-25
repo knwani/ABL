@@ -78,7 +78,7 @@ angular.module('petalsApp').controller('FeminiqueCtrl', function ($scope, $http,
 });
 
 
-angular.module('petalsApp').controller('EditFeminiqueCtrl', function ($scope, $http, myDateService, $routeParams, FileUploader) {
+angular.module('petalsApp').controller('EditFeminiqueCtrl', function ($scope, $http, myDateService, $routeParams, FileUploader, $rootScope) {
 
   $scope.article = [];
 

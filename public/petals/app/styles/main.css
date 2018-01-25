@@ -52,6 +52,7 @@ sup{
   padding: 5px 8px;
   margin-bottom: 15px;
   text-decoration: none;
+  outline: none;
 }
 
 .single_author .views{
@@ -68,6 +69,7 @@ sup{
   text-decoration: none;
   height: 250px;
   overflow: scroll;
+  outline: none;
 }
 
 .single_author .avatar{
@@ -81,6 +83,7 @@ sup{
   border: 1px solid #666;
   margin-right: 15px;
   background-position: center;
+  position: relative;
 }
 
 .single_author .author_details{
@@ -653,16 +656,16 @@ text-align: right;
     color: rgba(0, 0, 0, 1);
   }
 
-  .cover-picture:hover .overlay{
+  .cover-picture:hover .overlay, .avatar:hover .overlay{
     background-color: rgba(0, 0, 0, 0.6);
   }
 
-  .cover-picture .overlay:hover{
+  .cover-picture .overlay:hover, .avatar .overlay:hover{
     text-decoration: none;
     color: rgba(255, 255, 255, 1);
   }
 
-  .cover-picture .overlay{
+  .cover-picture .overlay, .avatar .overlay{
     position: absolute;
     left: 0px;
     right: 0px;

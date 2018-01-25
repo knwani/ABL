@@ -7,11 +7,12 @@
  * # MainCtrl
  * Controller of the petalsApp
  */
-angular.module('petalsApp').controller('ContributorsCtrl', function ($scope, $http, myDateService, $rootScope) {
+angular.module('petalsApp').controller('ContributorsCtrl', function ($scope, $http, myDateService, $rootScope, FileUploader, $routeParams) {
 
   $scope.articles = [];
-
   $rootScope.url_id = '8';
+
+  var contributor = 0;
 
   $scope.loadArticles = function (){
 
@@ -73,91 +74,29 @@ angular.module('petalsApp').controller('ContributorsCtrl', function ($scope, $ht
     });
   }
 
-  $rootScope.hide_it = false;
-  $(".container").css("display", "block");
-
-});
-
-
-angular.module('petalsApp').controller('EditContributorsCtrl', function ($scope, $http, myDateService, $routeParams, FileUploader, $rootScope) {
-
-  $scope.article = [];
-
-  $scope.authors = [];
-
-  $rootScope.url_id = '8';
-
-  $scope.article_cover = "";
-
-  $scope.loadArticle = function (){
-
-    $scope.post_data = [];
-
-    $scope.post_data.push({
-      article_id: $routeParams.purposeid
-    });
-
-    $scope.promise = $http.post('api/get_single_question', {payload: $scope.post_data}).then(function(response){
-      //callNotification('Your project has been successfully created. Hang on, taking you to your project now','notice');
-      //NProgress.done();
-      $scope.article = response.data.article;
-      $scope.authors = response.data.authors;
-      $scope.article_cover = "http://localhost:8080/fem/" + $scope.article[0].cover;
-
-      $("#writer").trumbowyg('html', $scope.article[0].body);
-      $('#author option:eq(' + $scope.article[0].author + ')').prop('selected', true);
-      //alert($("#author option:selected").val());
-      console.log(response);
-      //$location.path("/projects/" + response);
-    }, function(response){
-      console.log(response);
-      //callNotification('Something went wrong. Please try again. But we have noted the error','error');
-      //NProgress.done();
-    })
-
-  }
-
-  $scope.loadArticle();
-
-  $scope.selectedAuthor = function (id){
-    if (id == $scope.article[0].author){
-      return "selected";
-    }
-  }
-
-  $scope.selectedCategory = function (text){
-    if (text == $scope.article[0].category){
-      return "selected";
-    }
-  }
-
-  angular.element(function () {
-    //console.log('page loading completed');
-    //$('#author option:eq(' + $scope.purpose[0].author + ')').prop('selected', true);
-  });
-
-  $scope.getDateOnly = myDateService.getDateOnly;
-
-  $scope.editArticle = function (){
+  $scope.editArticle = function (id, $event){
 
     NProgress.start();
 
     //var someText = "Hello, World!";
     //$("#writer").append("<span class='bez'>Balls</span>");
     //$('#writer span.bez').last().remove();
-    $scope.kenny = $("textarea#kenny").val();
-    $scope.ade = $("textarea#ade").val();
-    $scope.sade = $("textarea#sade").val();
+    var parent = angular.element($event.target).parent().parent();
+    var name = $(parent).find(".name").val();
+    var desc = $(parent).find(".views").html();
+    //alert(name);
+    //$scope.ade = $("textarea#ade").val();
+    //$scope.sade = $("textarea#sade").val();
 
     $scope.post_data = [];
 
     $scope.post_data.push({
-      kenny: $scope.kenny, ade: $scope.ade, sade: $scope.sade, article_id: $routeParams.purposeid
+      name_value: name, desc_value: desc, article_id: id
     });
 
-    $scope.promise = $http.post('api/edit_question', {payload: $scope.post_data}).then(function(response){
+    $scope.promise = $http.post('api/edit_contributor', {payload: $scope.post_data}).then(function(response){
       NProgress.done();
-      callNotification('Responses have been edited. :)','notice');
+      callNotification('Contributor details have been edited. :)','notice');
       //NProgress.done();
       console.log(response);
       //$location.path("/projects/" + response);
@@ -169,8 +108,15 @@ angular.module('petalsApp').controller('EditContributorsCtrl', function ($scope,
 
   }
 
-  var uploader = $scope.uploader = new FileUploader({
-            url: 'api/edit_unique_picture?id=' + $routeParams.purposeid,
+
+  $scope.showUploader = function (id){
+
+    contributor = id;
+    $("#image").trigger("click");
+  }
+
+        var uploader = $scope.uploader = new FileUploader({
+            url: 'api/edit_contributor_picture?id=' + contributor,
             autoUpload: true
         });
 
@@ -234,6 +180,70 @@ angular.module('petalsApp').controller('EditContributorsCtrl', function ($scope,
         };
 
         console.info('uploader', uploader);
+
+  $rootScope.hide_it = false;
+  $(".container").css("display", "block");
+
+});
+
+
+angular.module('petalsApp').controller('EditContributorsCtrl', function ($scope, $http, myDateService, $routeParams, FileUploader, $rootScope) {
+
+  $scope.article = [];
+  $scope.authors = [];
+  $rootScope.url_id = '8';
+  $scope.article_cover = "";
+
+  $scope.loadArticle = function (){
+
+    $scope.post_data = [];
+
+    $scope.post_data.push({
+      article_id: $routeParams.purposeid
+    });
+
+    $scope.promise = $http.post('api/get_single_question', {payload: $scope.post_data}).then(function(response){
+      //callNotification('Your project has been successfully created. Hang on, taking you to your project now','notice');
+      //NProgress.done();
+      $scope.article = response.data.article;
+      $scope.authors = response.data.authors;
+      $scope.article_cover = "http://localhost:8080/fem/" + $scope.article[0].cover;
+
+      $("#writer").trumbowyg('html', $scope.article[0].body);
+      $('#author option:eq(' + $scope.article[0].author + ')').prop('selected', true);
+      //alert($("#author option:selected").val());
+      console.log(response);
+      //$location.path("/projects/" + response);
+    }, function(response){
+      console.log(response);
+      //callNotification('Something went wrong. Please try again. But we have noted the error','error');
+      //NProgress.done();
+    })
+
+  }
+
+  $scope.loadArticle();
+
+  $scope.selectedAuthor = function (id){
+    if (id == $scope.article[0].author){
+      return "selected";
+    }
+  }
+
+  $scope.selectedCategory = function (text){
+    if (text == $scope.article[0].category){
+      return "selected";
+    }
+  }
+
+  angular.element(function () {
+    //console.log('page loading completed');
+    //$('#author option:eq(' + $scope.purpose[0].author + ')').prop('selected', true);
+  });
+
+  $scope.getDateOnly = myDateService.getDateOnly;
+
+
 
         $rootScope.hide_it = false;
         $(".container").css("display", "block");

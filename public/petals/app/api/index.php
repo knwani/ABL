@@ -29,6 +29,7 @@ try {
     $app->post('/edit_fem_picture','editFemImage');
     $app->post('/edit_unique_picture','editUniqueImage');
     $app->post('/edit_event_picture','editEventImage');
+    $app->post('/edit_contributor_picture','editContributorImage');
     $app->post('/edit_first_cover','editFirstCover');
     $app->post('/edit_second_cover','editSecondCover');
     $app->post('/upload_image_fem','uploadImageFem');
@@ -45,6 +46,7 @@ try {
     $app->post('/edit_question','editQuestion');
     $app->post('/edit_blog','editBlog');
     $app->post('/edit_event','editEvent');
+    $app->post('/edit_contributor','editContributor');
     $app->post('/get_purpose','getPurpose');
     $app->get('/get_purposes','getPurposes');
     $app->get('/get_feminique','getFeminique');
@@ -665,7 +667,7 @@ function editImage(){
     echo json_encode($resp);
 
   } else{
-    $resp = array('status' => "failure", 'reason' => $_FILES['image']['error']);
+    $resp = array('status' => "failure", 'reason' => $_FILES['file']['error']);
     echo json_encode($resp);
   }
 
@@ -701,7 +703,7 @@ function editFemImage(){
     echo json_encode($resp);
 
   } else{
-    $resp = array('status' => "failure", 'reason' => $_FILES['image']['error']);
+    $resp = array('status' => "failure", 'reason' => $_FILES['file']['error']);
     echo json_encode($resp);
   }
 
@@ -711,8 +713,46 @@ function editFemImage(){
   $stmt = $db->prepare($sql);
   $stmt->execute();
   $db = null;
+}
+
+
+function editContributorImage(){
+
+  $tenet_id = $_GET["id"];
+
+  $file_path = dirname(dirname(dirname(dirname(__FILE__))));
+  //$file_path = dirname(dirname(dirname(__FILE__))); //"../../../tenets/";
+
+  $file_path = $file_path . "/authors" . "/";
+
+  $date = new DateTime();
+  $timestamp = $date->getTimestamp();
+
+  $name = $timestamp . basename($_FILES['file']['name']);
+
+  $file_path = $file_path . $name;
+
+  $sent_name = "http://abeautifullifebykenny.com/authors/" . $name;
+
+  if(move_uploaded_file($_FILES['file']['tmp_name'], $file_path)) {
+
+    $resp = array('status' => "success", 'link' => $sent_name);
+    echo json_encode($resp);
+
+  } else{
+    $resp = array('status' => "failure", 'reason' => $_FILES['file']['error']);
+    echo json_encode($resp);
+  }
+
+  $sql = "UPDATE `authors` SET `avatar`= '$name' WHERE `id`= $tenet_id";
+
+  $db = getConnection();
+  $stmt = $db->prepare($sql);
+  $stmt->execute();
+  $db = null;
 
 }
+
 
 function editEventImage(){
 
@@ -737,7 +777,7 @@ function editEventImage(){
     echo json_encode($resp);
 
   } else{
-    $resp = array('status' => "failure", 'reason' => $_FILES['image']['error']);
+    $resp = array('status' => "failure", 'reason' => $_FILES['file']['error']);
     echo json_encode($resp);
   }
 
@@ -774,7 +814,7 @@ function editFirstCover(){
     echo json_encode($resp);
 
   } else{
-    $resp = array('status' => "failure", 'reason' => $_FILES['image']['error']);
+    $resp = array('status' => "failure", 'reason' => $_FILES['file']['error']);
     echo json_encode($resp);
   }
 
@@ -803,7 +843,7 @@ function editSecondCover(){
     echo json_encode($resp);
 
   } else{
-    $resp = array('status' => "failure", 'reason' => $_FILES['image']['error']);
+    $resp = array('status' => "failure", 'reason' => $_FILES['file']['error']);
     echo json_encode($resp);
   }
 
@@ -833,7 +873,7 @@ function editUniqueImage(){
     echo json_encode($resp);
 
   } else{
-    $resp = array('status' => "failure", 'reason' => $_FILES['image']['error']);
+    $resp = array('status' => "failure", 'reason' => $_FILES['file']['error']);
     echo json_encode($resp);
   }
 
@@ -1313,6 +1353,38 @@ function editEvent(){
   $stmt->execute();
 }
 
+function editContributor(){
+  $data;
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST')
+  {
+    $data = json_decode(file_get_contents("php://input"), true);
+    //print_r($data);
+  }
+
+  //$content = $data["payload"][0]["content"];
+  $views = 1;
+  $name = $data["payload"][0]["name_value"];
+  $desc = $data["payload"][0]["desc_value"];
+  $article_id = $data["payload"][0]["article_id"];
+
+  //$service_id = $_POST["Service_ID"];
+
+  $sql = "UPDATE `authors` SET `name`=:name,`description`= :desc_value WHERE `id` = :article_id";
+
+  //$sql = "INSERT INTO `tenets`(`article_name`, `views`, `content`, `author`)
+  //VALUES (:article_name, :views, :content, :author)";
+
+  $db = getConnection();
+  $stmt = $db->prepare($sql);
+
+  $stmt->bindParam(":name", $name);
+  $stmt->bindParam(":desc_value", $desc);
+  $stmt->bindParam(":article_id", $article_id);
+  //$stmt->bindParam(":category", $category);
+  $stmt->execute();
+}
+
 function editFeminique(){
   $data;
 
@@ -1381,7 +1453,7 @@ function addPurposeCover(){
       echo json_encode($resp);
 
     } else{
-      $resp = array('status' => "failure", 'reason' => $_FILES['image']['error']);
+      $resp = array('status' => "failure", 'reason' => $_FILES['file']['error']);
       echo json_encode($resp);
     }
 }
@@ -1407,7 +1479,7 @@ function addFemCover(){
       echo json_encode($resp);
 
     } else{
-      $resp = array('status' => "failure", 'reason' => $_FILES['image']['error']);
+      $resp = array('status' => "failure", 'reason' => $_FILES['file']['error']);
       echo json_encode($resp);
     }
 }
@@ -1433,7 +1505,7 @@ function addEventCover(){
       echo json_encode($resp);
 
     } else{
-      $resp = array('status' => "failure", 'reason' => $_FILES['image']['error']);
+      $resp = array('status' => "failure", 'reason' => $_FILES['file']['error']);
       echo json_encode($resp);
     }
 }
@@ -1459,7 +1531,7 @@ function addUniqueCover(){
       echo json_encode($resp);
 
     } else{
-      $resp = array('status' => "failure", 'reason' => $_FILES['image']['error']);
+      $resp = array('status' => "failure", 'reason' => $_FILES['file']['error']);
       echo json_encode($resp);
     }
 }
