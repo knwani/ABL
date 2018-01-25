@@ -110,8 +110,8 @@ angular.module('petalsApp').controller('ContributorsCtrl', function ($scope, $ht
 
 
   $scope.showUploader = function (id){
-
     contributor = id;
+    //alert(contributor);
     $("#image").trigger("click");
   }
 
@@ -146,6 +146,7 @@ angular.module('petalsApp').controller('ContributorsCtrl', function ($scope, $ht
         };
         uploader.onAfterAddingFile = function(fileItem) {
             NProgress.start();
+            fileItem.url = "api/edit_contributor_picture?id=" + contributor;
             console.info('onAfterAddingFile', fileItem);
         };
         uploader.onAfterAddingAll = function(addedFileItems) {
@@ -164,7 +165,8 @@ angular.module('petalsApp').controller('ContributorsCtrl', function ($scope, $ht
             console.info('onSuccessItem', fileItem, response, status, headers);
             //console.log(response.link);
             NProgress.done();
-            $scope.article_cover = response.link;
+            $scope.articles = response.data.authors;
+            //$scope.article_cover = response.link;
         };
         uploader.onErrorItem = function(fileItem, response, status, headers) {
             console.info('onErrorItem', fileItem, response, status, headers);

@@ -736,20 +736,21 @@ function editContributorImage(){
 
   if(move_uploaded_file($_FILES['file']['tmp_name'], $file_path)) {
 
-    $resp = array('status' => "success", 'link' => $sent_name);
-    echo json_encode($resp);
+    $sql = "UPDATE `authors` SET `avatar`= '$name' WHERE `id`= $tenet_id";
+
+    $db = getConnection();
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $db = null;
+
+    getContributors();
+    //$resp = array('status' => "success", 'link' => $sent_name);
+    //echo json_encode($resp);
 
   } else{
     $resp = array('status' => "failure", 'reason' => $_FILES['file']['error']);
     echo json_encode($resp);
   }
-
-  $sql = "UPDATE `authors` SET `avatar`= '$name' WHERE `id`= $tenet_id";
-
-  $db = getConnection();
-  $stmt = $db->prepare($sql);
-  $stmt->execute();
-  $db = null;
 
 }
 

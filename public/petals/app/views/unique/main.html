@@ -2,12 +2,14 @@
 
   <div class="button_case">
     <span class="nav_header">Unique Man</span>
-    <a href="#/unique-man/new" class="button"><i class="fa fa-plus"></i>&nbsp;&nbsp;New Article</a>
+    <div>
+      <a href="#/unique-man/new-video" class="button"><i class="fas fa-video"></i>&nbsp;&nbsp;New Video</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="#/unique-man/new" class="button"><i class="fa fa-plus"></i>&nbsp;&nbsp;New Article</a>
+    </div>
   </div>
 
   <a ng-repeat="single_feminique in articles" class="single_field" href="#/unique-man/edit/{{single_feminique.ID}}">
     <div class="first">
-
 
       <span class="name">{{single_feminique.title}}</span>
       <span class="date">{{getDateOnly(single_feminique.new_created_at)}}</span>

@@ -79,6 +79,10 @@ angular
         templateUrl: 'views/unique/new.html',
         controller: 'NewUniqueCtrl'
       })
+      .when('/unique-man/new-video', {
+        templateUrl: 'views/unique/new_video.html',
+        controller: 'NewUniqueVideoCtrl'
+      })
       .when('/ask-kenny', {
         //templateUrl: 'views/main.html',
         //controller: 'MainCtrl'
