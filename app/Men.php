@@ -21,4 +21,12 @@ class Men extends Model
 
       return $src;
     }
+
+    public function embedLink(){
+      $src = $this->body;
+      $index = strrpos($src, "/");
+      $src = substr($src, $index);
+
+      return $src;
+    }
 }

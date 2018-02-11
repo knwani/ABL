@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Fashion extends Model
 {
     //
-
     public function urlFriendly(){
       return str_slug($this->title);
     }
@@ -22,4 +21,6 @@ class Fashion extends Model
 
       return $src;
     }
+
+
 }

@@ -82,6 +82,7 @@ class Application extends Slim
             'status' => $status,
             'statusText' => preg_replace('/^[0-9]+ (.*)$/', '$1', $statusText),
             'description' => $e->getMessage(),
+            'line' => $e->getLine(),
         )));
     }
 

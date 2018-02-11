@@ -97,6 +97,13 @@ angular
         templateUrl: 'views/contributors/main.html',
         controller: 'ContributorsCtrl'
       })
+      .when('/gallery', {
+        //templateUrl: 'views/main.html',
+        //controller: 'MainCtrl'
+        title: 'Gallery',
+        templateUrl: 'views/gallery/main.html',
+        controller: 'GalleryCtrl'
+      })
       .when('/ask-kenny/edit/:purposeid', {
         //templateUrl: 'views/main.html',
         //controller: 'MainCtrl'

@@ -1,10 +1,10 @@
 <div class="posts-holder">
 
   <div class="button_case">
-    <span class="nav_header">Unique Man -> New Article</span>
+    <span class="nav_header">Unique Man -> New Video</span>
     <div>
       <a href="#/unique-man" class="button bad"><i class="fa fa-chevron-left"></i>&nbsp;&nbsp;Back to Unique Man</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button ng-click="addArticle()" class="button"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add</button>
+      <button ng-click="addArticleVideo()" class="button"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add</button>
     </div>
   </div>
 
@@ -23,7 +23,11 @@
   </select>
 </div>
 
-<div class="x_select">
+<span class="admin_input topmargin" data="header">Video URL<br/><span>1. Upload video to Youtube or go to the Youtube video, click the <strong>SHARE</strong> button just either above or under the <strong>SUBSCRIBE</strong> button.<br/>
+  2. Copy the link.<br/>
+  3. Paste it into the box below.</span></span>
+
+<!--<div class="x_select">
   <div class="d_header">Category</div>
   <select id="category">
     <option >His Travels</option>
@@ -32,9 +36,9 @@
     <option >His Fashion</option>
     <option >His Health</option>
   </select>
-</div>
+</div>-->
 
-<div class="writer" id="writer"></div>
+<input type="text" placeholder="Video URL" class="title" id="url"/>
 
 <!--<input type="button" value="Submit" ng-click="addFeminique()"/>-->
 

@@ -720,8 +720,8 @@ function editContributorImage(){
 
   $tenet_id = $_GET["id"];
 
-  $file_path = dirname(dirname(dirname(dirname(__FILE__))));
-  //$file_path = dirname(dirname(dirname(__FILE__))); //"../../../tenets/";
+  //$file_path = dirname(dirname(dirname(dirname(__FILE__))));
+  $file_path = dirname(dirname(dirname(__FILE__))); //"../../../tenets/";
 
   $file_path = $file_path . "/authors" . "/";
 
@@ -1513,7 +1513,8 @@ function addEventCover(){
 
 function addUniqueCover(){
     //$tenet_id = $_GET["id"];
-    $file_path = dirname(dirname(dirname(__FILE__))); //"../../../tenets/";
+    $file_path = dirname(dirname(dirname(dirname(__FILE__))));
+    //$file_path = dirname(dirname(dirname(__FILE__))); //"../../../tenets/";
 
     $file_path = $file_path . "/unique" . "/";
 
@@ -1532,8 +1533,10 @@ function addUniqueCover(){
       echo json_encode($resp);
 
     } else{
+
       $resp = array('status' => "failure", 'reason' => $_FILES['file']['error']);
       echo json_encode($resp);
+
     }
 }
 
@@ -1630,28 +1633,35 @@ function addUnique(){
     //print_r($data);
   }
 
-  $content = $data["payload"][0]["content"];
+  $content = "";
   $views = 1;
   $article_name = $data["payload"][0]["article_name"];
   $author = $data["payload"][0]["author"];
   $category = $data["payload"][0]["category"];
   $cover = $data["payload"][0]["cover"];
+  $type = $data["payload"][0]["type"];
 
-  $src = $content;
+  if(!isset($data["payload"][0]["content"])){
+    $content = $data["payload"][0]["url"];
+  } else {
+    $content = $data["payload"][0]["content"];
+    $src = $content;
 
-  $src = str_replace("‘", "'", $src);
-  $src = str_replace("’", "'", $src);
-  $src = str_replace("”", '"', $src);
-  $src = str_replace("“", '"', $src);
-  $src = str_replace("–", "-", $src);
-  $src = str_replace("…", "...", $src);
-  $src = str_replace("·", "&#8226;", $src);
+    $src = str_replace("‘", "'", $src);
+    $src = str_replace("’", "'", $src);
+    $src = str_replace("”", '"', $src);
+    $src = str_replace("“", '"', $src);
+    $src = str_replace("–", "-", $src);
+    $src = str_replace("…", "...", $src);
+    $src = str_replace("·", "&#8226;", $src);
 
-  $content = $src;
+    $content = $src;
+  }
+
   //$service_id = $_POST["Service_ID"];
 
-  $sql = "INSERT INTO `mens`(`title`, `body`, `views`, `cover`, `category`, `author`)
-  VALUES (:title, :content, :views, :cover, :category, :author)";
+  $sql = "INSERT INTO `mens`(`title`, `body`, `type`, `views`, `cover`, `category`, `author`)
+  VALUES (:title, :content, :type, :views, :cover, :category, :author)";
 
   $db = getConnection();
   $stmt = $db->prepare($sql);
@@ -1662,6 +1672,7 @@ function addUnique(){
   $stmt->bindParam(":author", $author);
   $stmt->bindParam(":category", $category);
   $stmt->bindParam(":cover", $cover);
+  $stmt->bindParam(":type", $type);
   //$stmt->bindParam(":author", $author);
   $stmt->execute();
 }

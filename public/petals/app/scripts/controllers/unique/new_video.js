@@ -37,7 +37,7 @@ angular.module('petalsApp').controller('NewUniqueVideoCtrl', function ($scope, $
 
   $scope.loadAuthors();
 
-  $scope.addArticle = function (){
+  $scope.addArticleVideo = function (){
 
     $scope.post_data = [];
 
@@ -51,30 +51,6 @@ angular.module('petalsApp').controller('NewUniqueVideoCtrl', function ($scope, $
     }
 
   }
-
-  /*$scope.addFeminique = function (){
-
-    $scope.body = $("#writer").trumbowyg('html');
-    $scope.title = $("#title").val();
-
-    $scope.post_data = [];
-
-    $scope.post_data.push({
-      article_name: $scope.title, content: $scope.body, author: 1
-    });
-
-    $scope.promise = $http.post('api/add_feminique', {payload: $scope.post_data}).then(function(response){
-      //callNotification('Your project has been successfully created. Hang on, taking you to your project now','notice');
-      //NProgress.done();
-      console.log(response);
-      //$location.path("/projects/" + response);
-    }, function(response){
-      console.log(response);
-      //callNotification('Something went wrong. Please try again. But we have noted the error','error');
-      //NProgress.done();
-    })
-
-  }*/
 
   var uploader = $scope.uploader = new FileUploader({
         url: 'api/add_unique_cover',
@@ -127,17 +103,21 @@ angular.module('petalsApp').controller('NewUniqueVideoCtrl', function ($scope, $
         console.info('onSuccessItem', fileItem, response, status, headers);
         //console.log(response.link);
         NProgress.done();
+        //alert($scope.cover_name);
         $scope.cover_name = response.name;
 
         $scope.post_data = [];
 
-        $scope.body = $("#writer").trumbowyg('html');
+        //$scope.body = $("#writer").trumbowyg('html');
         $scope.title = $("#title").val();
+        $scope.url = $("#url").val();
         $scope.category = $("#category option:selected").text();
         $scope.author = $("#author option:selected").val();
+        $scope.type = "Video";
+        //content: $scope.body,
 
         $scope.post_data.push({
-          article_name: $scope.title, content: $scope.body, category: $scope.category, author: $scope.author, cover: $scope.cover_name
+          article_name: $scope.title, category: $scope.category, author: $scope.author, cover: $scope.cover_name, type: $scope.type, url: $scope.url
         });
 
         $scope.promise = $http.post('api/add_unique', {payload: $scope.post_data}).then(function(response){

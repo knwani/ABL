@@ -29,7 +29,13 @@ class UniqueController extends Controller
       //print_r($fashion);
       //print_r($id);
 
-      return view('unique-single')->with('data', ['fashion' => $fashion, 'author' => $author, 'recommended' => $recommended]);
+      if ($fashion->type == "Article"){
+        return view('unique-single')->with('data', ['fashion' => $fashion, 'author' => $author, 'recommended' => $recommended]);
+      } else {
+        return view('unique-single-video')->with('data', ['fashion' => $fashion, 'author' => $author, 'recommended' => $recommended]);
+      }
+
+
     }
 
     public function getCategoryData($category){

@@ -17,7 +17,7 @@
     </head>
     <body>
         <div class="flex-center position-ref four-quarter-height">
-          <div class="banner xfashion" style="background-image:url('/fem/{{$data['fashion']->cover}}');background-position:center">
+          <div class="banner xfashion" style="background-image:url('/unique/{{$data['fashion']->cover}}');background-position:center">
             <div class="overlay"></div>
             <div class="content">
               <div class="header">
@@ -47,7 +47,8 @@
                           <a href="/">Home</a>
                           <a href="{{ url('/about-us')}}">About Us</a>
                           <a href="{{ url('/feminique-woman')}}">Feminique Woman</a>
-                          <span class="link on">
+                          <a class="on" href="{{ url('/unique-man')}}">Unique Man</a>
+                          <!--<span class="link on">
                             <a href="{{ url('/unique-man')}}">Unique Man</a>
                             <div class="categories">
                               <span class="shower">{{$data['fashion']->category}}&nbsp;&nbsp;<i class="fa fa-angle-down"></i></span>
@@ -61,7 +62,7 @@
                                 <li><a href="{{ url('/unique-man')}}">All Categories</a></li>
                               </ul>
                             </div>
-                          </span>
+                          </span>-->
                           <a href="{{ url('/ask-kenny')}}">Ask Kenny</a>
                           <a href="{{ url('/blog')}}">Blog</a>
                       </div>
@@ -95,10 +96,10 @@
 
                     @foreach ($data['recommended'] as $fashion)
 
-                    <a href="{{ url('/feminique-woman/' . $fashion->categoryFriendly() . '/'  . $fashion->ID . '/' . $fashion->urlFriendly())}}" class="bg small" style="background-image:url('/fem/{{$fashion->cover}}')">
+                    <a href="{{ url('/unique-man/' . $fashion->categoryFriendly() . '/'  . $fashion->ID . '/' . $fashion->urlFriendly())}}" class="bg small" style="background-image:url('/fem/{{$fashion->cover}}')">
                       <div class="overlay"></div>
                       <div class="ryuk">
-                        <div class="category">{{$fashion->category}}</div>
+                        <div class="category">{{$fashion->type}}</div>
                         <div class="ruler">
                           <div class="first"></div>
                           <div class="second"></div>

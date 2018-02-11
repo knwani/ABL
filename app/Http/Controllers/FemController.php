@@ -32,18 +32,29 @@ class FemController extends Controller
       return view('feminique-single')->with('data', ['fashion' => $fashion, 'author' => $author, 'recommended' => $recommended]);
     }
 
+    public function getGalleryLink(){
+
+      $gallery = \App\Gallery::orderBy('id', 'desc')->get();
+
+      return view('gallery')->with('data', ['files' => $gallery]);
+
+    }
+
+    public function getSingleGallery($folder){
+      $directory = "fem/gallery/" . $folder;
+      $files = File::allFiles($directory);
+
+      //print_r($files);
+      return view('gallery-single')->with('data', ['files' => $files]);
+    }
+
     public function getCategoryData($category){
 
-        if ($category == "gallery"){
+        //if ($category == "gallery"){
 
-          $directory = "fem/gallery";
-          $files = File::allFiles($directory);
 
-          //print_r($files);
 
-          return view('gallery')->with('data', ['files' => $files, 'category' => 'Gallery']);
-
-        } else {
+        //} else {
 
           $this_category = \App\FashionCategory::where('slug', $category)->first();
           $fashion = \App\Fashion::where('category', $this_category->name)->get();
@@ -52,7 +63,7 @@ class FemController extends Controller
 
           return view('feminique')->with('data', ['fashion' => $fashion, 'category' => $this_category->name]);
 
-          }
+          //}
 
     }
 

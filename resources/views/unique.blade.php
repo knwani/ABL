@@ -47,7 +47,8 @@
                           <a href="/">Home</a>
                           <a href="{{ url('/about-us')}}">About Us</a>
                           <a href="{{ url('/feminique-woman')}}">Feminique Woman</a>
-                          <span class="link on">
+                          <a class="on" href="{{ url('/unique-man')}}">Unique Man</a>
+                          <!--<span class="link on">
                             <a href="{{ url('/unique-man')}}">Unique Man</a>
                             <div class="categories">
                               <span class="shower">{{$data['category']}}&nbsp;&nbsp;<i class="fa fa-angle-down"></i></span>
@@ -61,7 +62,7 @@
                                 <li><a href="{{ url('/unique-man')}}">All Categories</a></li>
                               </ul>
                             </div>
-                          </span>
+                          </span>-->
                           <a href="{{ url('/ask-kenny')}}">Ask Kenny</a>
                           <a href="{{ url('/blog')}}">Blog</a>
                       </div>
@@ -78,21 +79,21 @@
             <div class="read_block">
               <div class="fashion">
                 @foreach ($data['fashion'] as $indexKey => $fashion)
-                  <a href="{{ url('/unique-man/' . $fashion->categoryFriendly() . '/'  . $fashion->ID . '/' . $fashion->urlFriendly())}}" class="fashion_item" >
-                    <div class="bg" style="background-image:url('/fem/{{$fashion->cover}}')"></div>
-                    <div class="overlay"></div>
-                    <div class="content">
-                      <div class="grower"></div>
-                      <div class="bottom">
-                        <div class="category">{{$fashion->category}}</div>
-                        <div class="ruler">
-                          <div class="first"></div>
-                          <div class="second"></div>
+                    <a href="{{ url('/unique-man/' . $fashion->categoryFriendly() . '/'  . $fashion->ID . '/' . $fashion->urlFriendly())}}" class="fashion_item" >
+                      <div class="bg" style="background-image:url('/unique/{{$fashion->cover}}')"></div>
+                      <div class="overlay"></div>
+                      <div class="content">
+                        <div class="grower"></div>
+                        <div class="bottom">
+                          <div class="category">{{$fashion->type}}</div>
+                          <div class="ruler">
+                            <div class="first"></div>
+                            <div class="second"></div>
+                          </div>
+                          <div class="title">{{$fashion->title}}</div>
                         </div>
-                        <div class="title">{{$fashion->title}}</div>
                       </div>
-                    </div>
-                  </a>
+                    </a>
                 @endforeach
 
                 <div class="loadmore">

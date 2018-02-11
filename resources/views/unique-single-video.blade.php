@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Feminique Woman</title>
+        <title>Unique Man</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,400,600" rel="stylesheet" type="text/css" />
@@ -17,10 +17,10 @@
     </head>
     <body>
         <div class="flex-center position-ref four-quarter-height">
-          <div class="banner no-height">
+          <div class="banner no-height black">
             <div class="overlay"></div>
             <div class="content">
-              <div class="header">
+              <div class="header header_bg">
                 <div class="shell">
 
                   <div class="shell_inner">
@@ -33,8 +33,8 @@
                       </div>
                     </div>
                     <div class="morty black">
-                      <div class="tenets black">
-                        <div class="tenets_front_man black"><i class="fa fa-align-left" ></i>&nbsp;&nbsp;Purposes</div>
+                      <div class="tenets">
+                        <div class="tenets_front_man read"><i class="fa fa-align-left" ></i>&nbsp;&nbsp;Purposes</div>
                         <ul class="menu">
                           <li><a href="{{ url('/tenets/gods-daughter')}}">God's Daughter</a></li>
                           <li><a href="{{ url('/tenets/wife')}}">Wife</a></li>
@@ -43,37 +43,31 @@
                           <li><a href="{{ url('/tenets/nation-builder')}}">Nation Builder</a></li>
                         </ul>
                       </div>
-                      <div class="links black">
+                      <div class="links">
                           <a href="/">Home</a>
                           <a href="{{ url('/about-us')}}">About Us</a>
-                          <span class="link on black">
-                            <a href="{{ url('/feminique-woman')}}">Feminique Woman</a>
+                          <a href="{{ url('/feminique-woman')}}">Feminique Woman</a>
+                          <a class="on" href="{{ url('/unique-man')}}">Unique Man</a>
+                          <!--<span class="link on">
+                            <a href="{{ url('/unique-man')}}">Unique Man</a>
                             <div class="categories">
-                              <span class="shower">{{$data['category']}}&nbsp;&nbsp;<i class="fa fa-angle-down"></i></span>
+                              <span class="shower">{{$data['fashion']->category}}&nbsp;&nbsp;<i class="fa fa-angle-down"></i></span>
                               <ul class="categories_list">
-                                <li><a href="{{ url('/feminique-woman/her-fashion')}}">Her Fashion</a></li>
-                                <li><a href="{{ url('/feminique-woman/her-unique-man')}}">Her 'Unique' man</a></li>
-                                <li><a href="{{ url('/feminique-woman/her-health')}}">Her Health</a></li>
-                                <li><a href="{{ url('/feminique-woman/her-nutrition')}}">Her Nutrition</a></li>
-                                <li><a href="{{ url('/feminique-woman/her-home')}}">Her Home</a></li>
-                                <li><a href="{{ url('/feminique-woman/her-travels')}}">Her Travels</a></li>
-                                <li><a href="{{ url('/feminique-woman/gallery')}}">Gallery</a></li>
-                                <li><a href="{{ url('/feminique-woman')}}">All Categories</a></li>
+                                <li><a href="{{ url('/unique-man/his-fashion')}}">His Fashion</a></li>
+                                <li><a href="{{ url('/unique-man/his-health')}}">His Health</a></li>
+                                <li><a href="{{ url('/unique-man/his-nutrition')}}">His Nutrition</a></li>
+                                <li><a href="{{ url('/unique-man/his-home')}}">His Home</a></li>
+                                <li><a href="{{ url('/unique-man/his-travels')}}">His Travels</a></li>
+                                <li><a href="{{ url('/unique-man/gallery')}}">Gallery</a></li>
+                                <li><a href="{{ url('/unique-man')}}">All Categories</a></li>
                               </ul>
                             </div>
-                          </span>
-                          <a href="{{ url('/unique-man')}}">Unique Man</a>
+                          </span>-->
                           <a href="{{ url('/ask-kenny')}}">Ask Kenny</a>
-
                           <a href="{{ url('/blog')}}">Blog</a>
                       </div>
                     </div>
-
-
-
                   </div>
-
-
 
                 </div>
 
@@ -85,20 +79,40 @@
             <div class="read_block">
               <div class="fashion-read">
 
-                <section class="content">
+                <div class="video_case">
+                  <iframe class="videoembed" src="https://youtube.com/embed/{{$data['fashion']->embedLink()}}?VQ=HD720" frameborder="0" allowfullscreen color="white" modestbranding="1"></iframe>
+                </div>
 
-                  <div class="gallery">
+                <div class="title-section">
+                  <div class="titlex">{{$data['fashion']->title}}</div>
+                  <!--<div class="category"><span>{{$data['fashion']->category}}</span></div>-->
+                  <div class="author">
+                    <div class="image" style="background-image:url('/authors/{{$data['author']->avatar}}')"></div>
+                    <span class="name">{{$data['author']->name}}</span>
+                  </div>
+                </div>
 
-                    @foreach ($data['files'] as $indexKey => $file)
+                <div class="content" >
 
-                      <div class="preview" style="background-image:url('/{{$file}}')"></div>
+                  <div class="more horizontal">
+                  @foreach ($data['recommended'] as $fashion)
 
+                  <a href="{{ url('/unique-man/' . $fashion->categoryFriendly() . '/'  . $fashion->ID . '/' . $fashion->urlFriendly())}}" class="men_block" style="background-image:url('/fem/{{$fashion->cover}}')">
+                    <div class="overlay"></div>
+                    <div class="ryuk">
+                      <div class="category">{{$fashion->type}}</div>
+                      <div class="ruler">
+                        <div class="first"></div>
+                        <div class="second"></div>
+                      </div>
+                      {{$fashion->title}}
+                    </div>
+                  </a>
 
-
-                    @endforeach
+                  @endforeach
                   </div>
 
-                </section>
+                </div>
 
                 <div class="footerholder">
                   <div class="footer x-footer-fashion">

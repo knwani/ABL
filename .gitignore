@@ -1,6 +1,8 @@
 /node_modules
 /public/hot
 /public/storage
+/public/fem/gallery/website_launch_17_feb_2018
+/public/fem/gallery/ram_10_feb_2018
 /storage/*.key
 /vendor
 /.idea
