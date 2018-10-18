@@ -104,6 +104,20 @@ angular
         templateUrl: 'views/gallery/main.html',
         controller: 'GalleryCtrl'
       })
+      .when('/gallery/new-folder', {
+        //templateUrl: 'views/main.html',
+        //controller: 'MainCtrl'
+        title: 'Gallery',
+        templateUrl: 'views/gallery/new.html',
+        controller: 'NewGalleryCtrl'
+      })
+      .when('/gallery/edit/:galleryid', {
+        //templateUrl: 'views/main.html',
+        //controller: 'MainCtrl'
+        title: 'Edit Gallery',
+        templateUrl: 'views/gallery/edit.html',
+        controller: 'EditGalleryCtrl'
+      })
       .when('/ask-kenny/edit/:purposeid', {
         //templateUrl: 'views/main.html',
         //controller: 'MainCtrl'

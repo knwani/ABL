@@ -39,6 +39,8 @@ Route::get('/unique-man/{category}/{id}/{title}', 'UniqueController@getSingleDat
 
 Route::get('/feminique-woman', 'FemController@getAllData');
 Route::get('/feminique-woman/{category}', 'FemController@getCategoryData');
+Route::get('/gallery', 'FemController@getGalleryLink');
+Route::get('/gallery/{folder}', 'FemController@getSingleGallery');
 //Route::get('/feminique-woman/gallery', 'FemController@getGallery');
 
 Route::get('/feminique-woman/{category}/{id}/{title}', 'FemController@getSingleData');

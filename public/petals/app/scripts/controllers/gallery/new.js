@@ -7,11 +7,11 @@
  * # MainCtrl
  * Controller of the petalsApp
  */
-angular.module('petalsApp').controller('NewUniqueCtrl', function ($scope, $http, $rootScope, FileUploader, $location) {
+angular.module('petalsApp').controller('NewGalleryCtrl', function ($scope, $http, $rootScope, FileUploader, $location) {
 
   $scope.authors = [];
 
-  $rootScope.url_id = '3';
+  $rootScope.url_id = '9';
 
   var this_file;
 
@@ -41,10 +41,12 @@ angular.module('petalsApp').controller('NewUniqueCtrl', function ($scope, $http,
 
     $scope.post_data = [];
 
-    if($("#image").val() == ''){
-      callNotification('You need to upload a cover picture', 'warning');
+    if(picturecount == 0){
+      callNotification('You need to select at least one picture', 'warning');
     } else if ($("#title").val() == '') {
-      callNotification('You need to enter an article title', 'warning');
+      callNotification('You need to enter a Folder name', 'warning');
+    } else if ($("#datepicker").val() == '') {
+      callNotification('You need to select a Folder date', 'warning');
     } else {
       //uploader.uploadAll();
       uploader.uploadAll();
@@ -52,33 +54,14 @@ angular.module('petalsApp').controller('NewUniqueCtrl', function ($scope, $http,
 
   }
 
-  /*$scope.addFeminique = function (){
-
-    $scope.body = $("#writer").trumbowyg('html');
-    $scope.title = $("#title").val();
-
-    $scope.post_data = [];
-
-    $scope.post_data.push({
-      article_name: $scope.title, content: $scope.body, author: 1
-    });
-
-    $scope.promise = $http.post('api/add_feminique', {payload: $scope.post_data}).then(function(response){
-      //callNotification('Your project has been successfully created. Hang on, taking you to your project now','notice');
-      //NProgress.done();
-      console.log(response);
-      //$location.path("/projects/" + response);
-    }, function(response){
-      console.log(response);
-      //callNotification('Something went wrong. Please try again. But we have noted the error','error');
-      //NProgress.done();
-    })
-
-  }*/
+  $scope.showUploader = function (){
+    //alert(contributor);
+    $("#image").trigger("click");
+  }
 
   var uploader = $scope.uploader = new FileUploader({
-        url: 'api/add_unique_cover',
-        formData: {payload: $scope.post_data}
+        url: 'api/add_gallery_folder',
+        queueLimit: 20
     });
 
     // FILTERS
@@ -107,8 +90,10 @@ angular.module('petalsApp').controller('NewUniqueCtrl', function ($scope, $http,
     };
     uploader.onAfterAddingFile = function(fileItem) {
       //NProgress.start();
-        this_file = fileItem;
-        console.info('onAfterAddingFile', fileItem);
+      $scope.title = $("#title").val();
+      $scope.datetime = $("#datepicker").val();
+      fileItem.url = "api/add_gallery_folder?article_name=" + $scope.title + "&date_time=" + $scope.datetime;
+      console.info('onAfterAddingFile', fileItem);
     };
     uploader.onAfterAddingAll = function(addedFileItems) {
         console.info('onAfterAddingAll', addedFileItems);
@@ -126,32 +111,7 @@ angular.module('petalsApp').controller('NewUniqueCtrl', function ($scope, $http,
     uploader.onSuccessItem = function(fileItem, response, status, headers) {
         console.info('onSuccessItem', fileItem, response, status, headers);
         //console.log(response.link);
-        NProgress.done();
-        $scope.cover_name = response.name;
 
-        $scope.post_data = [];
-
-        $scope.body = $("#writer").trumbowyg('html');
-        $scope.title = $("#title").val();
-        $scope.category = $("#category option:selected").text();
-        $scope.author = $("#author option:selected").val();
-        $scope.type = "Article";
-
-        $scope.post_data.push({
-          article_name: $scope.title, content: $scope.body, category: $scope.category, author: $scope.author, cover: $scope.cover_name, type: $scope.type
-        });
-
-        $scope.promise = $http.post('api/add_unique', {payload: $scope.post_data}).then(function(response){
-          //callNotification('Your project has been successfully created. Hang on, taking you to your project now','notice');
-          //NProgress.done();
-          //console.log(response);
-          $location.path("/unique-man/");
-        }, function(response){
-          console.log(response);
-          callNotification('Something went wrong. Please try again. But we have noted the error','error');
-          //NProgress.done();
-        })
-        //$scope.post_data = [];
     };
     uploader.onErrorItem = function(fileItem, response, status, headers) {
         console.info('onErrorItem', fileItem, response, status, headers);
@@ -164,6 +124,30 @@ angular.module('petalsApp').controller('NewUniqueCtrl', function ($scope, $http,
     };
     uploader.onCompleteAll = function() {
         console.info('onCompleteAll');
+        NProgress.done();
+        //$scope.cover_name = response.name;
+
+        $scope.post_data = [];
+
+        $scope.datetime = $("#datepicker").val();
+        $scope.title = $("#title").val();
+        $scope.desc = $("textarea#description").val();
+
+        $scope.post_data.push({
+          article_name: $scope.title, date_time: $scope.datetime, desc: $scope.desc
+        });
+
+        $scope.promise = $http.post('api/add_gallery', {payload: $scope.post_data}).then(function(response){
+          //callNotification('Your project has been successfully created. Hang on, taking you to your project now','notice');
+          //NProgress.done();
+          //console.log(response);
+          $location.path("/gallery/");
+        }, function(response){
+          console.log(response);
+          callNotification('Something went wrong. Please try again. But we have noted the error','error');
+          //NProgress.done();
+        })
+        //$scope.post_data = [];
     };
 
     console.info('uploader', uploader);

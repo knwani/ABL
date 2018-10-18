@@ -15,14 +15,19 @@ $(document).ready(function(){
   $(".shower").click(function(){
     if($(".categories_list").css("display") == "none"){
       $(".categories_list").css("display", "block");
-    } else {
+      //alert("balls");
+      //alert($(".categories_list").css("display"));
+      event.stopPropagation();
+    } else if ($(".categories_list").css("display") == "block") {
       $(".categories_list").css("display", "none");
+      event.stopPropagation();
     }
-    event.stopPropagation();
   });
 
   $("body").click(function(){
-    $(".categories_list").css("display", "none");
+    if ($(".categories_list").css("display") == "block"){
+      //$(".categories_list").css("display", "none");
+    }
   });
 
 

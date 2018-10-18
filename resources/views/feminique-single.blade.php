@@ -57,13 +57,14 @@
                                 <li><a href="{{ url('/feminique-woman/her-nutrition')}}">Her Nutrition</a></li>
                                 <li><a href="{{ url('/feminique-woman/her-home')}}">Her Home</a></li>
                                 <li><a href="{{ url('/feminique-woman/her-travels')}}">Her Travels</a></li>
-                                <li><a href="{{ url('/feminique-woman/gallery')}}">Gallery</a></li>
+                                <!--<li><a href="{{ url('/feminique-woman/gallery')}}">Gallery</a></li>-->
                                 <li><a href="{{ url('/feminique-woman')}}">All Categories</a></li>
                               </ul>
                             </div>
                           </span>
                           <a href="{{ url('/unique-man')}}">Unique Man</a>
                           <a href="{{ url('/ask-kenny')}}">Ask Kenny</a>
+                          <a href="{{ url('/gallery')}}">Gallery</a>
                           <a href="{{ url('/blog')}}">Blog</a>
                       </div>
                     </div>

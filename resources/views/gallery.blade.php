@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Feminique Woman</title>
+        <title>Gallery</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,400,600" rel="stylesheet" type="text/css" />
@@ -46,25 +46,10 @@
                       <div class="links black">
                           <a href="/">Home</a>
                           <a href="{{ url('/about-us')}}">About Us</a>
-                          <span class="link on black">
-                            <a href="{{ url('/feminique-woman')}}">Feminique Woman</a>
-                            <div class="categories">
-                              <span class="shower">{{$data['category']}}&nbsp;&nbsp;<i class="fa fa-angle-down"></i></span>
-                              <ul class="categories_list">
-                                <li><a href="{{ url('/feminique-woman/her-fashion')}}">Her Fashion</a></li>
-                                <li><a href="{{ url('/feminique-woman/her-unique-man')}}">Her 'Unique' man</a></li>
-                                <li><a href="{{ url('/feminique-woman/her-health')}}">Her Health</a></li>
-                                <li><a href="{{ url('/feminique-woman/her-nutrition')}}">Her Nutrition</a></li>
-                                <li><a href="{{ url('/feminique-woman/her-home')}}">Her Home</a></li>
-                                <li><a href="{{ url('/feminique-woman/her-travels')}}">Her Travels</a></li>
-                                <li><a href="{{ url('/feminique-woman/gallery')}}">Gallery</a></li>
-                                <li><a href="{{ url('/feminique-woman')}}">All Categories</a></li>
-                              </ul>
-                            </div>
-                          </span>
+                          <a href="{{ url('/feminique-woman')}}">Feminique Woman</a>
                           <a href="{{ url('/unique-man')}}">Unique Man</a>
                           <a href="{{ url('/ask-kenny')}}">Ask Kenny</a>
-
+                          <a class="on" href="{{ url('/gallery')}}">Gallery</a>
                           <a href="{{ url('/blog')}}">Blog</a>
                       </div>
                     </div>
@@ -91,10 +76,15 @@
 
                     @foreach ($data['files'] as $indexKey => $file)
 
-                      <div class="preview" style="background-image:url('/{{$file}}')"></div>
+                      <!--<div class="preview holder" style="background-image:url('/{{$file->getFirstImage()}}')"></div>-->
 
+                      <a class="preview_holder" href="{{ url('/gallery/' . $file->getFolder() . '/')}}">
+                        <div class="preview" style="background-image:url('/{{$file->getFirstImage()}}')"></div>
+                        <div class="preview_title">{{$file->Name}}</div>
+                      </a>
 
-
+                      <!--{{$file->getFolder()}}
+                      {{$file->getFirstImage()}}-->
                     @endforeach
                   </div>
 
@@ -134,6 +124,23 @@
 
           $("body").click(function(){
             $(".menu").css("display", "none");
+          });
+
+          var s = $(".header");
+          var pos = s.position();
+          //alert(pos.top);
+
+          $(window).scroll(function () {
+              var windowpos = $(window).scrollTop();
+              //s.html("Distance from top: " + pos.top + "<br/>Scroll position: " + windowpos);
+              if (windowpos > pos.top) {
+                  s.addClass("header_bg");
+                  //s.addClass("stick");
+              } else if (windowpos <= pos.top) {
+                  //s.removeClass("stick");
+                  s.removeClass("header_bg");
+              }
+
           });
         });
         </script>

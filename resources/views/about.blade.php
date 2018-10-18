@@ -50,6 +50,7 @@
                           <a href="{{ url('/feminique-woman')}}">Feminique Woman</a>
                           <a href="{{ url('/unique-man')}}">Unique Man</a>
                           <a href="{{ url('/ask-kenny')}}">Ask Kenny</a>
+                          <a href="{{ url('/gallery')}}">Gallery</a>
                           <a href="{{ url('/blog')}}">Blog</a>
                       </div>
                     </div>

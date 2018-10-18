@@ -17,6 +17,50 @@ sup{
   font-size: 10px !important;
 }
 
+.edit_picture {
+    width: 99px;
+    height: 99px;
+    background-size: cover;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 15px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.edit_picture .deleteimagebutton {
+    position: absolute;
+    top: -2px;
+    right: 5px;
+    color: red;
+    text-decoration: none;
+    font-size: 30px;
+    -webkit-transition: 0.05s linear;
+    -moz-transition: 0.05s linear;
+    transition: 0.05s linear;
+}
+
+.edit_picture .deleteimagebutton:hover {
+    color: #000;
+}
+
+.front_cover{
+  height: 100%;
+  width: 100px;
+  background-size: cover;
+  display: inline-block;
+  margin-right: 10px;
+  vertical-align: top;
+  background-position: center;
+}
+
+
+
+.gallery_details{
+  display: inline-block;
+  vertical-align: top;
+}
+
 .author_contribution{
   display: flex;
   justify-content: space-between;
@@ -692,6 +736,41 @@ font-weight: bold;
     margin-bottom: 20px;
     font-weight: normal;
     /*margin-top: 20px;*/
+  }
+
+  .add_picture_details {
+      margin-bottom: 20px;
+      display: block;
+  }
+
+  .add_picture {
+    border: 1px solid #000;
+    background-color: #fff;
+    padding: 32px 30px 30px 30px;
+    display: inline-block;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    margin-right: 10px;
+    width: 99px;
+    height: 99px;
+    vertical-align: top;
+    text-align: center;
+}
+
+.add_picture:hover {
+    border: 1px solid #1E90FF;
+    cursor: pointer;
+}
+
+  .folder_desc{
+    width: 100%;
+    outline: none;
+    font-weight: normal;
+    padding: 8px;
+    margin-bottom: 20px;
+    resize: none;
+    height: 150px;
   }
 
   input[type=datetime-local]{

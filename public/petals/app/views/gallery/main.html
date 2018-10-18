@@ -3,16 +3,18 @@
   <div class="button_case">
     <span class="nav_header">Gallery</span>
     <div>
-      <a href="#/unique-man/new-video" class="button"><i class="fas fa-video"></i>&nbsp;&nbsp;New Folder</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="#/gallery/new-folder" class="button"><i class="fas fa-video"></i>&nbsp;&nbsp;New Folder</a>
     </div>
   </div>
 
-  <a ng-repeat="single_feminique in articles" class="single_field" href="#/unique-man/edit/{{single_feminique.ID}}">
+  <a ng-repeat="single_feminique in articles" class="single_field" href="#/gallery/edit/{{single_feminique.ID}}">
     <div class="first">
-
-      <span class="name">{{single_feminique.title}}</span>
-      <span class="date">{{getDateOnly(single_feminique.new_created_at)}}</span>
-      <span class="views">{{single_feminique.views}} views</span>
+      <div class="front_cover" style="background-image:url('{{single_feminique.front_cover}}')"></div>
+      <div class="gallery_details">
+        <span class="name">{{single_feminique.Name}}</span>
+        <span class="date">{{getDateOnly(single_feminique.new_created_at)}}</span>
+        <span class="views">{{single_feminique.views}} views</span>
+      </div>
     </div>
     <div class="second">
       <span class="category">{{single_feminique.type}}</span>

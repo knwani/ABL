@@ -6,6 +6,12 @@ date_default_timezone_set('UTC');
 
 use \Firebase\JWT\JWT;
 
+$GLOBALS['file_path'] = dirname(dirname(dirname(__FILE__)));
+//$GLOBALS['file_path'] = dirname(dirname(dirname(dirname(__FILE__)))); //"../../../tenets/";
+$GLOBALS['server_url'] = "http://localhost:8080/";
+$GLOBALS['server_url'] = "http://abeautifullifebykenny.com/";
+
+
 try {
     // Initialize Composer autoloader
     if (!file_exists($autoload = __DIR__ . '/vendor/autoload.php')) {
@@ -46,11 +52,14 @@ try {
     $app->post('/edit_question','editQuestion');
     $app->post('/edit_blog','editBlog');
     $app->post('/edit_event','editEvent');
+    $app->post('/edit_gallery','editGallery');
+    $app->post('/edit_gallery_folder','editGalleryFolder');
     $app->post('/edit_contributor','editContributor');
     $app->post('/get_purpose','getPurpose');
     $app->get('/get_purposes','getPurposes');
     $app->get('/get_feminique','getFeminique');
     $app->get('/get_unique','getUnique');
+    $app->get('/get_gallery','getGallery');
     $app->get('/get_questions','getQuestions');
     $app->get('/get_blog','getBlog');
     $app->get('/get_events','getEvents');
@@ -60,17 +69,22 @@ try {
     $app->post('/get_single_question','getSingleQuestion');
     $app->post('/get_single_blog','getSingleBlog');
     $app->post('/get_single_event','getSingleEvent');
+    $app->post('/get_single_gallery','getSingleGallery');
     $app->post('/delete_purpose','deletePurpose');
     $app->post('/delete_feminique','deleteFeminique');
     $app->post('/delete_unique','deleteUnique');
     $app->post('/delete_question','deleteQuestion');
     $app->post('/delete_blog','deleteBlog');
     $app->post('/delete_event','deleteEvent');
+    $app->post('/delete_gallery','deleteGallery');
+    $app->post('/delete_file','deleteFile');
     $app->get('/get_authors','getAuthorsJSON');
     $app->post('/add_feminique','addFeminique');
     $app->post('/add_unique','addUnique');
     $app->post('/add_event','addEvent');
     $app->post('/add_blog','addBlog');
+    $app->post('/add_gallery_folder','addGalleryFolder');
+    $app->post('/add_gallery','addGallery');
     $app->run();
 
 } catch (\Exception $e) {
@@ -87,6 +101,8 @@ try {
     }
 }
 
+
+
 function echoResponse($status_code, $response) {
     $app = \Slim\Slim::getInstance();
     // Http response code
@@ -98,7 +114,7 @@ function echoResponse($status_code, $response) {
     echo json_encode($response);
 }
 
-/*function getConnection()
+function getConnection()
 {
     $dbhost="127.0.0.1";
     //$dbport="8889";
@@ -108,9 +124,9 @@ function echoResponse($status_code, $response) {
     $dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $dbh;
-}*/
+}
 
-function getConnection()
+/*function getConnection()
 {
     $dbhost="127.0.0.1";
     //$dbport="8889";
@@ -120,7 +136,7 @@ function getConnection()
     $dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $dbh;
-}
+}*/
 
 function getAuthorById($id){
 
@@ -286,6 +302,9 @@ function getSingleFeminique(){
   echo json_encode($resp);
 }
 
+
+
+
 function getSingleUnique(){
 
   if ($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -386,6 +405,53 @@ function getSingleEvent(){
   //print_r($purpose);
 
   $resp = array('status' => "success", 'article' => $article);
+  //print_r($resp);
+  echo json_encode($resp);
+}
+
+function getSingleGallery(){
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST')
+  {
+    $data = json_decode(file_get_contents("php://input"), true);
+    //print_r($data);
+  }
+
+  $article_id = $data["payload"][0]["article_id"];
+
+  $char = "SET CHARACTER SET utf8";
+  $sql = "SELECT * FROM `gallery` WHERE `ID` = $article_id LIMIT 1";
+  $db = getConnection();
+  $db->query($char);
+  $stmt = $db->query($sql);
+  $article = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+  $dir = getDirectoryName($article_id);
+
+  $folder_name = $dir;
+
+  $dir = $GLOBALS['file_path'] . "/fem/gallery/" . $dir;
+
+  $files = '<a class="add_picture" onclick="callUpload()"><i class="fa fa-2x fa-plus"></i></a>';
+
+  foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir)) as $filename)
+  {
+      // filter out "." and ".."
+      if ($filename->isDir()) continue;
+
+      if($filename->getExtension() == "jpg" || $filename->getExtension() == "png" || $filename->getExtension() == "PNG" || $filename->getExtension() == "JPG" || $filename->getExtension() == "JPEG" || $filename->getExtension() == "jpeg"){
+          //$filename = str_replace("../", "", $filename);
+          $image_url = $filename->getFilename();
+          $image_base_url = $image_url;
+          $image_url = $GLOBALS['server_url'] . "fem/gallery/" . $folder_name . "/" . $image_url;
+          $files = $files . "<div class='edit_picture' style='background-image:url(\"$image_url\")'><a class='deleteimagebutton' href='javascript:void(0)' data-name='$image_base_url' data-folder='$folder_name' onclick='deleteFile(this)'><i class='fas fa-times'></i></a></div>";
+          //echo $filename->getExtension();
+          //break;
+      }
+  }
+  //$x_authors = getAuthors();
+  //print_r($purpose);
+  $resp = array('status' => "success", 'article' => $article, 'files' => $files, 'folder' => $folder_name);
   //print_r($resp);
   echo json_encode($resp);
 }
@@ -638,6 +704,83 @@ function getUnique(){
 
   $resp = array('status' => "success", 'articles' => $result);
   echo json_encode($resp);
+}
+
+
+
+function getGallery(){
+
+  $char = "SET CHARACTER SET utf8";
+  $sql = "SELECT *, UNIX_TIMESTAMP(`created_at`) AS new_created_at FROM `gallery` ORDER BY `ID` DESC";
+
+  //$file_path = dirname(dirname(dirname(dirname(__FILE__)))); //"../../../tenets/";
+  $file_path = $GLOBALS['file_path'];
+
+  //$file_path = dirname(dirname(dirname(__FILE__))); //"../../../tenets/";
+
+  //print_r($sql);
+  $db = getConnection();
+  $db->query($char);
+  $stmt = $db->query($sql);
+  $fashions = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+  $json_fashions= json_encode($fashions);
+  $result = json_decode($json_fashions, true);
+  $result_count = count($fashions);
+
+  for ($x = 0; $x < $result_count; $x++){
+    $temp_folder_name = $result[$x]["Name"];
+    $temp_folder_date = $result[$x]["Event Date"];
+    $folder_name = str_replace(" ", "_", strtolower($temp_folder_name)) . '_' . str_replace(" ", "_", strtolower($temp_folder_date));
+
+    $thisdir = $file_path . "/fem/gallery/" . $folder_name;
+
+    $front_cover = "";
+
+    foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($thisdir)) as $filename)
+    {
+        // filter out "." and ".."
+        if ($filename->isDir()) continue;
+
+        if($filename->getExtension() == "jpg" || $filename->getExtension() == "png" || $filename->getExtension() == "PNG" || $filename->getExtension() == "JPG" || $filename->getExtension() == "JPEG" || $filename->getExtension() == "jpeg"){
+
+          //becasue the file structure is different for the web
+          $front_cover = str_replace("../", "", $filename->getFilename());
+          //echo "<div class='admin_preview' style='background-image:url(\"$filename\")'></div>";
+          //echo $filename->getExtension();
+          break;
+        }
+
+    }
+
+    //print_r($author_id . " - ");
+    //$author_name = $author_object[0]["name"];
+    //print_r($array_author_object[0]->name);
+    $result[$x]["front_cover"] = $GLOBALS['server_url'] . "fem/gallery/" . $folder_name . "/" . $front_cover;
+  }
+
+  $resp = array('status' => "success", 'articles' => $result);
+  echo json_encode($resp);
+}
+
+
+function getBaseUrl()
+{
+    // output: /myproject/index.php
+    $currentPath = $_SERVER['PHP_SELF'];
+
+    // output: Array ( [dirname] => /myproject [basename] => index.php [extension] => php [filename] => index )
+    $pathInfo = pathinfo($currentPath);
+
+    // output: localhost
+    $hostName = $_SERVER['HTTP_HOST'];
+
+    // output: http://
+    $protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"],0,5))=='https://'?'https://':'http://';
+
+    // return: http://localhost/myproject/
+    //return $protocol.$hostName.$pathInfo['dirname']."/";
+    return $protocol.$hostName; //.$pathInfo['dirname']."/";
 }
 
 
@@ -1073,6 +1216,107 @@ function deleteUnique(){
   getUnique();
 }
 
+function deleteDirectory($dir) {
+    if (!file_exists($dir)) {
+        return true;
+    }
+
+    if (!is_dir($dir)) {
+        return unlink($dir);
+    }
+
+    foreach (scandir($dir) as $item) {
+        if ($item == '.' || $item == '..') {
+            continue;
+        }
+
+        if (!deleteDirectory($dir . DIRECTORY_SEPARATOR . $item)) {
+            return false;
+        }
+
+    }
+
+    return rmdir($dir);
+}
+
+
+function getDirectoryName($article_id){
+
+  $char = "SET CHARACTER SET utf8";
+  $sql = "SELECT * FROM `gallery` WHERE `ID` = $article_id";
+
+  $db = getConnection();
+  $db->query($char);
+  $stmt = $db->query($sql);
+  $directory = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+  $json_directory = json_encode($directory);
+  $result = json_decode($json_directory, true);
+
+  $dir = str_replace(" ", "_", $result[0]['Name']) . "_" . str_replace(" ", "_", $result[0]['Event Date']);
+
+  $dir = strtolower($dir);
+
+  return $dir;
+}
+
+function deleteFile(){
+  $data;
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST')
+  {
+    $data = json_decode(file_get_contents("php://input"), true);
+    //print_r($data);
+  }
+
+  $image_url = $data["payload"][0]["image"];
+  $folder_name = $data["payload"][0]["folder"];
+
+  unlink($GLOBALS['file_path'] . "/fem/gallery/" . $folder_name . "/" . $image_url);
+}
+
+
+function deleteGallery(){
+  $data;
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST')
+  {
+    $data = json_decode(file_get_contents("php://input"), true);
+    //print_r($data);
+  }
+
+
+
+  $article_id = $data["payload"][0]["article_id"];
+
+
+  $dir = getDirectoryName($article_id);
+
+  //echo $dir;
+
+  $dir = $GLOBALS['file_path'] . "/fem/gallery/" . $dir;
+
+  //echo $dir;
+
+  if(file_exists($dir)){
+    deleteDirectory($dir);
+  }
+
+  //$service_id = $_POST["Service_ID"];
+
+  $sql = "DELETE FROM `gallery` WHERE `ID`= :article_id";
+  //$sql = "INSERT INTO `tenets`(`article_name`, `views`, `content`, `author`)
+  //VALUES (:article_name, :views, :content, :author)";
+
+  $db = getConnection();
+  $stmt = $db->prepare($sql);
+  $stmt->bindParam(":article_id", $article_id);
+  $stmt->execute();
+
+  getGallery();
+}
+
+
 function deleteEvent(){
   $data;
 
@@ -1307,6 +1551,51 @@ function editBlog(){
   $stmt->bindParam(":article_id", $article_id);
   //$stmt->bindParam(":category", $category);
   $stmt->execute();
+}
+
+function editGallery(){
+  $data;
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST')
+  {
+    $data = json_decode(file_get_contents("php://input"), true);
+    //print_r($data);
+  }
+
+  //$content = $data["payload"][0]["content"];
+  //article_name: $scope.title, datetime: $scope.datetime, description: $scope.desc, folder: $scope.folder
+
+  $views = 1;
+  $name = $data["payload"][0]["article_name"];
+  $date_value = $data["payload"][0]["datetime"];
+  $desc = $data["payload"][0]["description"];
+  $old_folder = $data["payload"][0]["folder"];
+  $article_id = $data["payload"][0]["article_id"];
+  //$service_id = $_POST["Service_ID"];
+
+  $sql = "UPDATE `gallery` SET `Name`= :event_name,
+  `Description`= :event_desc,`Event Date`= :event_date WHERE `id`= :article_id";
+
+  //$sql = "INSERT INTO `tenets`(`article_name`, `views`, `content`, `author`)
+  //VALUES (:article_name, :views, :content, :author)";
+
+  $db = getConnection();
+  $stmt = $db->prepare($sql);
+
+  $stmt->bindParam(":event_name", $name);
+  $stmt->bindParam(":event_desc", $desc);
+  $stmt->bindParam(":event_date", $date_value);
+  $stmt->bindParam(":article_id", $article_id);
+  //$stmt->bindParam(":category", $category);
+  $stmt->execute();
+
+  $dir_name = getDirectoryName($article_id);
+
+  //rename the folder
+  if ($dir_name != $old_folder){
+      rename($GLOBALS['file_path'] . "/fem/gallery/" . $old_folder, $GLOBALS['file_path'] . "/fem/gallery/" . $dir_name);
+      //uploadFiles($dir_name);
+  }
 }
 
 function editEvent(){
@@ -1619,6 +1908,174 @@ function addEvent(){
   $stmt->bindParam(":full_desc", $desc);
   $stmt->bindParam(":header", $cover);
   $stmt->bindParam(":event_date", $date_value);
+  //$stmt->bindParam(":author", $author);
+  $stmt->execute();
+}
+
+function addGalleryFolder(){
+
+  $data;
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST')
+  {
+    $data = json_decode(file_get_contents("php://input"), true);
+    //print_r($data);
+  }
+
+  $article_name = $_GET["article_name"];
+  $article_date = $_GET["date_time"];
+
+  $project_name = str_replace(" ", "_", $article_name);
+  $project_date = str_replace(" ", "_", $article_date);
+
+  $dir_name = strtolower($project_name . "_" . $project_date);
+
+  $file_path = $GLOBALS["file_path"];
+  //$file_path = dirname(dirname(dirname(__FILE__))); //"../../../tenets/";
+
+  $file_path = $file_path . "/fem/gallery/";
+
+  $dir = $file_path . $dir_name;
+
+  if (!file_exists($dir) && !is_dir($dir)){
+    mkdir($dir, 0777, true);
+  }
+
+  uploadFiles($dir_name);
+
+}
+
+function editGalleryFolder(){
+
+  $data;
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST')
+  {
+    $data = json_decode(file_get_contents("php://input"), true);
+    //print_r($data);
+  }
+
+  $dir_name = $_GET["folder"];
+
+  $file_path = $GLOBALS["file_path"];
+  //$file_path = dirname(dirname(dirname(__FILE__))); //"../../../tenets/";
+
+  $file_path = $file_path . "/fem/gallery/";
+
+  $dir = $file_path . $dir_name;
+
+  if (!file_exists($dir) && !is_dir($dir)){
+    mkdir($dir, 0777, true);
+  }
+
+  uploadFiles($dir_name);
+
+}
+
+function uploadFiles($dir_name){
+    $file_path = $GLOBALS['file_path'];
+    //$file_path = dirname(dirname(dirname(__FILE__))); //"../../../tenets/";
+
+    $file_path = $file_path . "/fem/gallery/";
+    // Count # of uploaded files in array
+    $total = count($_FILES['file']['name']);
+
+    // Loop through each file
+    //for($i=0; $i<$total; $i++) {
+    //Get the temp file path
+    $tmpFilePath = $_FILES['file']['tmp_name'];
+
+    //Make sure we have a filepath
+    if ($tmpFilePath != ""){
+        //Setup our new file path
+        $real_name = basename($_FILES['file']['name']);
+
+        $temp = explode(".", $_FILES["file"]["name"]);
+        $newFilePath = $file_path . $dir_name . "/" . $_FILES['file']['name'];
+
+        //Upload the file into the temp dir
+        if(move_uploaded_file($tmpFilePath, $newFilePath)) {
+            /*if($temp == "png" || $temp == "PNG"){
+                $compressed_png_content = compress_png($newFilePath, 80);
+                file_put_contents($newFilePath, $compressed_png_content);
+            }*/
+            //echo 'compressed';
+            compressImage($newFilePath, $newFilePath, 80);
+            //Handle other code here
+        }
+
+        //echo 'uploaded';
+        //echo '<br/>';
+        //echo $newFilePath;
+        //echo '<br/>';
+        //echo $tmpFilePath;
+        //echo '<br/>';
+        //echo $_FILES['file']['name'];
+        //echo '<br/>';
+        //echo $total;
+    }
+    //}
+}
+
+function compressImage($source_url, $destination_url, $quality) {
+    $info = getimagesize($source_url);
+
+    if ($info['mime'] == 'image/jpeg') $image = imagecreatefromjpeg($source_url);
+    elseif ($info['mime'] == 'image/gif') $image = imagecreatefromgif($source_url);
+    elseif ($info['mime'] == 'image/png') $image = imagecreatefrompng($source_url);
+
+    //save file
+    imagejpeg($image, $destination_url, $quality);
+
+    //return destination file
+    return $destination_url;
+}
+
+function compress_png($path_to_png_file, $max_quality = 90)
+{
+    if (!file_exists($path_to_png_file)) {
+        throw new Exception("File does not exist: $path_to_png_file");
+    }
+
+    // guarantee that quality won't be worse than that.
+    $min_quality = 60;
+
+    // '-' makes it use stdout, required to save to $compressed_png_content variable
+    // '<' makes it read from the given file path
+    // escapeshellarg() makes this safe to use with any path
+    $compressed_png_content = shell_exec("pngquant --quality=$min_quality-$max_quality - < ".escapeshellarg(    $path_to_png_file));
+
+    if (!$compressed_png_content) {
+        throw new Exception("Conversion to compressed PNG failed. Is pngquant 1.8+ installed on the server?");
+    }
+
+    return $compressed_png_content;
+}
+
+function addGallery(){
+
+  $data;
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST')
+  {
+    $data = json_decode(file_get_contents("php://input"), true);
+    //print_r($data);
+  }
+
+  $views = 1;
+  $article_name = $data["payload"][0]["article_name"];
+  $date_time    = $data["payload"][0]["date_time"];
+  $desc = $data["payload"][0]["desc"];
+
+  $sql = "INSERT INTO `gallery`(`Name`, `Description`, `Event Date`)
+  VALUES (:title,:description,:event_date)";
+
+  $db = getConnection();
+  $stmt = $db->prepare($sql);
+
+  $stmt->bindParam(":title", $article_name);
+  $stmt->bindParam(":description", $desc);
+  $stmt->bindParam(":event_date", $date_time);
   //$stmt->bindParam(":author", $author);
   $stmt->execute();
 }

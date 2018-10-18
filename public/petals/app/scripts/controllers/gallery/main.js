@@ -38,7 +38,7 @@ angular.module('petalsApp').controller('GalleryCtrl', function ($scope, $http, m
     $event.preventDefault();
     $.confirm({
         title: 'Confirm!',
-        content: 'Are you sure you want to delete this article?',
+        content: 'Are you sure you want to delete this folder?',
         buttons: {
               somethingElse: {
                 text: 'Yes',
@@ -52,8 +52,8 @@ angular.module('petalsApp').controller('GalleryCtrl', function ($scope, $http, m
                     article_id: id
                   });
 
-                  $scope.promise = $http.post('api/delete_unique', {payload: $scope.post_data}).then(function(response){
-                    callNotification('Article has been deleted','notice');
+                  $scope.promise = $http.post('api/delete_gallery', {payload: $scope.post_data}).then(function(response){
+                    callNotification('Folder has been deleted','notice');
                     NProgress.done();
                     $scope.articles = response.data.articles;
                     //console.log(response);
@@ -78,11 +78,15 @@ angular.module('petalsApp').controller('GalleryCtrl', function ($scope, $http, m
 });
 
 
-angular.module('petalsApp').controller('EditGalleryCtrl', function ($scope, $http, myDateService, $routeParams, FileUploader, $rootScope) {
+angular.module('petalsApp').controller('EditGalleryCtrl', function ($scope, $http, myDateService, $routeParams, FileUploader, $rootScope, $sce) {
 
   $scope.article = [];
 
+  $scope.folder = "";
+
   $scope.authors = [];
+
+  $scope.pictures = '';
 
   $rootScope.url_id = '9';
 
@@ -93,18 +97,20 @@ angular.module('petalsApp').controller('EditGalleryCtrl', function ($scope, $htt
     $scope.post_data = [];
 
     $scope.post_data.push({
-      article_id: $routeParams.purposeid
+      article_id: $routeParams.galleryid
     });
 
-    $scope.promise = $http.post('api/get_single_unique', {payload: $scope.post_data}).then(function(response){
+    $scope.promise = $http.post('api/get_single_gallery', {payload: $scope.post_data}).then(function(response){
       //callNotification('Your project has been successfully created. Hang on, taking you to your project now','notice');
       //NProgress.done();
       $scope.article = response.data.article;
       $scope.authors = response.data.authors;
-      $scope.article_cover = "http://abeautifullifebykenny.com/unique/" + $scope.article[0].cover;
+      $scope.pictures = response.data.files;
+      $scope.folder = response.data.folder;
+      //$scope.article_cover = "http://abeautifullifebykenny.com/fem/gallery/" + $scope.article[0].cover;
 
-      $("#writer").trumbowyg('html', $scope.article[0].body);
-      $('#author option:eq(' + $scope.article[0].author + ')').prop('selected', true);
+      //$("#writer").trumbowyg('html', $scope.article[0].body);
+      //$('#author option:eq(' + $scope.article[0].author + ')').prop('selected', true);
       //alert($("#author option:selected").val());
       console.log(response);
       //$location.path("/projects/" + response);
@@ -115,6 +121,34 @@ angular.module('petalsApp').controller('EditGalleryCtrl', function ($scope, $htt
     })
 
   }
+
+  $scope.trustAsHtml = function(html) {
+      return $sce.trustAsHtml(html);
+    }
+
+    $scope.deleteFile = function(image_url, folder_name) {
+        //alert(image_url);
+        NProgress.start();
+
+        $scope.post_data = [];
+
+        $scope.post_data.push({
+          image: image_url, folder: folder_name
+        });
+
+        $scope.promise = $http.post('api/delete_file', {payload: $scope.post_data}).then(function(response){
+          NProgress.done();
+          callNotification('Image has been deleted. :)','notice');
+          //NProgress.done();
+          console.log(response);
+          $scope.loadArticle();
+          //$location.path("/projects/" + response);
+        }, function(response){
+          console.log(response);
+          callNotification('Something went wrong. Please try again. But we have noted the error :(','error');
+          NProgress.done();
+        })
+    }
 
   $scope.loadArticle();
 
@@ -137,109 +171,128 @@ angular.module('petalsApp').controller('EditGalleryCtrl', function ($scope, $htt
 
   $scope.getDateOnly = myDateService.getDateOnly;
 
+  $scope.showUploader = function (){
+    //alert(contributor);
+    $("#image").trigger("click");
+  }
+
+
   $scope.editArticle = function (){
 
     NProgress.start();
 
-    //var someText = "Hello, World!";
-    //$("#writer").append("<span class='bez'>Balls</span>");
-    //$('#writer span.bez').last().remove();
-    $scope.body = $("#writer").trumbowyg('html');
+    if(picturecount == 0){
+      //var someText = "Hello, World!";
+      //$("#writer").append("<span class='bez'>Balls</span>");
+      //$('#writer span.bez').last().remove();
+      //$scope.body = $("#writer").trumbowyg('html');
 
-    //alert($scope.body);
-    //alert($("#writer").trumbowyg('html'));
-    $scope.title = $("#title").val();
-    $scope.category = $("#category option:selected").text();
-    $scope.author = $("#author option:selected").val();;
+      //alert($scope.body);
+      //alert($("#writer").trumbowyg('html'));
+      $scope.title = $("#title").val();
+      $scope.datetime = $("#datepicker").val();
+      $scope.desc = $("textarea#description").val();
 
-    $scope.post_data = [];
+      $scope.post_data = [];
 
-    $scope.post_data.push({
-      article_name: $scope.title, content: $scope.body, author: $scope.author, article_id: $routeParams.purposeid, category: $scope.category
-    });
+      $scope.post_data.push({
+        article_name: $scope.title, datetime: $scope.datetime, description: $scope.desc, folder: $scope.folder, article_id: $routeParams.galleryid
+      });
 
-    $scope.promise = $http.post('api/edit_unique', {payload: $scope.post_data}).then(function(response){
-      NProgress.done();
-      callNotification('This article has been edited. :)','notice');
-      //NProgress.done();
-      console.log(response);
-      //$location.path("/projects/" + response);
-    }, function(response){
-      console.log(response);
-      callNotification('Something went wrong. Please try again. But we have noted the error :(','error');
-      NProgress.done();
-    })
+      $scope.promise = $http.post('api/edit_gallery', {payload: $scope.post_data}).then(function(response){
+        NProgress.done();
+        callNotification('This folder has been edited. :)','notice');
+        //NProgress.done();
+        console.log(response);
+
+        //$location.path("/projects/" + response);
+      }, function(response){
+        console.log(response);
+        callNotification('Something went wrong. Please try again. But we have noted the error :(','error');
+        NProgress.done();
+      })
+
+    //callNotification('You need to select at least one picture', 'warning');
+  }
 
   }
 
   var uploader = $scope.uploader = new FileUploader({
-            url: 'api/edit_unique_picture?id=' + $routeParams.purposeid,
-            autoUpload: true
-        });
+        url: 'api/edit_gallery_folder',
+        autoUpload: true
+    });
 
-        // FILTERS
-        // a sync filter
-        uploader.filters.push({
-            name: 'syncFilter',
-            fn: function(item /*{File|FileLikeObject}*/, options) {
-                console.log('syncFilter');
-                return this.queue.length < 10;
-            }
-        });
+    // FILTERS
+    // a sync filter
+    uploader.filters.push({
+        name: 'syncFilter',
+        fn: function(item /*{File|FileLikeObject}*/, options) {
+            console.log('syncFilter');
+            return this.queue.length < 10;
+        }
+    });
 
-        // an async filter
-        uploader.filters.push({
-            name: 'asyncFilter',
-            fn: function(item /*{File|FileLikeObject}*/, options, deferred) {
-                console.log('asyncFilter');
-                setTimeout(deferred.resolve, 1e3);
-            }
-        });
+    // an async filter
+    uploader.filters.push({
+        name: 'asyncFilter',
+        fn: function(item /*{File|FileLikeObject}*/, options, deferred) {
+            console.log('asyncFilter');
+            setTimeout(deferred.resolve, 1e3);
+        }
+    });
 
-        // CALLBACKS
+    // CALLBACKS
 
-        uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
-            console.info('onWhenAddingFileFailed', item, filter, options);
-        };
-        uploader.onAfterAddingFile = function(fileItem) {
-            NProgress.start();
-            console.info('onAfterAddingFile', fileItem);
-        };
-        uploader.onAfterAddingAll = function(addedFileItems) {
-            console.info('onAfterAddingAll', addedFileItems);
-        };
-        uploader.onBeforeUploadItem = function(item) {
-            console.info('onBeforeUploadItem', item);
-        };
-        uploader.onProgressItem = function(fileItem, progress) {
-            console.info('onProgressItem', fileItem, progress);
-        };
-        uploader.onProgressAll = function(progress) {
-            console.info('onProgressAll', progress);
-        };
-        uploader.onSuccessItem = function(fileItem, response, status, headers) {
-            console.info('onSuccessItem', fileItem, response, status, headers);
-            //console.log(response.link);
-            NProgress.done();
-            $scope.article_cover = response.link;
-        };
-        uploader.onErrorItem = function(fileItem, response, status, headers) {
-            console.info('onErrorItem', fileItem, response, status, headers);
-        };
-        uploader.onCancelItem = function(fileItem, response, status, headers) {
-            console.info('onCancelItem', fileItem, response, status, headers);
-        };
-        uploader.onCompleteItem = function(fileItem, response, status, headers) {
-            console.info('onCompleteItem', fileItem, response, status, headers);
-        };
-        uploader.onCompleteAll = function() {
-            console.info('onCompleteAll');
-        };
+    uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
+        console.info('onWhenAddingFileFailed', item, filter, options);
+    };
 
-        console.info('uploader', uploader);
+    uploader.onAfterAddingFile = function(fileItem) {
+      //NProgress.start();
+      //$scope.title = $("#title").val();
+      //$scope.datetime = $("#datepicker").val();
+      fileItem.url = "api/edit_gallery_folder?folder=" + $scope.folder;
+      console.info('onAfterAddingFile', fileItem);
+    };
+    uploader.onAfterAddingAll = function(addedFileItems) {
+        console.info('onAfterAddingAll', addedFileItems);
+    };
+    uploader.onBeforeUploadItem = function(item) {
+        NProgress.start();
+        console.info('onBeforeUploadItem', item);
+    };
+    uploader.onProgressItem = function(fileItem, progress) {
+        console.info('onProgressItem', fileItem, progress);
+    };
+    uploader.onProgressAll = function(progress) {
+        console.info('onProgressAll', progress);
+    };
+    uploader.onSuccessItem = function(fileItem, response, status, headers) {
+        console.info('onSuccessItem', fileItem, response, status, headers);
+        //console.log(response.link);
 
-        $rootScope.hide_it = false;
-        $(".container").css("display", "block");
+    };
+    uploader.onErrorItem = function(fileItem, response, status, headers) {
+        console.info('onErrorItem', fileItem, response, status, headers);
+    };
+    uploader.onCancelItem = function(fileItem, response, status, headers) {
+        console.info('onCancelItem', fileItem, response, status, headers);
+    };
+    uploader.onCompleteItem = function(fileItem, response, status, headers) {
+        console.info('onCompleteItem', fileItem, response, status, headers);
+    };
+    uploader.onCompleteAll = function() {
+        console.info('onCompleteAll');
+        NProgress.done();
+        $scope.loadArticle();
+        //$scope.cover_name = response.name;
+        //$scope.post_data = [];
+    };
+
+    console.info('uploader', uploader);
+
+    $rootScope.hide_it = false;
+    $(".container").css("display", "block");
 
 });
 
